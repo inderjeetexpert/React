@@ -1,0 +1,3 @@
+npm install --save react-flexbox-grid
+npm install --save-dev style-loader css-loader
+npm i --save classnames
