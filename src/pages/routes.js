@@ -16,7 +16,7 @@ const routes = {
     {
       path: '/',
       getComponent(location, cb) {
-        System.import('pages/Home')
+        System.import('pages/Business')
           .then(loadRoute(cb))
           .catch(errorLoading);
       }

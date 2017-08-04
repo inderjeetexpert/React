@@ -30,7 +30,7 @@ const plugins = [
 
 const jsEntry = [
   'index',
-  'pages/Home/index.js',
+  // 'pages/Home/index.js',
 ];
 
 if (isProd) {
