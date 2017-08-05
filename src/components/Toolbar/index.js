@@ -6,10 +6,10 @@ export default () => (
   <nav className="navbar" role="navigation">
     <span className="companyName">Carderock</span>
     <span className="headerText">
-	  <Link to="/">Business</Link>
+	  <Link to="/">Business Search</Link>
 	</span>
 	<span className="headerText">
-	  <Link to="/">People</Link>
+	  <Link to="/">People Search</Link>
 	</span>
 	<span className="headerText">
 	  <Link to="/blog">Prices</Link>
