@@ -1,44 +1,46 @@
-# React Router Dynamic Route Loading w/ Webpack 2 Chunks
+# [HalalPlates-Web](https://halal-plates.appspot.com) - Halal Plates Web Project
+## Installation
 
-Webpack 2 automatically splits routes in chunks (small bundles) and loads them on demand. 
-
-[See the demo](https://burning-heat-4609.firebaseapp.com/)
-
-## Contains
-
-- [x] [Webpack 2.2](https://webpack.github.io)
-- [x] [React 0.15](https://facebook.github.io/react/)
-- [x] [Babel 6.x](https://babeljs.io/)
-
-## Features
-
-- [x] Tree shaking
-- [x] Code Splitting
-- [x] Hot Module Replacement
-- [x] ES6 Source debugging in Chrome with sourcemaps
-- [x] React Router
-- [x] Yarn-friendly
-
-##System Requirements
-Before installing the dependencies, make sure your system has the correct Node and Npm versions, otherwise you will get errors.
-
-- Node 6.x.x
-- Npm 3.x.x
-
-## Setup
-
+After cloning the repository, install dependencies:
+```sh
+cd <project folder>/halalplates-web
+npm install
 ```
-$ npm install
+If for some reason npm fails or don't give wanted results run the yarn to (you should install yarn globally, I found on my linux machine that npm wasn't enough to run build command on windows it worked without it.):
+```sh
+yarn
 ```
 
-## Running
+Now you can run your local server:
+```sh
+npm run local
+```
+
+Server is located at http://localhost:3000
+
+To do a local production build, run:
+```sh
+npm run prod
+```
+This creates a "build" folder to be served.
+
+
+To deploy to Google App Engine (GAE), run:
+```sh
+npm run deploy-prod
+```
+This will call `npm run prod` first to bundle the assets using webpack-production-config, and will then call the Google App Engine deploy command `gcloud app deploy`.
+Note: You need to have gcloud installed and configured for this. (https://cloud.google.com/sdk/)
+
+IMPORTANT:
+GAE uses npm start to run node applications. To serve the static `build` folder we are using `serve` npm module.
+
+```sh
+npm start
+```
+
+Note: To allow external viewing of the demo, change the following value in `webpack-dev-server.config.js`
 
 ```
-$ npm start
-```
-
-## Build
-
-```
-$ npm run build
+host: 'localhost'  //Change to '0.0.0.0' for external facing server
 ```
