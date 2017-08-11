@@ -36,12 +36,6 @@ class LoginForm extends Component{
 			this.setState({errorMsg : 'Username or password should not be blank!!',busy : false});
 			return;
 		}
-		// axios.defaults.headers.common['content-type'] = "application/x-www-form-urlencoded";
-		// axios.post('https://carderockllc.com/rest-auth/login/',data).then(res=>{
-		// 	console.log(res)
-		// }).catch(err=>{
-		// 	console.error(err)
-		// })
 
 		fetch('https://carderockllc.com/rest-auth/login/',{
 			method:'POST',
@@ -63,7 +57,7 @@ class LoginForm extends Component{
 
 	}
 
-	notify = (msg)=>{
+	notify(msg){
 		return ()=>{
 			NotificationManager.warning(msg,'Info');
 		}

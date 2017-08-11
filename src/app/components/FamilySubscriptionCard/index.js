@@ -26,7 +26,7 @@ class SubscriptionCard extends React.Component {
 		})
 	}
 
-	handleSelect=(pId)=>{
+	handleSelect(pId){
 		this.props.subscriptions.map((value,index)=>{
 			if(value.id===pId){
 				this.props.selectFamilySubscription(value)
@@ -35,7 +35,7 @@ class SubscriptionCard extends React.Component {
 		})
 	}
 
-	handlePlanSelect=(product)=>{
+	handlePlanSelect(product){
 		this.props.selectPlan(product)
 		this.props.changeProductSelectionContex('FAMILY_PLAN')
 	}
@@ -78,9 +78,9 @@ class SubscriptionCard extends React.Component {
 										<li key={product.id}>
 											<button onClick={()=>this.handleSelect(product.id)} className={cName}>{product.meta_description}</button>
 										</li>
-									) 
+									)
 								})}
-								
+
 							</ul>
 							<strong>$ {price} / weekly</strong>
 							{selectButton}

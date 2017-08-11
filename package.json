@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "css-loader": "^0.28.4",
     "history": "^4.6.3",
     "immutable": "^3.8.1",

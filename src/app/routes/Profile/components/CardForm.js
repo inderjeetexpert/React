@@ -28,7 +28,7 @@ class CardForm extends React.Component{
 
 
 
-	handleInputFocus = (e) => {
+	handleInputFocus(e){
     const target = e.target;
     this.setState({
       focused: target.name,
