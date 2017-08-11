@@ -20,10 +20,10 @@ class Login extends Component {
 	render() {
 		return (
 			<MuiThemeProvider muiTheme={muiTheme}>
-				<div>
+					<div>
 
-					<LoginFrom/>
-				</div>
+							<LoginFrom/>
+					</div>
 			</MuiThemeProvider>
 		);
 	}
