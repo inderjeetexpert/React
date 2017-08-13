@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Topnav from '../../components/Topnav';
 import PeopleSearch from './components/PeopleSearch';
 
@@ -9,9 +9,10 @@ class People extends Component {
 	render() {
 		return (
 			<div>
-					<Topnav/>
-					<div>
-							<PeopleSearch/>
+				<Topnav />
+				<div>
+
+					<PeopleSearch />
 				</div>
 			</div>
 		);

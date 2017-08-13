@@ -1,0 +1,34 @@
+.item-info {
+    font-size: 16px;
+    padding: 10px 15px;
+}
+
+.info-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: 16px;
+    color: #152934;
+    line-height: 1.5;
+}
+
+.item-thumbnail {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    padding: 0;
+}
+.item-other{
+  border-top: 1px solid #ccc;
+  padding: 15px;
+  text-align: right;
+  
+}
+
+.item-other span{
+  text-align: left;
+  float: left;
+  margin-top: 4px;
+  font-size: 12px;
+}
