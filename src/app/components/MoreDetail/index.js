@@ -19,8 +19,8 @@ export default class MoreDetail extends Component {
 
             {datailInfo.name}
           </li>
-          {/* <li className="item-info item-image">{datailInfo.name}</li> */}
-          {/* <li className="item-info item-address">{datailInfo.source}</li> */}
+          <li className="item-info item-image"><img src="http://browzin.net/wp-content/uploads/2015/02/pictures-675-ESB_gift_shop.jpg" alt="image" /></li>
+          <li className="item-info item-address">{datailInfo.formatted_address}</li>
           <li className="item-info item-phone">{datailInfo.phone}</li>
           <li className="item-info item-email">email@example.com</li>
           <li className="item-other item-revenue"><span>Revenue</span> 5000</li>

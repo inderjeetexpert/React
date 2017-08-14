@@ -1,6 +1,15 @@
 .item-info {
-    font-size: 16px;
     padding: 10px 15px;
+   
+}
+.item-name{
+    padding: 30px 15px 20px;
+}
+.item-image {
+    padding: 10px 0;
+}
+.item-image img{
+    max-width: 100%;
 }
 
 .info-list {
@@ -8,6 +17,7 @@
     margin: 0;
     list-style: none;
     font-size: 16px;
+     font-family:'Hind', sans-serif;
     color: #152934;
     line-height: 1.5;
 }
@@ -17,11 +27,15 @@
     height: 20px;
     border-radius: 50%;
     display: inline-block;
+    
+    background: #000;
+    margin-right: 5px;
     padding: 0;
 }
 .item-other{
   border-top: 1px solid #ccc;
   padding: 15px;
+  font-size: 24px;
   text-align: right;
   
 }
@@ -29,6 +43,7 @@
 .item-other span{
   text-align: left;
   float: left;
-  margin-top: 4px;
+  color: #8c9ba5;
+    margin-top: 10px;
   font-size: 12px;
 }

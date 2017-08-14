@@ -196,14 +196,12 @@ export default class TabThisWeekMenu extends React.Component {
 										<table className="business-table">
 											<thead>
 												<tr>
-													<th>NAME</th>
+													<th width="25%">NAME</th>
 
-													<th></th>
-													<th>ADDRESS</th>
-													<th>PHONE</th>
-													<th>EMAIL</th>
-													<th> </th>
-													<th> </th>
+													<th width="25%">ADDRESS</th>
+													<th width="25%">PHONE</th>
+													<th width="25%">EMAIL</th>
+													<th width="50"> </th>
 												</tr>
 											</thead>
 											<tbody>
@@ -220,11 +218,12 @@ export default class TabThisWeekMenu extends React.Component {
 													return (
 														<tr key={d.id} onClick={() => this.handleMoreInfo(d)} className={`${datailInfo && (datailInfo.id === d.id) ? 'selected-item' : ''}`}>
 															<td><img src={image} className="img-thumbnail" alt="thumbnail image" onClick={() => this.refs[dialoadRef].show()} />
+																<p className="table-item-name">{d.name}</p>
 																<SkyLight hideOnOverlayClicked ref={dialoadRef} title={d.name}>
 																	<img src={image} style={{ height: 300, width: 618 }} alt="" />
-																</SkyLight></td>
-															<td><p>{d.name}</p></td>
-															<td><p>{d.source}</p></td>
+																</SkyLight>
+															</td>
+
 															<td><p>{d.formatted_address}</p></td>
 															<td><p>{d.phone}</p></td>
 															<td><p>{d.email}</p></td>
@@ -235,6 +234,7 @@ export default class TabThisWeekMenu extends React.Component {
 											</tbody>
 										</table>
 									</div>
+									<button className="load-more-btn">Load More</button>
 								</div>
 									{datailInfo ?
 										<MoreDetailSection datailInfo={datailInfo} />
