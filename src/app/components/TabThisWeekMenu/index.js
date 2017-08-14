@@ -24,7 +24,9 @@ export default class TabThisWeekMenu extends React.Component {
 			errorMsg: null,
 			errorItem: null,
 			errorLoc: null,
-			datailInfo: null
+			datailInfo: null,
+			searchedName: null,
+			searchedLocation: null
 
 		};
 		this.handleMoreInfo = this.handleMoreInfo.bind(this);
@@ -59,7 +61,8 @@ export default class TabThisWeekMenu extends React.Component {
 			errorItem: null,
 			errorLoc: null,
 			item: '',
-			location: ''
+			location: '',
+
 		});
 
 
@@ -95,7 +98,13 @@ export default class TabThisWeekMenu extends React.Component {
 		axios.defaults.headers.common['Authorization'] = "Token " + localStorage.getItem('key');
 		axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 		axios.post('https://carderockllc.com/api/v1/business/search/', data).then(res => {
-			this.setState({ data: res.data, recordcount: res.data.length, busy: false })
+			this.setState({
+				data: res.data,
+				recordcount: res.data.length,
+				busy: false,
+				searchedName: this.state.item,
+				searchedLocation: this.state.location
+			})
 			//console.log(this.state.data)
 		}).catch(err => {
 			this.setState({ busy: false });
@@ -109,7 +118,7 @@ export default class TabThisWeekMenu extends React.Component {
 		let errorMsg = null;
 		let errorItem = null;
 		let errorLoc = null;
-		let { item, location, recordcount, datailInfo } = this.state;
+		let { item, location, recordcount, datailInfo, searchedName, searchedLocation } = this.state;
 		if (!this.state.busy) {
 			searchButton = <button type="submit" onClick={(event) => this.handleSearch(event)} className="btn btn-primary btn-lg">Search</button>;
 		} else {
@@ -175,7 +184,11 @@ export default class TabThisWeekMenu extends React.Component {
 						<div className="row">
 							<div className="col-md-12">
 
-								<h5>We found {recordcount} business matching your query !</h5>
+								<h5 className="record-count">
+									{searchedName && searchedLocation ?
+										<p>We found<span> {recordcount}</span> results for <span>{searchedName}</span> in <span>{searchedLocation}</span></p>
+										: 'Please provide item and location to search!'}
+								</h5>
 							</div>
 							{recordcount ?
 								<div><div className={`${datailInfo ? 'col-md-9 col-sm-7' : 'col-md-12'}`}>
@@ -183,9 +196,9 @@ export default class TabThisWeekMenu extends React.Component {
 										<table className="business-table">
 											<thead>
 												<tr>
-													<th></th>
-
 													<th>NAME</th>
+
+													<th></th>
 													<th>ADDRESS</th>
 													<th>PHONE</th>
 													<th>EMAIL</th>
@@ -205,7 +218,7 @@ export default class TabThisWeekMenu extends React.Component {
 
 													var dialoadRef = "sd" + d.id
 													return (
-														<tr key={d.id} onClick={() => this.handleMoreInfo(d)}>
+														<tr key={d.id} onClick={() => this.handleMoreInfo(d)} className={`${datailInfo && (datailInfo.id === d.id) ? 'selected-item' : ''}`}>
 															<td><img src={image} className="img-thumbnail" alt="thumbnail image" onClick={() => this.refs[dialoadRef].show()} />
 																<SkyLight hideOnOverlayClicked ref={dialoadRef} title={d.name}>
 																	<img src={image} style={{ height: 300, width: 618 }} alt="" />

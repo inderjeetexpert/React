@@ -5,6 +5,7 @@
 /*********Google fonts CDN***********************************************/
 @import url('https://fonts.googleapis.com/css?family=Asap:500');
 @import url('https://fonts.googleapis.com/css?family=Muli:300,400');
+@import url('https://fonts.googleapis.com/css?family=Hind:400,600');
 
 body{font-family: 'Muli', sans-serif;}
 
@@ -12,7 +13,7 @@ body{font-family: 'Muli', sans-serif;}
 .btn-primary{background:#68a6ff;font-family: 'Asap', sans-serif;font-size: 13px;letter-spacing: 1px;border:1px solid #68a6ff;box-shadow: none}
 .btn-default{font-family: 'Asap', sans-serif;font-size: 13px;letter-spacing: 1px;color:#68a6ff;box-shadow: none;border:1px solid #68a6ff}
 
-.btn-lg{height:50px;line-height: 50px;padding: 0 32px;min-width: 150px;}
+.btn-lg{height:50px;line-height: 50px;padding: 0 32px;min-width: 180px;}
 .btn{border-radius:7px}
 
 .col-auto{display: table;width: auto; min-height: 1px;padding-left: 15px;padding-right: 15px;position: relative;}
@@ -29,22 +30,31 @@ a{color:#68a6ff}
     margin-bottom: 15px;
     border: 1px solid #ebf0f7;
 }
-.search-header .form-group{margin-bottom: 0; border-right: 1px solid #ebf0f7; margin-top: 6px;}
+.search-header .form-group{margin-bottom: 0; border-right: 1px solid #ebf0f7; margin-top: 8px;}
 .search-header .form-group label{margin: 0;font-size:11px;color:#68a6ff;line-height: 14px}
-.search-header .form-group input[type="text"]{font-size: 13px;box-shadow:none;color: #000;}
+.search-header .form-group input[type="text"]{font-size: 16px;box-shadow:none;color: #000; font-family:'Hind', sans-serif;}
 .search-header .btn i{font-size:20px;display: block;float:left;margin-left:10px}
 .search-header .btn span{display:block;float:left;}
 .borderless{
     border:none !important;
 }
-.search-header .btn {text-transform: none; border-radius: 40px;    font-family: sans-serif; font-size: 16px; }
+.search-header .btn {background: #5596e6; text-transform: none; border-radius: 40px;    font-family:'Hind', sans-serif; font-size: 16px; }
 .clear-button{
-        font-family: sans-serif;
+     
+    margin-top: 1px;
+         font-family:'Hind', sans-serif;
     font-size: 16px;
     vertical-align: middle;
     padding: 0 20px;
     border: none;
     background: none;
+    color: #0d87e9;
+}
+.record-count{
+    font-family:'Hind', sans-serif;
+    font-size: 16px;
+}
+.record-count span{
     color: #0d87e9;
 }
 /*********Body***********************************************/
@@ -67,7 +77,10 @@ a{color:#68a6ff}
 
 .business-table tr th{padding: 8px 15px; color: #5a6872;border-bottom:1px solid #d5d6dd;font-family: 'Asap', sans-serif;font-weight: normal;}
 .business-table tr td a.icons{margin:0 15px;font-size: 25px}
-
+.selected-item{
+    border-left: 10px solid #1562c5;
+    outline: 1px solid #1562c5;
+}
 .select-all .custom_checkbox{float:left;margin-right:15px}
 .select-all b{color: #26272d;font-family: 'Asap', sans-serif;font-weight: normal;}
 .select-all{margin: 15px 0;}
@@ -102,7 +115,7 @@ a{color:#68a6ff}
     }
 }
 @media (max-width: 767px) {
-	.search-header .form-group{margin-bottom: 15px}
+	.search-header .form-group{margin-bottom: 15px; border-right:none;}
 	.btn-lg{padding: 0 10px}
 	.col-auto{margin: 0 auto;float:none !important}
 	.body-border{overflow-x: scroll;}
