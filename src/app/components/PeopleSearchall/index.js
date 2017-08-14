@@ -8,6 +8,9 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import axios from 'axios';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export default class PeopleSearchall extends React.Component{
 	constructor (props){
@@ -42,6 +45,7 @@ export default class PeopleSearchall extends React.Component{
 		this.setState({company:event.target.value})
 	}
 
+
 	handlePeopleSearch(event){
 		//const data={first_name:this.state.first_name,last_name:this.state.last_name,company:this.state.company};
 		const first_name = this.state.first_name;
@@ -65,10 +69,6 @@ export default class PeopleSearchall extends React.Component{
 		})
 	}
 
-
-
-
-
   render() {
 		let searchButton = null;
 		let recordcount = 0;
@@ -85,6 +85,21 @@ export default class PeopleSearchall extends React.Component{
 		}else{
 			errorMsg = <p className="text-danger text-center searcherr">{this.state.errorMsg}</p>
 		}
+
+
+		const actions = [
+	       <FlatButton
+						 label="Cancel"
+						 primary={true}
+						 onTouchTap={this.handleClose}
+	       />,
+	       <FlatButton
+						 label="Submit"
+						 primary={true}
+						 disabled={true}
+						 onTouchTap={this.handleClose}
+	       />,
+	     ];
 
     return (
 			<div>
@@ -145,96 +160,100 @@ export default class PeopleSearchall extends React.Component{
 																	<tbody>
 																			<tr>
 																					<th></th>
-																			<th>Name</th>
-																			<th>Company</th>
-																			<th>Location</th>
-																			<th>Number</th>
-																			<th>Email</th>
-																			<th></th>
-																	</tr>
-																	<tr>
-																			<td>
-																					<div className="custom_checkbox">
-																							<input type="checkbox" />
-																							<span></span>
-																					</div>
-																			</td>
-																			<td>Sayed Rahman Ali</td>
-																			<td>Google</td>
-																			<td>Lorem ipsum , United States</td>
-																			<td><a href="">443-251-6322</a></td>
-																			<td><a href="">sample@gmail.com</a></td>
-																			<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a></td>
-																	</tr>
-																	<tr>
-																			<td>
-																					<div className="custom_checkbox">
-																							<input type="checkbox" />
-																							<span></span>
-																					</div>
-																			</td>
-																			<td>Sayed Rahman Ali</td>
-																			<td>Google</td>
-																			<td>Lorem ipsum , United States</td>
-																			<td><a href="">443-251-6322</a></td>
-																			<td><a href="">sample@gmail.com</a></td>
-																			<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a></td>
-																	</tr>
-																	<tr>
-																			<td>
-																					<div className="custom_checkbox">
-																							<input type="checkbox" />
-																							<span></span>
-																					</div>
-																			</td>
-																			<td>Sayed Rahman Ali</td>
-																			<td>Google</td>
-																			<td>Lorem ipsum , United States</td>
-																			<td><a href="">443-251-6322</a></td>
-																			<td><a href="">sample@gmail.com</a></td>
-																			<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a></td>
-																	</tr>
-																	<tr>
-																			<td>
-																					<div className="custom_checkbox">
-																							<input type="checkbox" />
-																							<span></span>
-																					</div>
-																			</td>
-																			<td>Sayed Rahman Ali</td>
-																			<td>Google</td>
-																			<td>Lorem ipsum , United States</td>
-																			<td><a href="">443-251-6322</a></td>
-																			<td><a href="">sample@gmail.com</a></td>
-																			<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a></td>
-																	</tr>
-																	<tr>
-																			<td>
-																					<div className="custom_checkbox">
-																							<input type="checkbox" />
-																							<span></span>
-																					</div>
-																			</td>
-																			<td>Sayed Rahman Ali</td>
-																			<td>Google</td>
-																			<td>Lorem ipsum , United States</td>
-																			<td><a href="">443-251-6322</a></td>
-																			<td><a href="">sample@gmail.com</a></td>
-																			<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a></td>
-																	</tr>
-																	<tr>
-																			<td>
-																					<div className="custom_checkbox">
-																							<input type="checkbox" />
-																							<span></span>
-																					</div>
-																			</td>
-																			<td>Sayed Rahman Ali</td>
-																			<td>Google</td>
-																			<td>Lorem ipsum , United States</td>
-																			<td><a href="">443-251-6322</a></td>
-																			<td><a href="">sample@gmail.com</a></td>
-																			<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a></td>
+																					<th>Name</th>
+																					<th>Company</th>
+																					<th>Location</th>
+																					<th>Number</th>
+																					<th>Email</th>
+																					<th></th>
+																			</tr>
+																			<tr>
+																					<td>
+																							<div className="custom_checkbox">
+																									<input type="checkbox" />
+																									<span></span>
+																							</div>
+																					</td>
+																					<td>Sayed Rahman Ali</td>
+																					<td>Google</td>
+																					<td>Lorem ipsum , United States</td>
+																					<td><a href="">443-251-6322</a></td>
+																					<td><a href="">sample@gmail.com</a></td>
+																					<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a>
+																					</td>
+
+																			</tr>
+																			<tr>
+																					<td>
+																							<div className="custom_checkbox">
+																									<input type="checkbox" />
+																									<span></span>
+																							</div>
+																					</td>
+																					<td>Sayed Rahman Ali</td>
+																					<td>Google</td>
+																					<td>Lorem ipsum , United States</td>
+																					<td><a href="">443-251-6322</a></td>
+																					<td><a href="">sample@gmail.com</a></td>
+																					<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a></td>
+																			</tr>
+																			<tr>
+																					<td>
+																							<div className="custom_checkbox">
+																									<input type="checkbox" />
+																									<span></span>
+																							</div>
+																					</td>
+																					<td>Sayed Rahman Ali</td>
+																					<td>Google</td>
+																					<td>Lorem ipsum , United States</td>
+																					<td><a href="">443-251-6322</a></td>
+																					<td><a href="">sample@gmail.com</a></td>
+																					<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a></td>
+																			</tr>
+																			<tr>
+																					<td>
+																							<div className="custom_checkbox">
+																									<input type="checkbox" />
+																									<span></span>
+																							</div>
+																					</td>
+																					<td>Sayed Rahman Ali</td>
+																					<td>Google</td>
+																					<td>Lorem ipsum , United States</td>
+																					<td><a href="">443-251-6322</a></td>
+																					<td><a href="">sample@gmail.com</a></td>
+																					<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a></td>
+																			</tr>
+																			<tr>
+																					<td>
+																							<div className="custom_checkbox">
+																									<input type="checkbox" />
+																									<span></span>
+																							</div>
+																					</td>
+																					<td>Sayed Rahman Ali</td>
+																					<td>Google</td>
+																					<td>Lorem ipsum , United States</td>
+																					<td><a href="">443-251-6322</a></td>
+																					<td><a href="">sample@gmail.com</a></td>
+																					<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a></td>
+																			</tr>
+																			<tr>
+																					<td>
+																							<div className="custom_checkbox">
+																									<input type="checkbox" />
+																									<span></span>
+																							</div>
+																					</td>
+																					<td>Sayed Rahman Ali</td>
+																					<td>Google</td>
+																					<td>Lorem ipsum , United States</td>
+																					<td><a href="">443-251-6322</a></td>
+																					<td><a href="">sample@gmail.com</a></td>
+																					<td><a href="">
+																							<i className="icons ion-ios-email-outline"></i>
+																					</a><a href="" className="icons ion-edit"></a></td>
 																	</tr>
 															</tbody>
 															</table>
