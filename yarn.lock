@@ -3586,6 +3586,12 @@ react-sidenav@^2.1.1:
     prop-types "^15.5.8"
     styled-components "^1.4.4"
 
+react-skylight@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/react-skylight/-/react-skylight-0.4.2.tgz#939b8972705ccd39fda3186e34708010e0b1cf17"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-tap-event-plugin@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/react-tap-event-plugin/-/react-tap-event-plugin-2.0.1.tgz#316beb3bc6556e29ec869a7293e89c826a9074d2"
