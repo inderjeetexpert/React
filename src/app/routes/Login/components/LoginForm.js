@@ -45,6 +45,7 @@ class LoginForm extends Component{
 			}
 		}).then(res => res.text()).then(body => {
 			body = JSON.parse(body);
+			console.log(body)
 			if(body.key){
 				localStorage.setItem('key',body.key)
 				this.setState({errorMsg : null,busy : false});

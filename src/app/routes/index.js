@@ -10,6 +10,7 @@ import history from '../history'
 import Main from './Main'
 import People from './People'
 import Login from './Login'
+import Contact from './Contact'
 import configureStore from '../store/configureStore'
 const store = configureStore()
 
@@ -35,6 +36,7 @@ class MainRoute extends Component {
 									<Route exact path="/" component={Login}/>
 									<Route exact path="/main" component={Main}/>
 									<Route exact path="/people" component={People}/>
+									<Route exact path="/contact" component={Contact}/>
 									<Route exact path="/login" component={Login}/>
 									<Route component={Login}/>
 					</Switch>

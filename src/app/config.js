@@ -1,7 +1,9 @@
 //for local run
 const Config ={
+
 	api:'http://localhost:3001/v1/',//replace live server url i.e. http://example.com/v1/ on live deployement
 	baseUrl:'http://localhost:3000/',//replace with live server url on live deployement
+	apiBaseUrl:'https://carderockllc.com/',
 	//TODO : need to delete below items when going live
 	TwoPersonSubscriptonCategoryId:'5935d2057be9906d78623482',//important : this is cat id of schema.io categories
 	FamilySubscriptonCategoryId:'5935d2267be9906d78623483',//important : this is cat id of schema.io categories
@@ -9,7 +11,12 @@ const Config ={
 	ThisWeekFamilyCatId:'5954e2c6832eba580d25bec1',//important : this is cat id of schema.io categories
 	DeliveryDay:5,//1=Monday//5=Friday
 	PublicKey:'pk_khbx6Kk1hvWXLjWVXCNDVRb6YNsetgZt'
+
+
+
+
 };
+
 
 // const Subs = {
 // 	P2 :{

@@ -26,7 +26,8 @@ export default class TabThisWeekMenu extends React.Component {
 			errorLoc: null,
 			datailInfo: null,
 			searchedName: null,
-			searchedLocation: null
+			searched
+			: null
 
 		};
 		this.handleMoreInfo = this.handleMoreInfo.bind(this);
@@ -144,106 +145,106 @@ export default class TabThisWeekMenu extends React.Component {
 		}
 		return (
 			<div>
-				<div className="container-fluid">
-					<div className="search-header">
-						<div className="row">
-							<form onSubmit={(event) => this.handleSearch(event)}>
-								{errorMsg}
-								<div className="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-									<div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
-										<div className="form-group">
-											{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
-
-											<input className="form-control" type="text" value={item} placeholder="Search for Business" onChange={(event) => this.handItemChange(event)} />
-											{errorItem}
-
-
-										</div>
-									</div>
-									<div className="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-										<div className="form-group borderless">
-											{/* <label className="control-label" htmlFor="focusedInput">Search Location</label> */}
-
-											<input className="form-control" type="text" value={location} placeholder="Enter a location" onChange={(event) => this.handleLocChange(event)} />
-											{errorLoc}
-
-										</div>
-									</div>
-								</div>
-								<div className="col-auto pull-right">
-									<button onClick={(event) => this.handleClearForm(event)} className="clear-button">Clear</button>
-									{searchButton}
-
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-				<section className="">
 					<div className="container-fluid">
-						<div className="row">
-							<div className="col-md-12">
+							<div className="search-header">
+									<div className="row">
+											<form onSubmit={(event) => this.handleSearch(event)}>
+													{errorMsg}
+													<div className="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+															<div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+																	<div className="form-group">
+																			{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
 
-								<h5 className="record-count">
-									{searchedName && searchedLocation ?
-										<p>We found<span> {recordcount}</span> results for <span>{searchedName}</span> in <span>{searchedLocation}</span></p>
-										: 'Please provide item and location to search!'}
-								</h5>
-							</div>
-							{recordcount ?
-								<div><div className={`${datailInfo ? 'col-md-9 col-sm-7' : 'col-md-12'}`}>
-									<div className="body-border">
-										<table className="business-table">
-											<thead>
-												<tr>
-													<th width="25%">NAME</th>
-
-													<th width="25%">ADDRESS</th>
-													<th width="25%">PHONE</th>
-													<th width="25%">EMAIL</th>
-													<th width="50"> </th>
-												</tr>
-											</thead>
-											<tbody>
-												{this.state.data.map((d) => {
-													let image = "images/no-image.png"
-
-													if (d.image && d.image != '') {
-														image = d.image
-													}
+																			<input className="form-control" type="text" value={item} placeholder="Search for Business" onChange={(event) => this.handItemChange(event)} />
+																			{errorItem}
 
 
+																	</div>
+															</div>
+															<div className="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+																	<div className="form-group borderless">
+																			{/* <label className="control-label" htmlFor="focusedInput">Search Location</label> */}
 
-													var dialoadRef = "sd" + d.id
-													return (
-														<tr key={d.id} onClick={() => this.handleMoreInfo(d)} className={`${datailInfo && (datailInfo.id === d.id) ? 'selected-item' : ''}`}>
-															<td><img src={image} className="img-thumbnail" alt="thumbnail image" onClick={() => this.refs[dialoadRef].show()} />
-																<p className="table-item-name">{d.name}</p>
-																<SkyLight hideOnOverlayClicked ref={dialoadRef} title={d.name}>
-																	<img src={image} style={{ height: 300, width: 618 }} alt="" />
-																</SkyLight>
-															</td>
+																			<input className="form-control" type="text" value={location} placeholder="Enter a location" onChange={(event) => this.handleLocChange(event)} />
+																			{errorLoc}
 
-															<td><p>{d.formatted_address}</p></td>
-															<td><p>{d.phone}</p></td>
-															<td><p>{d.email}</p></td>
-															<td><p>Open Site</p></td>
-														</tr>
-													)
-												})}
-											</tbody>
-										</table>
+																	</div>
+															</div>
+													</div>
+													<div className="col-auto pull-right">
+															<button onClick={(event) => this.handleClearForm(event)} className="clear-button">Clear</button>
+															{searchButton}
+
+													</div>
+											</form>
 									</div>
-									<button className="load-more-btn">Load More</button>
-								</div>
-									{datailInfo ?
-										<MoreDetailSection datailInfo={datailInfo} />
-
-										: ''}
-								</div> : ''}
-						</div>
+							</div>
 					</div>
-				</section>
+					<section className="">
+							<div className="container-fluid">
+									<div className="row">
+											<div className="col-md-12">
+
+													<h5 className="record-count">
+															{searchedName && searchedLocation ?
+																	<p>We found<span> {recordcount}</span> results for <span>{searchedName}</span> in <span>{searchedLocation}</span></p>
+															: 'Please provide item and location to search!'}
+													</h5>
+											</div>
+											{recordcount ?
+													<div><div className={`${datailInfo ? 'col-md-9 col-sm-7' : 'col-md-12'}`}>
+															<div className="body-border">
+																	<table className="business-table">
+																			<thead>
+																					<tr>
+																							<th width="25%">NAME</th>
+
+																							<th width="25%">ADDRESS</th>
+																							<th width="25%">PHONE</th>
+																							<th width="25%">EMAIL</th>
+																							<th width="50"> </th>
+																					</tr>
+																			</thead>
+																			<tbody>
+																					{this.state.data.map((d) => {
+																							let image = "images/no-image.png"
+
+																							if (d.image && d.image != '') {
+																									image = d.image
+																							}
+
+
+
+																							var dialoadRef = "sd" + d.id
+																							return (
+																									<tr key={d.id} onClick={() => this.handleMoreInfo(d)} className={`${datailInfo && (datailInfo.id === d.id) ? 'selected-item' : ''}`}>
+																											<td><img src={image} className="img-thumbnail" alt="thumbnail image" onClick={() => this.refs[dialoadRef].show()} />
+																													<p className="table-item-name">{d.name}</p>
+																													<SkyLight hideOnOverlayClicked ref={dialoadRef} title={d.name}>
+																															<img src={image} style={{ height: 300, width: 618 }} alt="" />
+																													</SkyLight>
+																											</td>
+
+																											<td><p>{d.formatted_address}</p></td>
+																											<td><p>{d.phone}</p></td>
+																											<td><p>{d.email}</p></td>
+																											<td><p>Open Site</p></td>
+																									</tr>
+																							)
+																					})}
+																			</tbody>
+																	</table>
+															</div>
+															<button className="load-more-btn">Load More</button>
+													</div>
+															{datailInfo ?
+																	<MoreDetailSection datailInfo={datailInfo} />
+
+															: ''}
+													</div> : ''}
+									</div>
+							</div>
+					</section>
 			</div>
 		);
 	}

@@ -11,6 +11,9 @@ import axios from 'axios';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import Config from '../../config';
+
+
 
 export default class PeopleSearchall extends React.Component{
 	constructor (props){
@@ -24,11 +27,12 @@ export default class PeopleSearchall extends React.Component{
 			recordcount: 0,
 			data : [],
 
-
 		};
 
 
 	}
+
+
 
 	handFirstnameChange(event){
 		this.setState({errorMsg : null});
@@ -60,7 +64,7 @@ export default class PeopleSearchall extends React.Component{
 
 		axios.defaults.headers.common['Authorization'] = "Token "+localStorage.getItem('key');
 		axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-		axios.get('https://carderockllc.com/api/v1/contacts/search/?'+first_name +last_name+ company).then(res=>{
+		axios.get(Config.apiBaseUrl+'api/v1/contacts/search/'+first_name +last_name+ company).then(res=>{
 			this.setState({data:res.data,recordcount:res.data.length, busy:false})
 			console.log(this.state.data)
 		}).catch(err=>{
@@ -73,6 +77,7 @@ export default class PeopleSearchall extends React.Component{
 		let searchButton = null;
 		let recordcount = 0;
 		let errorMsg = null;
+
 
 		if(!this.state.busy){
 			searchButton = <button type="submit" onClick={(event)=>this.handlePeopleSearch(event)} className="btn btn-primary btn-lg mr-15">SEARCH</button>;
@@ -98,7 +103,7 @@ export default class PeopleSearchall extends React.Component{
 						 primary={true}
 						 disabled={true}
 						 onTouchTap={this.handleClose}
-	       />,
+        />,
 	     ];
 
     return (
@@ -254,8 +259,8 @@ export default class PeopleSearchall extends React.Component{
 																					<td><a href="">
 																							<i className="icons ion-ios-email-outline"></i>
 																					</a><a href="" className="icons ion-edit"></a></td>
-																	</tr>
-															</tbody>
+                                      </tr>
+                                  </tbody>
 															</table>
 													</div>
 											</div>

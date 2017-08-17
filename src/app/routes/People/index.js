@@ -9,11 +9,11 @@ class People extends Component {
 	render() {
 		return (
 			<div>
-				<Topnav />
-				<div>
+					<Topnav />
+					<div>
 
-					<PeopleSearch />
-				</div>
+							<PeopleSearch />
+					</div>
 			</div>
 		);
 	}
