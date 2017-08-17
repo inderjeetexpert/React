@@ -46,27 +46,31 @@ class Topnav extends React.Component {
 
 		return (
 			<Navbar collapseOnSelect fluid>
-				<Navbar.Header>
-					<Navbar.Brand>
-						<a href="javascript:void(0)">Carderock</a>
-					</Navbar.Brand>
-					<Navbar.Toggle />
-				</Navbar.Header>
-				<Navbar.Collapse>
-					<Nav>
-						<LinkContainer className="nav-business" to="/main">
-							<NavItem eventKey={1} href="javascript:void(0)">Search Business</NavItem>
-						</LinkContainer>
-						<LinkContainer className="nav-people" to="/people">
-							<NavItem eventKey={2} href="javascript:void(0)">Search People</NavItem>
-						</LinkContainer>
-						<NavItem className="nav-company" eventKey={3} href="javascript:void(0)">Companies</NavItem>
-						<NavItem className="nav-contact" eventKey={4} href="javascript:void(0)">Contact</NavItem>
-						<NavItem className="nav-social-media" eventKey={5} href="javascript:void(0)">Social Media Marketing</NavItem>
-						<NavItem className="nav-marketing" eventKey={6} href="javascript:void(0)">Marketing Analysis</NavItem>
-						<NavItem className="nav-dashboard" eventKey={7} href="javascript:void(0)">Dashboard</NavItem>
-						<NavItem className="nav-themes" eventKey={8} href="javascript:void(0)">Themes</NavItem>
-					</Nav>
+					<Navbar.Header>
+							<Navbar.Brand>
+									<a href="javascript:void(0)">Carderock</a>
+							</Navbar.Brand>
+							<Navbar.Toggle />
+					</Navbar.Header>
+					<Navbar.Collapse>
+							<Nav>
+									<LinkContainer className="nav-business" to="/main">
+											<NavItem eventKey={1} href="javascript:void(0)">Search Business</NavItem>
+									</LinkContainer>
+									<LinkContainer className="nav-people" to="/people">
+											<NavItem eventKey={2} href="javascript:void(0)">Search People</NavItem>
+									</LinkContainer>
+									<NavItem className="nav-company" eventKey={3} href="javascript:void(0)">Companies</NavItem>
+									<NavItem className="nav-contact" eventKey={4} href="javascript:void(0)">Contact</NavItem>
+									<NavItem className="nav-contact" eventKey={4} href="javascript:void(0)">Leads-LeadScoring</NavItem>
+									<LinkContainer className="nav-people" to="/emailMarketing">
+											<NavItem eventKey={3} href="javascript:void(0)">Email Marketing</NavItem>
+									</LinkContainer>
+									<NavItem className="nav-social-media" eventKey={5} href="javascript:void(0)">Social Media Marketing</NavItem>
+									{/*<NavItem className="nav-marketing" eventKey={6} href="javascript:void(0)">Marketing Analysis</NavItem>
+											<NavItem className="nav-dashboard" eventKey={7} href="javascript:void(0)">Dashboard</NavItem>
+									<NavItem className="nav-themes" eventKey={8} href="javascript:void(0)">Themes</NavItem>*/}
+							</Nav>
 					<Nav pullRight>
 						<NavItem className="nav-logout" eventKey={9} href="javascript:void(0)" onClick={this.handleLogout}><span className="user-image">AA</span> Logout</NavItem>
 					</Nav>

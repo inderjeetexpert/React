@@ -40,7 +40,7 @@ a{color:#68a6ff}
 }
 .search-header .btn {background: #5596e6; text-transform: none; border-radius: 40px;    font-family:'Hind', sans-serif; font-size: 16px; }
 .clear-button{
-     
+
     margin-top: 1px;
          font-family:'Hind', sans-serif;
     font-size: 16px;
@@ -104,6 +104,16 @@ a{color:#68a6ff}
     color: #fff;
     display: block;
 }
+/********************************************************************/
+.search-header.links a{text-align: center;display: block;font-family: "Asap",sans-serif;text-decoration: none;border-bottom:2px solid #68a6ff;line-height: 46px;}
+.template-box{min-height: 500px}
+.template-box ul{list-style: none;padding: 0;margin: 0;display: flex;list-style: none;flex-wrap:wrap;justify-content: space-between;}
+.template-box li{width:47.5%;height:180px;border:1px solid #ddd;margin-bottom: 15px;background-size: cover !important;position: relative;}
+/*.template-box li.active{border:2px solid #68a6ff}*/
+.editor{position: relative;margin:0}
+.template-box li input[type="radio"]{width:100%;HEIGHT:100%;display: block;opacity: 0;z-index: 9}
+.template-box li span{display: block;width:100%;height:100%;z-index: 0;top:50%;left:50%;position: absolute;;transform: translate(-50%,-50%);}
+.template-box li input[type="radio"]:checked + span{background: url('images/check.png');background-size:35px;background-repeat: no-repeat;background-position: center;border:2px solid #68a6ff}
 /********************************************************************/
 
 @media (max-width: 1024px) {
