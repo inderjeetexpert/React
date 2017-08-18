@@ -12,11 +12,14 @@ import CKEditor from "react-ckeditor-component";
 import SkyLight from 'react-skylight';
 import moment from 'moment';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
+
 import BS from 'react-bootstrap';
-
-
-
-
+import CreateSmtpForm from './CreateSmtpForm'
+import CreateSmtpModel from './CreateSmtpModel'
+import SendMassEmailModal from './SendMassEmailModal'
+import SendCategoryEmailModal from './SendCategoryEmailModal'
+import SendPromoEmailModal from './SendPromoEmailModal'
+import SendNewBusinessEmailModal from './SendNewBusinessEmailModal'
 
 
 export default class EmailMarketingall extends React.Component {
@@ -63,7 +66,7 @@ export default class EmailMarketingall extends React.Component {
 		axios.defaults.headers.common['Authorization'] = "Token "+localStorage.getItem('key');
 	  axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 	  axios.get('https://carderockllc.com/api/v1/usersmtp/').then(resuser=>{
-			console.log(resuser.data.results);
+			//console.log(resuser.data.results);
 			this.setState({dataUser:resuser.data.results})
 	  }).catch(err=>{
 			console.error(err);
@@ -234,7 +237,7 @@ export default class EmailMarketingall extends React.Component {
 				busy: false,
 
 			})
-			console.log(this.state.data)
+			//console.log(this.state.data)
 		}).catch(err => {
 			this.setState({ busy: false });
 			//console.log(err)
@@ -265,6 +268,7 @@ var dialoadRefmod = "dy"
 let searchButton = null;
 
 let errorName= null;
+
 let errorHost= null;
 let errorPort= null;
 let errorUsername= null;
@@ -338,147 +342,26 @@ const ranges = {
 									<div className="row">
 											<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 													<div className="form-group">
-															<a onClick={() => this.refs[dialoadRef].show()}>Send Mass Email</a>
-															<SkyLight hideOnOverlayClicked ref={dialoadRef} title="Mass Email">
-																	<span className="smtp">
-																			<i className="ion-ios-plus-outline" style={{float:"right",
-																					color: "#212121",
-																					backgroundColor: "aquamarine",
-																			fontSize: 14,}} onClick={() => this.refs[dialoadRefmod].show()}>
-																					<SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref={dialoadRefmod} title="Create Your new Smtp Config Here">
-																							<div className="container-fluid">
-																									<div className="search-header">
-
-																											<form onSubmit={(event) => this.handleSearch(event)}>
-
-																													<div className="col-md-12">
-
-																															<div className="form-group">
-																																	{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
-																																	<label className="control-label" htmlFor="focusedInput" style={{margin: 18,
-																																	fontSize: 25}}>Name</label>
-																																	<input className="form-control" type="text" value={name} placeholder="Name Your Settings" onChange={(event) => this.handNameChange(event)} />
-																																	{errorName}
-
-
-																															</div>
-																													</div>
-
-																													<div className="col-md-12">
-
-																															{/* <label className="control-label" htmlFor="focusedInput">Search Location</label> */}
-																															<div className="form-group">
-																																	<label className="control-label" htmlFor="focusedInput" style={{margin: 18,
-																																	fontSize: 25}}>Host</label>
-																																	<input className="form-control" type="text" value={host} placeholder="Host Name" onChange={(event) => this.handleHostChange(event)} />
-																																	{errorHost}
-
-																															</div>
-																													</div>
-
-																													<div className="col-md-12">
-
-																															{/* <label className="control-label" htmlFor="focusedInput">Search Location</label> */}
-																															<div className="form-group">
-																																	<label className="control-label" htmlFor="focusedInput" style={{margin: 18,
-																																	fontSize: 25}}>Port</label>
-																																	<input className="form-control" type="text" value={port} placeholder="Port" onChange={(event) => this.handlePortChange(event)} />
-																																	{errorPort}
-
-																															</div>
-																													</div>
-
-																													<div className="col-md-12">
-
-																															{/* <label className="control-label" htmlFor="focusedInput">Search Location</label> */}
-																															<div className="form-group">
-																																	<label className="control-label" htmlFor="focusedInput" style={{margin: 18,
-																																	fontSize: 25}}>Username</label>
-																																	<input className="form-control" type="text" value={username} placeholder="Username" onChange={(event) => this.handleUsernameChange(event)} />
-																																	{errorUsername}
-
-																															</div>
-																													</div>
-
-																													<div className="col-md-12">
-
-																															{/* <label className="control-label" htmlFor="focusedInput">Search Location</label> */}
-																															<div className="form-group">
-																																	<label className="control-label" htmlFor="focusedInput" style={{margin: 18,
-																																	fontSize: 25}}>Password</label>
-																																	<input className="form-control" type="password" value={password} placeholder="password" onChange={(event) => this.handlePasswordChange(event)} />
-																																	{errorPassword}
-
-																															</div>
-																													</div>
-
-																													<div className="col-md-12">
-
-																															{/* <label className="control-label" htmlFor="focusedInput">Search Location</label> */}
-																															<div className="form-group">
-																																	<label className="control-label" htmlFor="focusedInput" style={{margin: 18,
-																																	fontSize: 25}}>User Email</label>
-																																	<input className="form-control" type="email" value={useremail} placeholder="Your Email" onChange={(event) => this.handleEmailChange(event)} />
-
-
-																															</div>
-																													</div>
-
-																													<div className="col-md-12">
-
-																															{/* <label className="control-label" htmlFor="focusedInput">Search Location</label> */}
-																															<div className="form-group">
-																																	<label className="control-label" htmlFor="focusedInput" style={{margin: 18,
-																																	fontSize: 25}}>User Tls</label>
-																																	<input  type="checkbox" value={usertls} placeholder="Host Name" onChange={(event) => this.handleTlsChange(event)} />
-
-
-																															</div>
-																													</div>
-
-
-
-																													<div className="col-auto pull-right">
-																															{/*<button onClick={(event) => this.handleClearForm(event)} className="clear-button">Clear</button>*/}
-																															{searchButton}
-
-																													</div>
-																											</form>
-
-																									</div>
-																							</div>
-																					</SkyLight>
-																			</i>
-																			<select name="cars" style={{float:"right"}}>
-																					<option value="volvo">Choose your option</option>
-																					{this.state.dataUser.map((m) => {
-
-																							return <option value={m.from_email}>{m.name}</option>
-																					})}
-																			</select>
-
-																	</span>
-
-																	<p>This will send a mass email to all your saved businesses and Contacts</p>
-																	
-
-
-															</SkyLight>
+															<a onClick={()=>{this.setState({showMassEmailModel:true})}}>Send Mass Email</a>
+															<SendMassEmailModal dataUser={this.state.dataUser} showModal={this.state.showMassEmailModel} closeModal={()=>{this.setState({showMassEmailModel:false})}}/>
 													</div>
 											</div>
 											<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 													<div className="form-group">
-															<a href="">Send Email to Selected Categories</a>
+															<a onClick={()=>{this.setState({showCategoriesEmailModel:true})}}>Send Email to Selected Categories</a>
+															<SendCategoryEmailModal dataUser={this.state.dataUser} showModal={this.state.showCategoriesEmailModel} closeModal={()=>{this.setState({showCategoriesEmailModel:false})}}/>
 													</div>
 											</div>
 											<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 													<div className="form-group">
-															<a href="">Send the Promotions</a>
+															<a onClick={()=>{this.setState({showPromoEmailModel:true})}}>Send the Promotions</a>
+															<SendPromoEmailModal dataUser={this.state.dataUser} showModal={this.state.showPromoEmailModel} closeModal={()=>{this.setState({showPromoEmailModel:false})}}/>
 													</div>
 											</div>
 											<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 													<div className="form-group">
-															<a href="">Search New Business and Send Email</a>
+															<a onClick={()=>{this.setState({showNewBuisnessEmailModel:true})}}>Search New Business and Send Email</a>
+															<SendNewBusinessEmailModal dataUser={this.state.dataUser} showModal={this.state.showNewBuisnessEmailModel} closeModal={()=>{this.setState({showNewBuisnessEmailModel:false})}}/>
 													</div>
 											</div>
 

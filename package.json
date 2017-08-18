@@ -41,8 +41,15 @@
     "node-fetch": "^1.7.2",
     "react": "^15.4.2",
     "react-bootstrap": "^0.31.2",
+<<<<<<< .mine
     "react-bootstrap-daterangepicker": "^3.4.0",
     "react-ckeditor-component": "^1.0.3",
+
+=======
+    "react-bootstrap-daterangepicker": "^3.4.0",
+    "react-bootstrap-modal": "^3.0.1",
+    "react-ckeditor-component": "^1.0.3",
+>>>>>>> .theirs
     "react-credit-cards": "^0.4.1",
     "react-dom": "^15.4.2",
     "react-loading-overlay": "^0.2.5",
