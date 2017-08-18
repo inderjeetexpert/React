@@ -374,6 +374,130 @@ a {
 }
 
 
+/***********************modal section***************************************************/
+
+.modal-dialog {
+    width: 55%;
+}
+
+.modal-dialog .modal-content {
+    height: 100%;
+}
+
+.modal-dialog .modal-header {
+    border-bottom: 1px solid #ddd;
+}
+
+.modal-dialog .modal-header,
+.modal-dialog .modal-body {
+    padding: 25px;
+}
+
+.modal-dialog .modal-body {
+    min-height: 300px;
+    max-height: 350px;
+    overflow-y: scroll;
+}
+
+.modal-header h4 {
+    margin: 0
+}
+
+.modal-header i {
+    font-size: 24px;
+    position: absolute;
+    right: 20px;
+    top: 14px;
+}
+
+.modal-body select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: rgba(0, 0, 0, 0) url("../images/arrow-down.svg") no-repeat scroll 93% center / 13px auto;
+    border: 1px solid #dfe3e6;
+    border-radius: 40px;
+    box-shadow: none;
+    color: #788186;
+    font-family: "Hind", sans-serif;
+    font-size: 15px;
+    font-weight: lighter;
+    height: 48px;
+    padding: 0 15px;
+    width: 100%;
+}
+
+.circle-plus {
+    border-radius: 100%;
+    padding: 5px 14px;
+}
+
+.circle-plus i {
+    font-size: 27px;
+    line-height: 27px;
+}
+
+.modal-body .form-group {
+    overflow: hidden
+}
+
+.modal-body .form-group .form-control {
+    border: 1px solid #dfe3e6;
+    border-radius: 40px;
+    color: #788186;
+    font-family: "Hind", sans-serif;
+    font-size: 15px;
+    font-weight: lighter;
+    height: 48px;
+    box-shadow: none;
+    padding: 0 15px;
+}
+
+.custome-radio,
+.custome-check {
+    float: left;
+    height: 15px;
+    left: 0;
+    position: absolute;
+    top: 4px;
+    width: 15px;
+}
+
+.custome-radio input[type="radio"],
+.custome-check input[type="checkbox"] {
+    display: block;
+    width: 15px;
+    height: 15px;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.custome-radio span,
+.custome-check span {
+    position: absolute;
+    display: block;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #ddd;
+    border-radius: 100%;
+    z-index: 0;
+    top: 0;
+    left: 0
+}
+
+.custome-check span {
+    border-radius: 0
+}
+
+.custome-radio input[type="radio"]:checked+span,
+.custome-check input[type="checkbox"]:checked+span {
+    border-color: rgb(21, 98, 197);
+    background: rgb(21, 98, 197);
+}
+
+
 /**************************************************/
 
 @media (max-width: 1024px) {

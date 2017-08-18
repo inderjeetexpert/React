@@ -2,20 +2,48 @@ import React from 'react'
 import CreateSmtpForm from './CreateSmtpForm'
 import { Button, Modal } from 'react-bootstrap'
 import CreateSmtpModel from './CreateSmtpModel'
+import axios from 'axios'
 
-class SendMassEmailModal extends React.Component {
-	constructor() {
+class SendCategoryEmailModal extends React.Component{
+	constructor(){
 		super()
 		this.state = {
-			showModal: true
+			showModal:true,
+			dataUser:[],
+			data:[],
+			dataUser:[],
+			busy:true,
+			recordcount:null
+
 		}
+
+		axios.defaults.headers.common['Authorization'] = "Token "+localStorage.getItem('key');
+	  axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+	  axios.get('https://carderockllc.com/api/v1/business/searches/').then(res=>{
+			//console.log(res.data.results);
+			this.setState({data:res.data.results})
+	  }).catch(err=>{
+			console.error(err);
+	 	});
+
+		axios.defaults.headers.common['Authorization'] = "Token "+localStorage.getItem('key');
+    axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+    axios.get('https://carderockllc.com/api/v1/contacts/').then(result=>{
+			//console.log(result.data.results);
+      this.setState({dataUser:result.data.results,recordcount:result.data.length, busy:false})
+      //console.log(this.state.data.results)
+    }).catch(err=>{
+      this.setState({busy : false});
+      //console.log(err)
+    })
+
 		this.close = this.close.bind(this)
 	}
 	close() {
-		this.setState({ showModal: false });
-	}
+    this.setState({ showModal: false });
+  }
 
-	render() {
+	render(){
 		let closeModal = () => this.setState({ open: false })
 		return (
 			<div>
@@ -24,16 +52,52 @@ class SendMassEmailModal extends React.Component {
 							onHide={this.props.closeModal}
 					>
 							<Modal.Header>
-									<h4 className="pull-left">Mass Email</h4>
+									<h4 className="pull-left">Send the Promotions</h4>
 									<a className="pull-right" onClick={this.props.closeModal}><i className="ion-android-close"></i></a>
 							</Modal.Header>
 							<Modal.Body>
 									<div className="row">
 											<div className="col-md-6">
-													<p>This will send a mass email to all your saved businesses and Contacts.</p>
-													<div className="row">
-															
 
+													<div className="row">
+															<div className="col-md-6">
+																	<h5>Business</h5>
+																	<div className="checkbox">
+																			<label>
+																					<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
+																					Manually Added
+																			</label>
+																	</div>
+																	{this.state.data.map((m) => {
+																			//console.log(m);
+																			return (<div className="checkbox">
+																					<label>
+																							<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
+																							{m.search.what} | {m.search.where}
+																					</label>
+																			</div>
+
+																			)
+																	})}
+
+
+
+
+															</div>
+															<div className="col-md-6">
+																	<h5>Contacts</h5>
+																	{this.state.dataUser.map((s) => {
+																			console.log(s);
+																			return(<div className="checkbox">
+																					<label>
+																							<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
+																							{s.contact_name}
+																					</label>
+																			</div>
+																			)
+																	})}
+
+															</div>
 													</div>
 											</div>
 											<div className="col-md-5">
@@ -41,7 +105,7 @@ class SendMassEmailModal extends React.Component {
 													<div className="form-group">
 															<span className="smtp">
 																	<select className="form-control" name="cars" style={{ float: "right" }}>
-																			<option value="volvo">Choose your option</option>
+																			<option value="volvo">Select Your Email Server</option>
 																			{this.props.dataUser.map((m) => {
 
 																					return <option key={m.id} value={m.from_email}>{m.name}</option>
@@ -104,4 +168,4 @@ class SendMassEmailModal extends React.Component {
 	}
 }
 
-export default SendMassEmailModal
+export default SendCategoryEmailModal

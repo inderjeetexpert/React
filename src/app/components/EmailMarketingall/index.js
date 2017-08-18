@@ -17,6 +17,9 @@ import BS from 'react-bootstrap';
 import CreateSmtpForm from './CreateSmtpForm'
 import CreateSmtpModel from './CreateSmtpModel'
 import SendMassEmailModal from './SendMassEmailModal'
+import SendCategoryEmailModal from './SendCategoryEmailModal'
+import SendPromoEmailModal from './SendPromoEmailModal'
+import SendNewBusinessEmailModal from './SendNewBusinessEmailModal'
 
 
 export default class EmailMarketingall extends React.Component {
@@ -63,7 +66,7 @@ export default class EmailMarketingall extends React.Component {
 		axios.defaults.headers.common['Authorization'] = "Token "+localStorage.getItem('key');
 	  axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 	  axios.get('https://carderockllc.com/api/v1/usersmtp/').then(resuser=>{
-			console.log(resuser.data.results);
+			//console.log(resuser.data.results);
 			this.setState({dataUser:resuser.data.results})
 	  }).catch(err=>{
 			console.error(err);
@@ -234,7 +237,7 @@ export default class EmailMarketingall extends React.Component {
 				busy: false,
 
 			})
-			console.log(this.state.data)
+			//console.log(this.state.data)
 		}).catch(err => {
 			this.setState({ busy: false });
 			//console.log(err)
@@ -345,17 +348,20 @@ const ranges = {
 											</div>
 											<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 													<div className="form-group">
-															<a href="">Send Email to Selected Categories</a>
+															<a onClick={()=>{this.setState({showCategoriesEmailModel:true})}}>Send Email to Selected Categories</a>
+															<SendCategoryEmailModal dataUser={this.state.dataUser} showModal={this.state.showCategoriesEmailModel} closeModal={()=>{this.setState({showCategoriesEmailModel:false})}}/>
 													</div>
 											</div>
 											<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 													<div className="form-group">
-															<a href="">Send the Promotions</a>
+															<a onClick={()=>{this.setState({showPromoEmailModel:true})}}>Send the Promotions</a>
+															<SendPromoEmailModal dataUser={this.state.dataUser} showModal={this.state.showPromoEmailModel} closeModal={()=>{this.setState({showPromoEmailModel:false})}}/>
 													</div>
 											</div>
 											<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 													<div className="form-group">
-															<a href="">Search New Business and Send Email</a>
+															<a onClick={()=>{this.setState({showNewBuisnessEmailModel:true})}}>Search New Business and Send Email</a>
+															<SendNewBusinessEmailModal dataUser={this.state.dataUser} showModal={this.state.showNewBuisnessEmailModel} closeModal={()=>{this.setState({showNewBuisnessEmailModel:false})}}/>
 													</div>
 											</div>
 
