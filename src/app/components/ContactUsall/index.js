@@ -13,7 +13,8 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import SkyLight from 'react-skylight';
 import AddNewContactForm from './AddNewContactForm';
-
+import GoogleLogin from 'react-google-login';
+import ImportGoogle from './ImportGoogle';
 
 import Config from '../../config';
 
@@ -37,6 +38,7 @@ export default class ContactUsall extends React.Component{
 
 		};
 
+
     axios.defaults.headers.common['Authorization'] = "Token "+localStorage.getItem('key');
     axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
     axios.get(Config.apiBaseUrl+'api/v1/contacts/').then(res=>{
@@ -47,18 +49,17 @@ export default class ContactUsall extends React.Component{
       //console.log(err)
     })
 
-	}
+
+}
+responseGoogle(response){
+  console.log(response)
+}
 
 
+render() {
 
 
-
-
-
-
-      render() {
-
-        var myBigGreenDialog = {
+  var myBigGreenDialog = {
 
       color: '#ffffff',
       width: '60%',
@@ -98,6 +99,8 @@ let { age, emails,contact_name,address,phones,company,gender, datailInfo } = thi
     						 disabled={true}
     						 onTouchTap={this.handleClose}
             />,
+
+
     	     ];
 
            return (
@@ -150,6 +153,8 @@ let { age, emails,contact_name,address,phones,company,gender, datailInfo } = thi
                                      <div className="col-auto pull-right">
                                          <a className="btn btn-default btn-lg mr-15" href="#">ACTION</a>
                                          <a className="btn btn-default btn-lg mr-15" onClick={() => this.refs.simpleDialog.show()}>ADD NEW CONTACT</a>
+                                         {/* <a className="btn btn-default btn-lg mr-15" onClick={()=>this.handleSigninGoogle()}>IMPORT FROM GOOGLE</a> */}
+                                         <ImportGoogle/>
                                      </div>
                                  </div>
                              </div>

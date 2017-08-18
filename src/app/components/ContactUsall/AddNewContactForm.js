@@ -2,7 +2,7 @@ import React from 'react'
 import { LocalForm, Control } from 'react-redux-form'
 import Config from '../../config';
 import axios from 'axios';
-
+import ImportGoogle from './ImportGoogle';
 class AddNewContactForm extends React.Component{
   constructor(){
     super()
@@ -51,10 +51,10 @@ class AddNewContactForm extends React.Component{
   render(){
     return(
       <LocalForm
-        model="con"
-        onUpdate={(form) => this.handleUpdate(form)}
-        onChange={(values) => this.handleChange(values)}
-        onSubmit={(values) => this.handleSubmit(values)}
+          model="con"
+          onUpdate={(form) => this.handleUpdate(form)}
+          onChange={(values) => this.handleChange(values)}
+          onSubmit={(values) => this.handleSubmit(values)}
       >
           <div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
               <div className="form-group">
@@ -73,35 +73,36 @@ class AddNewContactForm extends React.Component{
           </div>
           <div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
               <div className="form-group">
-                    <Control.text model="con.company" className="form-control" placeholder="Company" />
+                  <Control.text model="con.company" className="form-control" placeholder="Company" />
               </div>
           </div>
           <div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
               <div className="form-group">
 
-           <Control.text model="con.emails" className="form-control" placeholder="Email" />
+                  <Control.text model="con.emails" className="form-control" placeholder="Email" />
               </div>
           </div>
           <div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
               <div className="form-group">
 
-                   <Control.text model="con.age" className="form-control" placeholder="Age" />
+                  <Control.text model="con.age" className="form-control" placeholder="Age" />
               </div>
           </div>
           <div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
               <div className="form-group">
-                <Control.select model="con.gender" className="form-control" placeholder="Gender" >
-                <option>Select</option>  
-                 <option value="male">male</option>
-                 <option value="female">female</option>
+                  <Control.select model="con.gender" className="form-control" placeholder="Gender" >
+                      <option>Select</option>
+                      <option value="male">male</option>
+                      <option value="female">female</option>
 
-       </Control.select>
-      </div>
+                  </Control.select>
+              </div>
           </div>
           <div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
               <div className="form-group">
                   <button type="submit" className="btn btn-primary btn-lg mr-15" >Submit</button>
                   <button className="btn btn-default btn-lg mr-15" >Cancel</button>
+                  <ImportGoogle/>
               </div>
           </div>
       </LocalForm>
