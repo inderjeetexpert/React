@@ -25,7 +25,11 @@ export default class PeopleSearchall extends React.Component{
 			errorMsg : null,
 			busy : false,
 			recordcount: 0,
+			phone: '',
+			twitter: '',
 			data : [],
+			datailInfo: null,
+			searchedName: null
 
 		};
 
@@ -49,12 +53,30 @@ export default class PeopleSearchall extends React.Component{
 		this.setState({company:event.target.value})
 	}
 
+	handPhoneChange(event){
+		this.setState({errorMsg : null});
+		this.setState({phone:event.target.value})
+	}
+
+	handTwitterChange(event){
+		this.setState({errorMsg : null});
+		this.setState({twitter:event.target.value})
+	}
+
+	handleMoreInfo(data) {
+		this.setState({
+			datailInfo: data
+		})
+	}
+
 
 	handlePeopleSearch(event){
 		//const data={first_name:this.state.first_name,last_name:this.state.last_name,company:this.state.company};
 		const first_name = this.state.first_name;
 		const last_name = this.state.last_name;
 		const company = this.state.company;
+		const phone = this.state.phone;
+		const twitter = this.state.twitter;
 
 		this.setState({errorMsg : null,busy : true});
 		/*if(!data.first_name || !data.last_name || !data.company){
@@ -64,9 +86,13 @@ export default class PeopleSearchall extends React.Component{
 
 		axios.defaults.headers.common['Authorization'] = "Token "+localStorage.getItem('key');
 		axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-		axios.get(Config.apiBaseUrl+'api/v1/contacts/search/'+first_name +last_name+ company).then(res=>{
-			this.setState({data:res.data,recordcount:res.data.length, busy:false})
-			console.log(this.state.data)
+		axios.get('https://carderockllc.com/api/v1/contacts/search/?first_name='+first_name+'&last_name='+last_name+'&company='+company+'&phone='+phone+'&twitter='+twitter).then(res=>{
+			this.setState({
+				data: res.data.results,
+				recordcount: res.data.results.length,
+				busy: false
+			})
+			console.log(this.state)
 		}).catch(err=>{
 			this.setState({busy : false});
 			//console.log(err)
@@ -75,8 +101,9 @@ export default class PeopleSearchall extends React.Component{
 
   render() {
 		let searchButton = null;
-		let recordcount = 0;
+
 		let errorMsg = null;
+		let { first_name, last_name, company,phone,twitter,recordcount, datailInfo, searchedfirstName, searchedlastName,searchedcompany, searchedphone,searchedtwitter} = this.state;
 
 
 		if(!this.state.busy){
@@ -92,6 +119,7 @@ export default class PeopleSearchall extends React.Component{
 		}
 
 
+
 		const actions = [
 	       <FlatButton
 						 label="Cancel"
@@ -103,35 +131,72 @@ export default class PeopleSearchall extends React.Component{
 						 primary={true}
 						 disabled={true}
 						 onTouchTap={this.handleClose}
-        />,
+				 />,
 	     ];
+
+
 
     return (
 			<div>
 					<div className="container-fluid">
 							<div className="search-header">
 									<div className="row">
-											<form onSubmit={(event)=>this.handlePeopleSearch(event)}>
+											<form onSubmit={(event) => this.handlePeopleSearch(event)}>
 													{errorMsg}
-													<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-															<div className="form-group">
-																	<label className="control-label" htmlFor="focusedInput">First Name</label>
-																	<input className="form-control" type="text" onChange={(event)=>this.handFirstnameChange(event)}/>
+													<div className="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+															<div className="col-md-3">
+																	<div className="form-group">
+																			{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
+
+																			<input className="form-control" type="text" placeholder="Search By  First Name" onChange={(event)=>this.handFirstnameChange(event)} />
+
+
+
+																	</div>
 															</div>
-													</div>
-													<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-															<div className="form-group">
-																	<label className="control-label" htmlFor="focusedInput">Last Name</label>
-																	<input className="form-control" type="text" onChange={(event)=>this.handLastnameChange(event)} />
+
+															<div className="col-lg-3">
+																	<div className="form-group">
+																			{/* <label className="control-label" htmlFor="focusedInput">Search Location</label> */}
+
+																			<input className="form-control" type="text" placeholder="Search by last name" onChange={(event)=>this.handLastnameChange(event)} />
+
+
+																	</div>
 															</div>
-													</div>
-													<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-															<div className="form-group">
-																	<label className="control-label" htmlFor="focusedInput">Company</label>
-																	<input className="form-control" type="text" onChange={(event)=>this.handCompanyChange(event)}/>
+															<div className="col-md-3">
+																	<div className="form-group">
+																			{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
+
+																			<input className="form-control" type="text" placeholder="Search By Company" onChange={(event)=>this.handCompanyChange(event)}/>
+
+
+
+																	</div>
+															</div>
+															<div className="col-lg-3">
+																	<div className="form-group">
+																			{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
+
+																			<input className="form-control" type="text" placeholder="Search By Phone" onChange={(event)=>this.handPhoneChange(event)} />
+
+
+
+																	</div>
+															</div>
+															<div className="col-lg-3">
+																	<div className="form-group">
+																			{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
+
+																			<input className="form-control" type="text" placeholder="Search By Twiiter name" onChange={(event)=>this.handTwitterChange(event)} />
+
+
+
+																	</div>
 															</div>
 													</div>
 													<div className="col-auto pull-right">
+
 															{searchButton}
 
 													</div>
@@ -139,138 +204,83 @@ export default class PeopleSearchall extends React.Component{
 									</div>
 							</div>
 					</div>
+
 					<section className="">
 							<div className="container-fluid">
 									<div className="row">
 											<div className="col-md-12">
-													<div className="row">
-															<div className="col-md-3">
-																	<div className="select-all">
-																			<div className="custom_checkbox">
-																					<input type="checkbox" />
-																					<span></span>
+
+
+											</div>
+											{recordcount ?
+													<div><div className="">
+															<div className="col-md-12">
+																	<div className="row">
+																			<div className="col-md-3">
+																					<div className="select-all">
+																							<div className="custom_checkbox">
+																									<input type="checkbox" />
+																									<span></span>
+																							</div>
+																							<b>Select All</b>
+																					</div>
 																			</div>
-																			<b>Select All</b>
+																			<div className="col-auto pull-right">
+																					<a className="btn btn-default btn-lg mr-15" href="#">ACTION</a>
+																					<a className="btn btn-default btn-lg mr-15" href="#">ADD NEW CONTACT</a>
+																			</div>
 																	</div>
 															</div>
-															<div className="col-auto pull-right">
-																	<a className="btn btn-default btn-lg mr-15" href="#">ACTION</a>
-																	<a className="btn btn-default btn-lg mr-15" href="#">ADD NEW CONTACT</a>
-															</div>
-													</div>
-											</div>
-											<div className="col-md-9 col-sm-7">
-													<div className="body-border">
-															<table className="business-table">
-																	<tbody>
-																			<tr>
-																					<th></th>
-																					<th>Name</th>
-																					<th>Company</th>
-																					<th>Location</th>
-																					<th>Number</th>
-																					<th>Email</th>
-																					<th></th>
-																			</tr>
-																			<tr>
-																					<td>
-																							<div className="custom_checkbox">
-																									<input type="checkbox" />
-																									<span></span>
-																							</div>
-																					</td>
-																					<td>Sayed Rahman Ali</td>
-																					<td>Google</td>
-																					<td>Lorem ipsum , United States</td>
-																					<td><a href="">443-251-6322</a></td>
-																					<td><a href="">sample@gmail.com</a></td>
-																					<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a>
-																					</td>
+															<div className="col-md-12">
+																	<div className="body-border">
+																			<table className="business-table">
+																					<thead>
+																							<tr>
+																									<th width="10%"></th>
 
-																			</tr>
-																			<tr>
-																					<td>
-																							<div className="custom_checkbox">
-																									<input type="checkbox" />
-																									<span></span>
-																							</div>
-																					</td>
-																					<td>Sayed Rahman Ali</td>
-																					<td>Google</td>
-																					<td>Lorem ipsum , United States</td>
-																					<td><a href="">443-251-6322</a></td>
-																					<td><a href="">sample@gmail.com</a></td>
-																					<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a></td>
-																			</tr>
-																			<tr>
-																					<td>
-																							<div className="custom_checkbox">
-																									<input type="checkbox" />
-																									<span></span>
-																							</div>
-																					</td>
-																					<td>Sayed Rahman Ali</td>
-																					<td>Google</td>
-																					<td>Lorem ipsum , United States</td>
-																					<td><a href="">443-251-6322</a></td>
-																					<td><a href="">sample@gmail.com</a></td>
-																					<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a></td>
-																			</tr>
-																			<tr>
-																					<td>
-																							<div className="custom_checkbox">
-																									<input type="checkbox" />
-																									<span></span>
-																							</div>
-																					</td>
-																					<td>Sayed Rahman Ali</td>
-																					<td>Google</td>
-																					<td>Lorem ipsum , United States</td>
-																					<td><a href="">443-251-6322</a></td>
-																					<td><a href="">sample@gmail.com</a></td>
-																					<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a></td>
-																			</tr>
-																			<tr>
-																					<td>
-																							<div className="custom_checkbox">
-																									<input type="checkbox" />
-																									<span></span>
-																							</div>
-																					</td>
-																					<td>Sayed Rahman Ali</td>
-																					<td>Google</td>
-																					<td>Lorem ipsum , United States</td>
-																					<td><a href="">443-251-6322</a></td>
-																					<td><a href="">sample@gmail.com</a></td>
-																					<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a></td>
-																			</tr>
-																			<tr>
-																					<td>
-																							<div className="custom_checkbox">
-																									<input type="checkbox" />
-																									<span></span>
-																							</div>
-																					</td>
-																					<td>Sayed Rahman Ali</td>
-																					<td>Google</td>
-																					<td>Lorem ipsum , United States</td>
-																					<td><a href="">443-251-6322</a></td>
-																					<td><a href="">sample@gmail.com</a></td>
-																					<td><a href="">
-																							<i className="icons ion-ios-email-outline"></i>
-																					</a><a href="" className="icons ion-edit"></a></td>
-                                      </tr>
-                                  </tbody>
-															</table>
-													</div>
-											</div>
-											<div className="col-md-3 col-sm-5">
-													<div className="body-border">
-															<div className="tbd">
-																	<a href=""><b>Selected Business Info TBD</b></a>
+																									<th width="20%">Name</th>
+																									<th width="20%">Company</th>
+																									<th width="20%">Location</th>
+																									<th width="20%">Number</th>
+																									<th width="20%">Email</th>
+																									<th width="40%">Actions</th>
+
+
+																							</tr>
+																					</thead>
+																					<tbody>
+																							{
+																									this.state.data.map((d) => {
+																											console.log(d);
+																											return (
+																													<tr key={d.id}>
+																															<td>
+																																	<div className="custom_checkbox">
+																																			<input type="checkbox" />
+																																			<span></span>
+																																	</div>
+																															</td>
+																															<td>{d.contact_name}</td>
+																															<td>{d.company}</td>
+																															<td>{d.address}</td>
+																															<td>{d.email}</td>
+																															<td>{d.email}</td>
+																															<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a></td>
+																													</tr>
+																											)
+																									})
+																							}
+																					</tbody>
+																			</table>
+																	</div>
 															</div>
+															{/*<button className="load-more-btn">Load More</button>*/}
 													</div>
-											</div>
+															{datailInfo ?
+																	<MoreDetailSection datailInfo={datailInfo} />
+
+															: ''}
+													</div> : ''}
 									</div>
 							</div>
 					</section>
