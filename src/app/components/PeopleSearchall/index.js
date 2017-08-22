@@ -72,11 +72,9 @@ export default class PeopleSearchall extends React.Component{
 
 	handlePeopleSearch(event){
 		//const data={first_name:this.state.first_name,last_name:this.state.last_name,company:this.state.company};
-		const first_name = this.state.first_name;
-		const last_name = this.state.last_name;
-		const company = this.state.company;
-		const phone = this.state.phone;
-		const twitter = this.state.twitter;
+		const domain = this.state.first_name;
+		const query = this.state.last_name;
+
 
 		this.setState({errorMsg : null,busy : true});
 		/*if(!data.first_name || !data.last_name || !data.company){
@@ -86,13 +84,13 @@ export default class PeopleSearchall extends React.Component{
 
 		axios.defaults.headers.common['Authorization'] = "Token "+localStorage.getItem('key');
 		axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-		axios.get('https://carderockllc.com/api/v1/contacts/search/?first_name='+first_name+'&last_name='+last_name+'&company='+company+'&phone='+phone+'&twitter='+twitter).then(res=>{
+		axios.get('https://carderockllc.com/api/v1/contacts/search/?domain='+domain+'&query='+query).then(res=>{
 			this.setState({
 				data: res.data.results,
 				recordcount: res.data.results.length,
 				busy: false
 			})
-			console.log(this.state)
+			console.log(this.state.data)
 		}).catch(err=>{
 			this.setState({busy : false});
 			//console.log(err)
@@ -144,56 +142,27 @@ export default class PeopleSearchall extends React.Component{
 											<form onSubmit={(event) => this.handlePeopleSearch(event)}>
 													{errorMsg}
 													<div className="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-															<div className="col-md-3">
+															<div className="col-md-6">
 																	<div className="form-group">
 																			{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
 
-																			<input className="form-control" type="text" placeholder="Search By  First Name" onChange={(event)=>this.handFirstnameChange(event)} />
+																			<input className="form-control" type="text" placeholder="Company Domain" onChange={(event)=>this.handFirstnameChange(event)} />
 
 
 
 																	</div>
 															</div>
 
-															<div className="col-lg-3">
+															<div className="col-lg-6">
 																	<div className="form-group">
 																			{/* <label className="control-label" htmlFor="focusedInput">Search Location</label> */}
 
-																			<input className="form-control" type="text" placeholder="Search by last name" onChange={(event)=>this.handLastnameChange(event)} />
+																			<input className="form-control" type="text" placeholder="first name, last name or role" onChange={(event)=>this.handLastnameChange(event)} />
 
 
 																	</div>
 															</div>
-															<div className="col-md-3">
-																	<div className="form-group">
-																			{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
 
-																			<input className="form-control" type="text" placeholder="Search By Company" onChange={(event)=>this.handCompanyChange(event)}/>
-
-
-
-																	</div>
-															</div>
-															<div className="col-lg-3">
-																	<div className="form-group">
-																			{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
-
-																			<input className="form-control" type="text" placeholder="Search By Phone" onChange={(event)=>this.handPhoneChange(event)} />
-
-
-
-																	</div>
-															</div>
-															<div className="col-lg-3">
-																	<div className="form-group">
-																			{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
-
-																			<input className="form-control" type="text" placeholder="Search By Twiiter name" onChange={(event)=>this.handTwitterChange(event)} />
-
-
-
-																	</div>
-															</div>
 													</div>
 													<div className="col-auto pull-right">
 
@@ -263,7 +232,7 @@ export default class PeopleSearchall extends React.Component{
 																															<td>{d.contact_name}</td>
 																															<td>{d.company}</td>
 																															<td>{d.address}</td>
-																															<td>{d.email}</td>
+																															<td>{d.phone}</td>
 																															<td>{d.email}</td>
 																															<td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a></td>
 																													</tr>

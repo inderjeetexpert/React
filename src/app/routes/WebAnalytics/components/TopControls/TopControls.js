@@ -1,5 +1,5 @@
 import React from 'react';
-import './topcontrol.css'
+import './topControl.css'
 class TopControls extends React.Component {
 	constructor(props) {
 		super(props)
