@@ -115,6 +115,25 @@ a {
     font-size: 16px;
 }
 
+.search-header .form-group span {
+    display: block;
+    float: left;
+    height: 35px;
+    text-align: center;
+    width: 35px;
+}
+
+.search-header .form-group span i {
+    line-height: 24px;
+    font-size: 22px;
+    color: rgb(21, 98, 197);
+}
+
+.search-header .form-group .form-control {
+    float: left;
+    width: calc(100% - 40px);
+}
+
 .clear-button {
     margin-top: 1px;
     font-family: 'Hind', sans-serif;
@@ -133,6 +152,22 @@ a {
 
 .record-count span {
     color: #0d87e9;
+}
+
+.business-table i {
+    color: #1562c5;
+    float: left;
+    font-size: 22px;
+    line-height: 22px;
+    margin-right: 10px;
+}
+
+.info-list li i {
+    color: #1562c5;
+    float: left;
+    font-size: 22px;
+    line-height: 22px;
+    margin-right: 10px;
 }
 
 

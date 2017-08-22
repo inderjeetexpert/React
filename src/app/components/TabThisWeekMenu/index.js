@@ -10,6 +10,7 @@ import {
 import axios from 'axios';
 import SkyLight from 'react-skylight';
 import MoreDetailSection from '../MoreDetail'
+import Autocomplete from 'react-google-autocomplete';
 
 export default class TabThisWeekMenu extends React.Component {
 	constructor(props) {
@@ -26,8 +27,8 @@ export default class TabThisWeekMenu extends React.Component {
 			errorLoc: null,
 			datailInfo: null,
 			searchedName: null,
-			searched
-			: null
+			place: '',
+			searched: null
 
 		};
 		this.handleMoreInfo = this.handleMoreInfo.bind(this);
@@ -72,7 +73,7 @@ export default class TabThisWeekMenu extends React.Component {
 	handleSearch(event) {
 		event.preventDefault();
 
-		const data = { what: this.state.item, where: this.state.location };
+		const data = { what: this.state.item, where: this.state.place };
 
 		this.setState({ errorMsg: null, busy: true, errorItem: null, errorLoc: null });
 
@@ -154,7 +155,7 @@ export default class TabThisWeekMenu extends React.Component {
 															<div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
 																	<div className="form-group">
 																			{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
-
+																			<span className="input-group-addon"><i className="ion-android-search"></i></span>
 																			<input className="form-control" type="text" value={item} placeholder="Search for Business" onChange={(event) => this.handItemChange(event)} />
 																			{errorItem}
 
@@ -163,9 +164,18 @@ export default class TabThisWeekMenu extends React.Component {
 															</div>
 															<div className="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 																	<div className="form-group borderless">
+																			<span className="input-group-addon"><i className="ion-ios-location-outline"></i></span>
 																			{/* <label className="control-label" htmlFor="focusedInput">Search Location</label> */}
 
-																			<input className="form-control" type="text" value={location} placeholder="Enter a location" onChange={(event) => this.handleLocChange(event)} />
+																			{/*<input className="form-control" type="text" value={location} placeholder="Enter a location" onChange={(event) => this.handleLocChange(event)} />*/}
+																			<Autocomplete
+																					style={{width: '90%', border: 'none',outline:'none'}}
+																					onPlaceSelected={(place) => {
+																							//console.log(place.formatted_address);
+																							this.setState({ place: place.formatted_address });
+																					}}
+
+																			/>
 																			{errorLoc}
 
 																	</div>
@@ -193,58 +203,57 @@ export default class TabThisWeekMenu extends React.Component {
 											</div>
 											{recordcount ?
 													<div><div className={`${datailInfo ? 'col-md-9 col-sm-7' : 'col-md-12'}`}>
-															<div className="body-border">
-																	<table className="business-table">
-																			<thead>
-																					<tr>
-																							<th width="25%">NAME</th>
+									<div className="body-border">
+										<table className="business-table">
+											<thead>
+												<tr>
+													<th width="25%">NAME</th>
 
-																							<th width="25%">ADDRESS</th>
-																							<th width="25%">PHONE</th>
-																							<th width="25%">EMAIL</th>
-																							<th width="50"> </th>
-																					</tr>
-																			</thead>
-																			<tbody>
-																					{this.state.data.map((d) => {
-																							let image = "images/no-image.png"
+													<th width="25%">ADDRESS</th>
+													<th width="25%">PHONE</th>
+													<th width="25%">EMAIL</th>
+													<th width="50"> </th>
+												</tr>
+											</thead>
+											<tbody>
+												{this.state.data.map((d) => {
+													let image = "images/no-image.png"
 
-																							if (d.image && d.image != '') {
-																									image = d.image
-																							}
+													if (d.image && d.image != '') {
+														image = d.image
+													}
 
 
 
-																							var dialoadRef = "sd" + d.id
-																							return (
-																									<tr key={d.id} onClick={() => this.handleMoreInfo(d)} className={`${datailInfo && (datailInfo.id === d.id) ? 'selected-item' : ''}`}>
-																											<td><img src={image} className="img-thumbnail" alt="thumbnail image" onClick={() => this.refs[dialoadRef].show()} />
-																													<p className="table-item-name">{d.name}</p>
-																													<SkyLight hideOnOverlayClicked ref={dialoadRef} title={d.name}>
-																															<img src={image} style={{ height: 300, width: 618 }} alt="" />
-																													</SkyLight>
-																											</td>
-
-																											<td><p>{d.formatted_address}</p></td>
-																											<td><p>{d.phone}</p></td>
-																											<td><p>{d.email}</p></td>
-																											<td><p>Open Site</p></td>
-																									</tr>
-																							)
-																					})}
-																			</tbody>
-																	</table>
-															</div>
-															<button className="load-more-btn">Load More</button>
-													</div>
-															{datailInfo ?
-																	<MoreDetailSection datailInfo={datailInfo} />
-
-															: ''}
-													</div> : ''}
+													var dialoadRef = "sd" + d.id
+													return (
+														<tr key={d.id} onClick={() => this.handleMoreInfo(d)} className={`${datailInfo && (datailInfo.id === d.id) ? 'selected-item' : ''}`}>
+															<td><img src={image} className="img-thumbnail" alt="thumbnail image" onClick={() => this.refs[dialoadRef].show()} />
+																<p className="table-item-name">{d.name}</p>
+																<SkyLight hideOnOverlayClicked ref={dialoadRef} title={d.name}>
+																	<img src={image} style={{ height: 300, width: 618 }} alt="" />
+																</SkyLight>
+															</td>
+															<td><i className="ion-ios-location-outline"></i><p>{d.formatted_address}</p></td>
+															<td><i className="ion-ios-telephone-outline"></i><p>{d.phone}</p></td>
+															<td><i className="ion-ios-email-outline"></i><p>{d.email}</p></td>
+															<td><a href=""><i className="ion-share"></i></a></td>
+														</tr>
+													)
+												})}
+											</tbody>
+										</table>
 									</div>
-							</div>
-					</section>
+									<button className="load-more-btn">Load More</button>
+								</div>
+									{datailInfo ?
+										<MoreDetailSection datailInfo={datailInfo} />
+
+										: ''}
+								</div> : ''}
+						</div>
+					</div>
+				</section>
 			</div>
 		);
 	}
