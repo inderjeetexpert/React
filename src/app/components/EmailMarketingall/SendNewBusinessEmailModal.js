@@ -3,6 +3,7 @@ import CreateSmtpForm from './CreateSmtpForm'
 import { Button, Modal } from 'react-bootstrap'
 import CreateSmtpModel from './CreateSmtpModel'
 import axios from 'axios'
+import TabMenuall from './TabMenuall'
 
 class SendCategoryEmailModal extends React.Component{
 	constructor(){
@@ -56,37 +57,15 @@ class SendCategoryEmailModal extends React.Component{
 							</Modal.Header>
 							<Modal.Body>
 									<div className="row">
-											<div className="col-md-6">
+											<div className="col-md-7">
 
 													<div className="row">
-															<div className="col-md-6">
-																	<h5>Business</h5>
-																	<div className="checkbox">
-																			<label>
-																					<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
-																					Manually Added
-																			</label>
-																	</div>
-																	{this.state.data.map((m) => {
-																			//console.log(m);
-																			return (<div className="checkbox">
-																					<label>
-																							<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
-																							{m.search.what} | {m.search.where}
-																					</label>
-																			</div>
-
-																			)
-																	})}
-
-
-
-
+															<div className="col-md-12 business-header">
+																	<TabMenuall />
 															</div>
-
 													</div>
 											</div>
-											<div className="col-md-5">
+											<div className="col-md-4">
 
 													<div className="form-group">
 															<span className="smtp">

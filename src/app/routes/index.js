@@ -11,6 +11,7 @@ import Main from './Main'
 import People from './People'
 import Login from './Login'
 import Contact from './Contact'
+import Company from './Company'
 import EmailMarketing from './EmailMarketing'
 import WebAnalytics from './WebAnalytics'
 import configureStore from '../store/configureStore'
@@ -33,16 +34,17 @@ class MainRoute extends Component {
 
 		return (
 			<Provider store={store}>
-				<HashRouter history={history}>
-					<Switch>
-						<Route exact path="/" component={Login} />
-						<Route exact path="/main" component={Main} />
-						<Route exact path="/people" component={People} />
-						<Route exact path="/contact" component={Contact} />
-						<Route exact path="/emailMarketing" component={EmailMarketing} />
-						<Route exact path="/webAnalytics" component={WebAnalytics} />
-						<Route exact path="/login" component={Login} />
-						<Route component={Login} />
+					<HashRouter history={history}>
+							<Switch>
+									<Route exact path="/" component={Login} />
+									<Route exact path="/main" component={Main} />
+									<Route exact path="/people" component={People} />
+									<Route exact path="/contact" component={Contact} />
+									<Route exact path="/company" component={Company} />
+									<Route exact path="/emailMarketing" component={EmailMarketing} />
+									<Route exact path="/webAnalytics" component={WebAnalytics} />
+									<Route exact path="/login" component={Login} />
+									<Route component={Login} />
 					</Switch>
 				</HashRouter>
 			</Provider>

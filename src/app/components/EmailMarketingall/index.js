@@ -29,7 +29,7 @@ export default class EmailMarketingall extends React.Component {
 		this.state = {
 			data: [],
 			subject: '',
-			content: '<p>Some para</p>',
+			content: '<p></p>',
 			ckeChanged: true,
 			name: '',
 			host: '',
@@ -339,23 +339,23 @@ export default class EmailMarketingall extends React.Component {
 		return (
 
 			<div>
-				<div className="links-header">
-					<div className="container-fluid">
-						<div className="modal-links">
-							<div>
-								<a onClick={() => { this.setState({ showMassEmailModel: true }) }}>Send Mass Email</a>
-								<SendMassEmailModal dataUser={this.state.dataUser} showModal={this.state.showMassEmailModel} closeModal={() => { this.setState({ showMassEmailModel: false }) }} />
-							</div>
+					<div className="links-header">
+							<div className="container-fluid">
+									<div className="modal-links">
+											<div>
+													<a onClick={() => { this.setState({ showMassEmailModel: true }) }}>Send Mass Email</a>
+													<SendMassEmailModal dataUser={this.state.dataUser} showModal={this.state.showMassEmailModel} closeModal={() => { this.setState({ showMassEmailModel: false }) }} />
+											</div>
 
-							<div>
-								<a onClick={() => { this.setState({ showCategoriesEmailModel: true }) }}>Send Email to Selected Categories</a>
-								<SendCategoryEmailModal dataUser={this.state.dataUser} showModal={this.state.showCategoriesEmailModel} closeModal={() => { this.setState({ showCategoriesEmailModel: false }) }} />
-							</div>
+											<div>
+													<a onClick={() => { this.setState({ showCategoriesEmailModel: true }) }}>Send Email to Selected Categories</a>
+													<SendCategoryEmailModal dataUser={this.state.dataUser} showModal={this.state.showCategoriesEmailModel} closeModal={() => { this.setState({ showCategoriesEmailModel: false }) }} />
+											</div>
 
-							<div>
-								<a onClick={() => { this.setState({ showPromoEmailModel: true }) }}>Send the Promotions</a>
-								<SendPromoEmailModal dataUser={this.state.dataUser} showModal={this.state.showPromoEmailModel} closeModal={() => { this.setState({ showPromoEmailModel: false }) }} />
-							</div>
+											{/*<div>
+													<a onClick={() => { this.setState({ showPromoEmailModel: true }) }}>Send the Promotions</a>
+													<SendPromoEmailModal dataUser={this.state.dataUser} showModal={this.state.showPromoEmailModel} closeModal={() => { this.setState({ showPromoEmailModel: false }) }} />
+											</div>*/}
 
 							<div>
 								<a onClick={() => { this.setState({ showNewBuisnessEmailModel: true }) }}>Search New Business and Send Email</a>
