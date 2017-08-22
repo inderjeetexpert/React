@@ -1,0 +1,40 @@
+ .widgetTop {
+     font-size: 10pt;
+     font-weight: normal;
+     padding-bottom: 4px;
+     background: #ffffff;
+ }
+
+ .widgetTop .buttons {
+     float: right;
+     position: absolute;
+     padding-left: 50px;
+     right: 8px;
+     display: none;
+     color: #0d0d0d;
+     background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #ffffff 45px);
+     background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #ffffff 45px);
+     background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #ffffff 45px);
+     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1);
+ }
+
+ .widgetTop .button {
+     margin: 16px 8px 0 0;
+     opacity: 0.8;
+     cursor: pointer;
+     float: right;
+ }
+
+ .widgetTop h3 {
+     font-size: 18px;
+     line-height: 18px;
+     color: #0d0d0d;
+     font-weight: normal;
+     margin: 0;
+     text-shadow: none;
+     padding: 15px 15px 10px 12px;
+ }
+
+ .widgetTop:hover .buttons {
+     display: block;
+ }

@@ -1,0 +1,337 @@
+@font-face {
+  font-family: 'piwik';
+  src:
+    url('fonts/piwik.ttf?55gvzl') format('truetype'),
+    url('fonts/piwik.woff?55gvzl') format('woff'),
+    url('fonts/piwik.svg?55gvzl#piwik') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="piwik-icon-"], [class*=" piwik-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'piwik' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.piwik-icon-alien:before {
+  content: "\e600";
+}
+.piwik-icon-annotation:before {
+  content: "\e601";
+}
+.piwik-icon-arrow-left:before {
+  content: "\e602";
+}
+.piwik-icon-arrow-right:before {
+  content: "\e603";
+}
+.piwik-icon-business:before {
+  content: "\e604";
+}
+.piwik-icon-calendar:before {
+  content: "\e605";
+}
+.piwik-icon-chart-bar:before {
+  content: "\e606";
+}
+.piwik-icon-chart-line-details:before {
+  content: "\e607";
+}
+.piwik-icon-chart-line:before {
+  content: "\e608";
+}
+.piwik-icon-chart-pie:before {
+  content: "\e609";
+}
+.piwik-icon-close:before {
+  content: "\e60a";
+}
+.piwik-icon-collapsed-arrows:before {
+  content: "\e60b";
+}
+.piwik-icon-configure:before {
+  content: "\e60c";
+}
+.piwik-icon-datepicker-arr-l:before {
+  content: "\e60d";
+}
+.piwik-icon-datepicker-arr-r:before {
+  content: "\e60e";
+}
+.piwik-icon-delete:before {
+  content: "\e60f";
+}
+.piwik-icon-document:before {
+  content: "\e610";
+}
+.piwik-icon-download:before {
+  content: "\e611";
+}
+.piwik-icon-drop:before {
+  content: "\e612";
+}
+.piwik-icon-ecommerce-abandoned:before {
+  content: "\e613";
+}
+.piwik-icon-ecommerce-order:before {
+  content: "\e614";
+}
+.piwik-icon-email:before {
+  content: "\e615";
+}
+.piwik-icon-error:before {
+  content: "\e616";
+}
+.piwik-icon-export:before {
+  content: "\e617";
+}
+.piwik-icon-feed:before {
+  content: "\e618";
+}
+.piwik-icon-finance:before {
+  content: "\e619";
+}
+.piwik-icon-folder-charts:before {
+  content: "\e61a";
+}
+.piwik-icon-folder:before {
+  content: "\e61b";
+}
+.piwik-icon-fullscreen:before {
+  content: "\e61c";
+}
+.piwik-icon-goal:before {
+  content: "\e61d";
+}
+.piwik-icon-help-alt:before {
+  content: "\e61e";
+}
+.piwik-icon-help:before {
+  content: "\e61f";
+}
+.piwik-icon-code:before {
+  content: "\e620";
+}
+.piwik-icon-alert:before {
+  content: "\e621";
+}
+.piwik-icon-edit:before {
+  content: "\e622";
+}
+.piwik-icon-image:before {
+  content: "\e623";
+}
+.piwik-icon-info:before {
+  content: "\e624";
+}
+.piwik-icon-insights:before {
+  content: "\e625";
+}
+.piwik-icon-locked-2:before {
+  content: "\e626";
+}
+.piwik-icon-locked:before {
+  content: "\e627";
+}
+.piwik-icon-locked-3:before {
+  content: "\e628";
+}
+.piwik-icon-locked-4:before {
+  content: "\e629";
+}
+.piwik-icon-maximise:before {
+  content: "\e62a";
+}
+.piwik-icon-minimise:before {
+  content: "\e62b";
+}
+.piwik-icon-minus:before {
+  content: "\e62c";
+}
+.piwik-icon-newtab:before {
+  content: "\e62d";
+}
+.piwik-icon-ok:before {
+  content: "\e62e";
+}
+.piwik-icon-open-source:before {
+  content: "\e62f";
+}
+.piwik-icon-add:before {
+  content: "\e630";
+}
+.piwik-icon-puzzle:before {
+  content: "\e631";
+}
+.piwik-icon-refresh:before {
+  content: "\e632";
+}
+.piwik-icon-reload:before {
+  content: "\e633";
+}
+.piwik-icon-search:before {
+  content: "\e634";
+}
+.piwik-icon-users:before {
+  content: "\e635";
+}
+.piwik-icon-server-alt:before {
+  content: "\e636";
+}
+.piwik-icon-server:before {
+  content: "\e637";
+}
+.piwik-icon-hide:before {
+  content: "\e638";
+}
+.piwik-icon-show:before {
+  content: "\e639";
+}
+.piwik-icon-arrow-top:before {
+  content: "\e63a";
+}
+.piwik-icon-arrow-bottom:before {
+  content: "\e63b";
+}
+.piwik-icon-star:before {
+  content: "\e63c";
+}
+.piwik-icon-success:before {
+  content: "\e63d";
+}
+.piwik-icon-table-more:before {
+  content: "\e63e";
+}
+.piwik-icon-table:before {
+  content: "\e63f";
+}
+.piwik-icon-tag-cloud:before {
+  content: "\e640";
+}
+.piwik-icon-user:before {
+  content: "\e641";
+}
+.piwik-icon-user-add:before {
+  content: "\e642";
+}
+.piwik-icon-visitor-profile:before {
+  content: "\e644";
+}
+.piwik-icon-zoom-in:before {
+  content: "\e645";
+}
+.piwik-icon-zoom-out:before {
+  content: "\e646";
+}
+.piwik-icon-sign-out:before {
+  content: "\e647";
+}
+.piwik-icon-sign-in:before {
+  content: "\e648";
+}
+.piwik-icon-menu-hamburger:before {
+  content: "\e649";
+}
+.piwik-icon-menu-horiz:before {
+  content: "\e64a";
+}
+.piwik-icon-menu-verti:before {
+  content: "\e64b";
+}
+.piwik-icon-admin-administration:before {
+  content: "\e64c";
+}
+.piwik-icon-admin-development:before {
+  content: "\e64d";
+}
+.piwik-icon-admin-diagnostic:before {
+  content: "\e64e";
+}
+.piwik-icon-admin-platform:before {
+  content: "\e64f";
+}
+.piwik-icon-admin-settings:before {
+  content: "\e650";
+}
+.piwik-icon-reporting-actions:before {
+  content: "\e651";
+}
+.piwik-icon-reporting-dashboard:before {
+  content: "\e652";
+}
+.piwik-icon-reporting-ecommerce:before {
+  content: "\e653";
+}
+.piwik-icon-reporting-goal:before {
+  content: "\e654";
+}
+.piwik-icon-reporting-referer:before {
+  content: "\e655";
+}
+.piwik-icon-reporting-visitors:before {
+  content: "\e656";
+}
+.piwik-icon-user-manage:before {
+  content: "\e657";
+}
+.piwik-icon-user-personal:before {
+  content: "\e658";
+}
+.piwik-icon-user-platform:before {
+  content: "\e659";
+}
+.piwik-icon-assignment:before {
+  content: "\e85d";
+}
+.piwik-icon-info2:before {
+  content: "\e88e";
+}
+.piwik-icon-info_outline:before {
+  content: "\e88f";
+}
+.piwik-icon-settings:before {
+  content: "\e8b8";
+}
+.piwik-icon-fast-forward:before {
+  content: "\e01f";
+}
+.piwik-icon-fast-rewind:before {
+  content: "\e020";
+}
+.piwik-icon-pause:before {
+  content: "\e035";
+}
+.piwik-icon-play:before {
+  content: "\e038";
+}
+.piwik-icon-replay:before {
+  content: "\e042";
+}
+.piwik-icon-skip-next:before {
+  content: "\e044";
+}
+.piwik-icon-skip_previous:before {
+  content: "\e045";
+}
+.piwik-icon-stop:before {
+  content: "\e047";
+}
+.piwik-icon-funnel:before {
+  content: "\ea5b";
+}
+.piwik-icon-archive:before {
+  content: "\e95e";
+}
+.piwik-icon-lab:before {
+  content: "\e9aa";
+}

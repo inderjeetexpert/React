@@ -1,0 +1,49 @@
+.piwikTopControl {
+    position: relative;
+}
+
+.top_controls {
+    min-height: 51px;
+    position: relative;
+    height: auto;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.borderedControl {
+    background-color: #edecec;
+    border: 0;
+    transition: box-shadow 150ms linear;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+}
+
+.top_controls .piwikTopControl {
+    display: inline-block;
+    float: none;
+    position: relative;
+    margin-right: 16px;
+    vertical-align: top;
+    font-size: 11px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.quick-access .piwik-icon-search {
+    position: absolute;
+    font-size: 14px;
+    top: 10px;
+    left: 10px;
+}
+
+.top_controls .quick-access input {
+    height: 33px;
+    background: none;
+    font-size: 11px;
+    padding: 10px 12px 10px 10px;
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+    border-radius: 2px !important;
+    box-shadow: none !important;
+}

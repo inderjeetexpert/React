@@ -1,0 +1,20 @@
+.simple-realtime-visitor-counter {
+    background-color: #F1F0EB;
+    border-radius: 10px;
+    display: table;
+    margin: 25px auto 15px;
+    padding: 30px 40px;
+    font-size: 50px;
+    color: #444;
+}
+
+.simple-realtime-elaboration {
+    color: #666666;
+    text-align: center;
+    margin: 1em 2em 1em 2em;
+}
+
+.simple-realtime-metric {
+    font-weight: bold;
+    color: #333;
+}

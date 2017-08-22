@@ -1,0 +1,13 @@
+/* .raphael-group-119-creditgroup,
+.raphael-group-115-creditgroup {
+    display: none;
+} */
+
+[class^="-creditgroup"],
+[class*="-creditgroup"] {
+    display: none;
+}
+
+.chart-wrapper {
+    overflow: auto;
+}

@@ -1,0 +1,12 @@
+ .sparkline {
+     margin-left: 5px;
+     color: #000;
+     margin-bottom: 10px;
+     margin-top: 10px;
+ }
+
+ .sparkline img {
+     vertical-align: middle;
+     padding-right: 10px;
+     margin-top: 0;
+ }

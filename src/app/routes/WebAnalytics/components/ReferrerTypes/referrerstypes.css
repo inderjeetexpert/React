@@ -1,0 +1,23 @@
+.referrer-types .table-bordered>thead>tr>th {
+    border: none;
+}
+
+.referrer-types .table-bordered {
+    border: none;
+}
+
+.referrer-types .table-bordered>tbody>tr>td {
+    border: none;
+}
+
+.referrer-types .table {
+    margin-bottom: 0;
+}
+
+.referrer-types .react-bs-table-container {
+    overflow: auto;
+}
+
+.referrer-types .react-bs-table {
+    width: 500px;
+}

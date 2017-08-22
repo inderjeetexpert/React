@@ -1,0 +1,68 @@
+.live-widget .table {
+    margin-bottom: 0;
+}
+
+.live-widget a {
+    cursor: pointer;
+}
+
+.live-widget .table-bordered>thead>tr>th {
+    border: none;
+}
+
+.live-widget .table-bordered {
+    border: none;
+}
+
+.live-widget .table-bordered>tbody>tr>td {
+    border: none;
+}
+
+.visit-live {
+    text-align: left;
+    font-size: 90%;
+    color: #444;
+    border-top: 1px solid #e6e6e6;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.visit-live .datetime {
+    background: #f2f2f2;
+    padding: 10px 5px 10px 12px;
+    line-height: 20px;
+}
+
+.visit-live .datetime a {
+    text-decoration: none;
+}
+
+.visit-live img {
+    vertical-align: middle;
+}
+
+.visit-live .referrer {
+    display: block;
+    padding-top: 4px;
+    padding-bottom: 1px;
+}
+
+.visit-live .settings {
+    padding: 10px 5px 10px 12px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.visitsLiveFooter {
+    padding-left: 10px;
+    line-height: 2.5em;
+}
+
+.visitsLiveFooter .rightLink {
+    font-size: 13px;
+    line-height: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: right;
+    padding-right: 10px;
+}
