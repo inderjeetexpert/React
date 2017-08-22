@@ -4,96 +4,9 @@ import WidgetContent from '../WidgetContent/WidgetContent'
 import Widget from '../Widget/Widget';
 import FooterWidget from '../FooterWidget/FooterWidget';
 import './visitovertime.css';
+import Highcharts from 'highcharts';
+import addFunnel from 'highcharts/modules/funnel';
 
-import ReactDOM from 'react-dom';
-import fusioncharts from 'fusioncharts';
-// Load the charts module
-
-
-import charts from 'fusioncharts/fusioncharts.charts';
-// import 'react-fusioncharts' from 'react-fusioncharts';
-import ocean from 'fusioncharts/themes/fusioncharts.theme.ocean';
-import ReactFC from 'react-fusioncharts';
-
-// Pass fusioncharts as a dependency of charts
-charts(FusionCharts)
-var myDataSource = {
-  "chart": {
-    // "caption": "Actual Revenues, Targeted Revenues & Profits",
-    // "subcaption": "Last year",
-    // "xaxisname": "Month",
-    // "yaxisname": "Amount (In USD)",
-    // "numberprefix": "$",
-    "theme": "ocean"
-  },
-  "categories": [{
-    "category": [{
-      "label": "Jan"
-    }, {
-      "label": "Feb"
-    }, {
-      "label": "Mar"
-    }, {
-      "label": "Apr"
-    }, {
-      "label": "May"
-    }, {
-      "label": "Jun"
-    }, {
-      "label": "Jul"
-    }, {
-      "label": "Aug"
-    }, {
-      "label": "Sep"
-    }, {
-      "label": "Oct"
-    }, {
-      "label": "Nov"
-    }, {
-      "label": "Dec"
-    }]
-  }],
-  "dataset": [{
-    "seriesname": "Projected Revenue",
-    "renderas": "line",
-    "showvalues": "0",
-    "data": [{
-      "value": "15000"
-    }, {
-      "value": "16000"
-    }, {
-      "value": "17000"
-    }, {
-      "value": "18000"
-    }, {
-      "value": "19000"
-    }, {
-      "value": "19000"
-    }, {
-      "value": "19000"
-    }, {
-      "value": "19000"
-    }, {
-      "value": "20000"
-    }, {
-      "value": "21000"
-    }, {
-      "value": "22000"
-    }, {
-      "value": "23000"
-    }]
-  }]
-};
-
-var chartConfigs = {
-  id: "revenue-profits-chart",
-  renderAt: "revenue-profits-chart-container",
-  type: "mscombi2d",
-  width: '100%',
-  height: 400,
-  dataFormat: "json",
-  dataSource: myDataSource
-};
 class VisitOverTime extends React.Component {
   constructor(props) {
     super(props);
@@ -103,8 +16,39 @@ class VisitOverTime extends React.Component {
 
 
   componentDidMount() {
+    Highcharts.chart('VisitorOverTimeMap', {
+      title: {
+        text: ''
+      },
+      // subtitle: {
+      //   text: 'Source: thesolarfoundation.com'
+      // },
+      yAxis: {
+        title: {
+          text: 'Number of Employees'
+        }
+      },
+      legend: {
+        // layout: 'horizontal',
+        align: 'center',
+        // verticalAlign: 'bottom'
+      },
+      plotOptions: {
+        series: {
+          pointStart: 2010
+        }
+      },
+      series: [{
+        name: 'Installation',
+        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+      }]
 
-  };
+    });
+    addFunnel(Highcharts);
+  }
+  componentWillUnmount() {
+
+  }
   render() {
 
     return (
@@ -113,7 +57,10 @@ class VisitOverTime extends React.Component {
           <WidgetTop WidgetName="Visit Over Time" />
           <WidgetContent>
             <div className="chart-wrapper">
-              <ReactFC {...chartConfigs} />
+              <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+              <div id="VisitorOverTimeMap"></div>
+
             </div>
 
             <FooterWidget limitSelection={true} />

@@ -1,10 +1,4 @@
-/* .raphael-group-119-creditgroup,
-.raphael-group-115-creditgroup {
-    display: none;
-} */
-
-[class^="-creditgroup"],
-[class*="-creditgroup"] {
+.highcharts-credits {
     display: none;
 }
 

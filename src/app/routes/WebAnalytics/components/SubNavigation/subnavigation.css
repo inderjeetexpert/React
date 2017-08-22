@@ -29,10 +29,6 @@
     padding-right: 13px;
 }
 
-.subNavbar>li .item {
-    cursor: pointer;
-}
-
 .subNavbar>li>ul {
     display: none;
     list-style: none;
@@ -52,6 +48,11 @@
     text-decoration: none !important;
     word-break: break-word;
     font-weight: bold;
+    cursor: pointer;
+}
+
+.subNavbar>li li .item {
+    font-weight: normal;
 }
 
 .subNavbar>li>ul li.active>.item {
