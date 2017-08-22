@@ -1,11 +1,11 @@
 import React from 'react'
 import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn,
+	Table,
+	TableBody,
+	TableHeader,
+	TableHeaderColumn,
+	TableRow,
+	TableRowColumn,
 } from 'material-ui/Table';
 import axios from 'axios';
 import CKEditor from "react-ckeditor-component";
@@ -30,19 +30,19 @@ export default class EmailMarketingall extends React.Component {
 			data: [],
 			subject: '',
 			content: '<p>Some para</p>',
-			ckeChanged : true,
+			ckeChanged: true,
 			name: '',
 			host: '',
 			port: '',
 			username: '',
 			password: '',
 			usertls: false,
-			useremail:'',
+			useremail: '',
 			errorMsg: null,
 			busy: false,
 			recordcount: 0,
 			data: [],
-			dataUser:[],
+			dataUser: [],
 			errorMsg: null,
 			errorName: null,
 			errorHost: null,
@@ -54,47 +54,47 @@ export default class EmailMarketingall extends React.Component {
 			datailInfo: null
 
 
-  	}
-		axios.defaults.headers.common['Authorization'] = "Token "+localStorage.getItem('key');
-	  axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-	  axios.get('https://carderockllc.com/api/v1/email/templates/').then(res=>{
-			this.setState({data:res.data.results})
-	  }).catch(err=>{
+		}
+		axios.defaults.headers.common['Authorization'] = "Token " + localStorage.getItem('key');
+		axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+		axios.get('https://carderockllc.com/api/v1/email/templates/').then(res => {
+			this.setState({ data: res.data.results })
+		}).catch(err => {
 			console.error(err);
-	 	});
+		});
 
-		axios.defaults.headers.common['Authorization'] = "Token "+localStorage.getItem('key');
-	  axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-	  axios.get('https://carderockllc.com/api/v1/usersmtp/').then(resuser=>{
+		axios.defaults.headers.common['Authorization'] = "Token " + localStorage.getItem('key');
+		axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+		axios.get('https://carderockllc.com/api/v1/usersmtp/').then(resuser => {
 			//console.log(resuser.data.results);
-			this.setState({dataUser:resuser.data.results})
-	  }).catch(err=>{
+			this.setState({ dataUser: resuser.data.results })
+		}).catch(err => {
 			console.error(err);
-	 	});
+		});
 
 		this.updateContent = this.updateContent.bind(this)
 		this.themeChange = this.themeChange.bind(this)
 	}
 
 	themeChange(newContent) {
-		this.setState({ckeChanged:false})
+		this.setState({ ckeChanged: false })
 		console.log(newContent)
 		const self = this
 		setTimeout(function () {
 			self.setState({
-		    content: newContent,
-				ckeChanged:true
-		  })
+				content: newContent,
+				ckeChanged: true
+			})
 		}, 1000);
 	}
 
-	updateContent(newContent){
+	updateContent(newContent) {
 		this.setState({
 			content: newContent
 		})
 	}
 
-	subjectChange(event){
+	subjectChange(event) {
 		this.setState({
 			subject: event.value
 		})
@@ -172,10 +172,12 @@ export default class EmailMarketingall extends React.Component {
 		//event.preventDefault();
 
 
-		const data = { name: this.state.name, host: this.state.host, port: this.state.port, username: this.state.username, password: this.state.password, use_tls: true, from_email: this.state.useremail};
- console.log(data);
-		this.setState({ errorMsg: null, busy: true, errorName: null, errorHost: null, errorPort: null, errorUsername: null,
-					errorPassword: null, errorUsertls: null });
+		const data = { name: this.state.name, host: this.state.host, port: this.state.port, username: this.state.username, password: this.state.password, use_tls: true, from_email: this.state.useremail };
+		console.log(data);
+		this.setState({
+			errorMsg: null, busy: true, errorName: null, errorHost: null, errorPort: null, errorUsername: null,
+			errorPassword: null, errorUsertls: null
+		});
 
 		/*if (!data.name && !data.host && !data.port && !data.username && !data.password && !data.user_tls) {
 			//this.setState({errorMsg : 'Please provide item and location to search!!',busy : false});
@@ -250,160 +252,166 @@ export default class EmailMarketingall extends React.Component {
 
 
 
-  render() {
-		 //const { editorState } = this.state;
+	render() {
+		//const { editorState } = this.state;
 		let cke = null;
-		if(this.state.ckeChanged){
+		if (this.state.ckeChanged) {
 			cke = (
 				<CKEditor
-						activeClass="p10"
-						content={this.state.content}
-						onChange={this.updateContent}
+					activeClass="p10"
+					content={this.state.content}
+					onChange={this.updateContent}
 				/>
 			)
 		}
-var dialoadRef = "sd"
-var dialoadRefmod = "dy"
+		var dialoadRef = "sd"
+		var dialoadRefmod = "dy"
 
-let searchButton = null;
+		let searchButton = null;
 
-let errorName= null;
+		let errorName = null;
 
-let errorHost= null;
-let errorPort= null;
-let errorUsername= null;
-let errorPassword= null;
-let errorUsertls=null;
-let { name, host,port,username, password, usertls, useremail, recordcount, datailInfo, searchedName, searchedLocation } = this.state;
-if (!this.state.busy) {
-	searchButton = <button type="submit" onClick={(event) => this.handleSearch(event)} className="btn btn-primary btn-lg">Create</button>;
-} else {
-	searchButton = <button type="button" className="btn btn-primary btn-lg disabled" disabled><i className="fa fa-fw fa-spin fa-spinner"></i>Creating .. </button>
-}
-
-
-
-if (!this.state.errorName) {
-	errorName = null;
-} else {
-	errorName = <div className="input-group-addon"><i className="ion-alert-circled" style={{ fontSize: 20, color: '#ff0000', float: 'right', marginRight: -18, marginTop: -24 }}></i></div>
-}
-
-if (!this.state.errorHost) {
-	errorHost = null;
-} else {
-	errorHost = <div className="input-group-addon"><i className="ion-alert-circled" style={{ fontSize: 20, color: '#ff0000', float: 'right', marginRight: -18, marginTop: -24 }}></i></div>
-}
-
-if (!this.state.errorPort) {
-	errorPort = null;
-} else {
-	errorPort = <div className="input-group-addon"><i className="ion-alert-circled" style={{ fontSize: 20, color: '#ff0000', float: 'right', marginRight: -18, marginTop: -24 }}></i></div>
-}
-
-if (!this.state.errorUsername) {
-	errorUsername = null;
-} else {
-	errorUsername = <div className="input-group-addon"><i className="ion-alert-circled" style={{ fontSize: 20, color: '#ff0000', float: 'right', marginRight: -18, marginTop: -24 }}></i></div>
-}
+		let errorHost = null;
+		let errorPort = null;
+		let errorUsername = null;
+		let errorPassword = null;
+		let errorUsertls = null;
+		let { name, host, port, username, password, usertls, useremail, recordcount, datailInfo, searchedName, searchedLocation } = this.state;
+		if (!this.state.busy) {
+			searchButton = <button type="submit" onClick={(event) => this.handleSearch(event)} className="btn btn-primary btn-lg">Create</button>;
+		} else {
+			searchButton = <button type="button" className="btn btn-primary btn-lg disabled" disabled><i className="fa fa-fw fa-spin fa-spinner"></i>Creating .. </button>
+		}
 
 
-if (!this.state.errorUsertls) {
-	errorUsertls = null;
-} else {
-	errorUsertls = <div className="input-group-addon"><i className="ion-alert-circled" style={{ fontSize: 20, color: '#ff0000', float: 'right', marginRight: -18, marginTop: -24 }}></i></div>
-}
 
-const myBigGreenDialog = {
+		if (!this.state.errorName) {
+			errorName = null;
+		} else {
+			errorName = <div className="input-group-addon"><i className="ion-alert-circled" style={{ fontSize: 20, color: '#ff0000', float: 'right', marginRight: -18, marginTop: -24 }}></i></div>
+		}
 
-      color: '#ffffff',
-      width: '60%',
-      height: '600px',
-      marginTop: '-300px',
-      marginLeft: '-35%',
+		if (!this.state.errorHost) {
+			errorHost = null;
+		} else {
+			errorHost = <div className="input-group-addon"><i className="ion-alert-circled" style={{ fontSize: 20, color: '#ff0000', float: 'right', marginRight: -18, marginTop: -24 }}></i></div>
+		}
+
+		if (!this.state.errorPort) {
+			errorPort = null;
+		} else {
+			errorPort = <div className="input-group-addon"><i className="ion-alert-circled" style={{ fontSize: 20, color: '#ff0000', float: 'right', marginRight: -18, marginTop: -24 }}></i></div>
+		}
+
+		if (!this.state.errorUsername) {
+			errorUsername = null;
+		} else {
+			errorUsername = <div className="input-group-addon"><i className="ion-alert-circled" style={{ fontSize: 20, color: '#ff0000', float: 'right', marginRight: -18, marginTop: -24 }}></i></div>
+		}
+
+
+		if (!this.state.errorUsertls) {
+			errorUsertls = null;
+		} else {
+			errorUsertls = <div className="input-group-addon"><i className="ion-alert-circled" style={{ fontSize: 20, color: '#ff0000', float: 'right', marginRight: -18, marginTop: -24 }}></i></div>
+		}
+
+		const myBigGreenDialog = {
+
+			color: '#ffffff',
+			width: '60%',
+			height: '600px',
+			marginTop: '-300px',
+			marginLeft: '-35%',
 			overflow: 'scroll'
 
-    }
+		}
 
-const ranges = {
-				'Today': [moment(), moment()],
-				'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-				'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-				'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-				'This Month': [moment().startOf('month'), moment().endOf('month')],
-				'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-			}
+		const ranges = {
+			'Today': [moment(), moment()],
+			'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+			'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+			'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+			'This Month': [moment().startOf('month'), moment().endOf('month')],
+			'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+		}
 
-  return (
+		return (
 
 			<div>
-					<div className="container">
-							<div className="search-header links">
-									<div className="row">
-											<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-													<div className="form-group">
-															<a onClick={()=>{this.setState({showMassEmailModel:true})}}>Send Mass Email</a>
-															<SendMassEmailModal dataUser={this.state.dataUser} showModal={this.state.showMassEmailModel} closeModal={()=>{this.setState({showMassEmailModel:false})}}/>
-													</div>
-											</div>
-											<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-													<div className="form-group">
-															<a onClick={()=>{this.setState({showCategoriesEmailModel:true})}}>Send Email to Selected Categories</a>
-															<SendCategoryEmailModal dataUser={this.state.dataUser} showModal={this.state.showCategoriesEmailModel} closeModal={()=>{this.setState({showCategoriesEmailModel:false})}}/>
-													</div>
-											</div>
-											<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-													<div className="form-group">
-															<a onClick={()=>{this.setState({showPromoEmailModel:true})}}>Send the Promotions</a>
-															<SendPromoEmailModal dataUser={this.state.dataUser} showModal={this.state.showPromoEmailModel} closeModal={()=>{this.setState({showPromoEmailModel:false})}}/>
-													</div>
-											</div>
-											<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-													<div className="form-group">
-															<a onClick={()=>{this.setState({showNewBuisnessEmailModel:true})}}>Search New Business and Send Email</a>
-															<SendNewBusinessEmailModal dataUser={this.state.dataUser} showModal={this.state.showNewBuisnessEmailModel} closeModal={()=>{this.setState({showNewBuisnessEmailModel:false})}}/>
-													</div>
-											</div>
-
-									</div>
+				<div className="links-header">
+					<div className="container-fluid">
+						<div className="modal-links">
+							<div>
+								<a onClick={() => { this.setState({ showMassEmailModel: true }) }}>Send Mass Email</a>
+								<SendMassEmailModal dataUser={this.state.dataUser} showModal={this.state.showMassEmailModel} closeModal={() => { this.setState({ showMassEmailModel: false }) }} />
 							</div>
-					</div>
-					<section className="">
-							<div className="container">
-									<div className="row">
-											<div className="col-md-8 col-sm-7">
-													<div className="body-border">
-															<div className="p-15">
-																	<div className="form-group">
-																			<label className="control-label" htmlFor="focusedInput">Subject</label>
-																			<input className="form-control" value={this.state.subject} onChange={this.subjectChange} type="text" placeholder="subject"/>
-																	</div>
-																	<div className="editor" style={{height:304}}>
-																			{cke}
 
-																	</div>
-															</div>
-													</div>
-											</div>
-											<div className="col-md-4 col-sm-5">
-													<div className="body-border">
-															<div className="template-box p-15">
-																	<ul>
-																			{/*<li style={{background: "url('images/tm-1.jpg')"}}><input type="radio" name="temp"/><span></span></li>
+							<div>
+								<a onClick={() => { this.setState({ showCategoriesEmailModel: true }) }}>Send Email to Selected Categories</a>
+								<SendCategoryEmailModal dataUser={this.state.dataUser} showModal={this.state.showCategoriesEmailModel} closeModal={() => { this.setState({ showCategoriesEmailModel: false }) }} />
+							</div>
+
+							<div>
+								<a onClick={() => { this.setState({ showPromoEmailModel: true }) }}>Send the Promotions</a>
+								<SendPromoEmailModal dataUser={this.state.dataUser} showModal={this.state.showPromoEmailModel} closeModal={() => { this.setState({ showPromoEmailModel: false }) }} />
+							</div>
+
+							<div>
+								<a onClick={() => { this.setState({ showNewBuisnessEmailModel: true }) }}>Search New Business and Send Email</a>
+								<SendNewBusinessEmailModal dataUser={this.state.dataUser} showModal={this.state.showNewBuisnessEmailModel} closeModal={() => { this.setState({ showNewBuisnessEmailModel: false }) }} />
+							</div>
+							<div className="from-sender">
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<section className="">
+					<div className="container-fluid">
+						<div className="row">
+							<div className="col-md-9 col-sm-8">
+								<div className="body-border">
+									<div className="p-15">
+										<div className="form-group">
+											<label className="control-label" htmlFor="focusedInput">Subject</label>
+											<input className="form-control" value={this.state.subject} onChange={this.subjectChange} type="text" placeholder="subject" />
+										</div>
+										<div className="editor" style={{ height: 304 }}>
+											{cke}
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="col-md-3 col-sm-5 template-list-right">
+								<p>Build your e-mail marketing campaign with one of the following templates</p>
+								<div className="all-past-button"><button className="active">All</button><button>Past Templates</button></div>
+								<div className="template-box">
+									<ul>
+										{/*<li style={{background: "url('images/tm-1.jpg')"}}><input type="radio" name="temp"/><span></span></li>
 																					<li style={{background: "url('images/tm-2.jpg')"}}><input type="radio" name="temp"/><span></span></li>
 																			<li style={{background: "url('images/tm-2.jpg')"}}><input type="radio" name="temp"/><span></span></li>*/}
-																			{this.state.data.map((d) => {
-																					return <li key={d.id} onClick={()=>this.themeChange(d.html_content)} style={{background: "url(" + d.thumb_image + ")" }}><input type="radio" name="temp"/><span></span></li>
-																			})}
-																	</ul>
-																	<button className="btn btn-primary btn-lg btn-block" href="#">SELECT TEMPLATE</button>
-															</div>
-													</div>
-											</div>
-									</div>
+										{this.state.data.map((d) => {
+											return <li key={d.id} onClick={() => this.themeChange(d.html_content)}>
+												<div style={{ background: "url(" + d.thumb_image + ")" }} className="template-bg"></div>
+												<div className="button-holder">
+													<button className="button active">Preview</button>
+													<div className="button"><input type="radio" name="temp" /><span>Select</span></div>
+												</div>
+												<div className="template-name">
+													Template 1
+												</div>
+											</li>
+										})}
+									</ul>
+									{/*<button className="btn btn-primary btn-lg btn-block" href="#">SELECT TEMPLATE</button>*/}
+								</div>
 							</div>
-					</section>
+						</div>
+					</div>
+				</section>
 			</div>
-    );
-  }
+		);
+	}
 }
