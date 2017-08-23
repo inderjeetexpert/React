@@ -13,6 +13,7 @@ import Login from './Login'
 import Contact from './Contact'
 import Company from './Company'
 import EmailMarketing from './EmailMarketing'
+import CompanyDetail from './CompanyDetail'
 import WebAnalytics from './WebAnalytics'
 import configureStore from '../store/configureStore'
 const store = configureStore()
@@ -42,6 +43,7 @@ class MainRoute extends Component {
 									<Route exact path="/contact" component={Contact} />
 									<Route exact path="/company" component={Company} />
 									<Route exact path="/emailMarketing" component={EmailMarketing} />
+									<Route exact path="/companyDetail" component={CompanyDetail} />
 									<Route exact path="/webAnalytics" component={WebAnalytics} />
 									<Route exact path="/login" component={Login} />
 									<Route component={Login} />

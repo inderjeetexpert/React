@@ -11,6 +11,7 @@ import axios from 'axios';
 import SkyLight from 'react-skylight';
 import MoreDetailSection from '../MoreDetail'
 import Autocomplete from 'react-google-autocomplete';
+import { LinkContainer } from 'react-router-bootstrap';
 
 export default class CompanyList extends React.Component {
 	constructor(props) {
@@ -98,7 +99,7 @@ export default class CompanyList extends React.Component {
 		axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 		axios.get(url).then(result => {
 			this.setState({loadingContacts:false})
-			console.log(result)
+			//console.log(result)
 			this.setState({
 				data: result.data.results,
 				recordcount: result.data.length,
@@ -201,24 +202,27 @@ export default class CompanyList extends React.Component {
 																			</thead>
 																			<tbody>
 																					{this.state.data.map((d,key) => {
+																							console.log(d.image);
 																							let image = "images/no-image.png"
 																							if (d.image && d.image != '') {
 																									image = d.image
 																							}
 																							var dialoadRef = "sd" + d.id
 																							return (
-																									<tr key={key} onClick={() => this.handleMoreInfo(d)} className={`${datailInfo && (datailInfo.id === d.id) ? 'selected-item' : ''}`}>
-																											<td><img src={image} className="img-thumbnail" alt="thumbnail image" onClick={() => this.refs[dialoadRef].show()} />
-																													<p className="table-item-name">{d.name}</p>
-																													<SkyLight hideOnOverlayClicked ref={dialoadRef} title={d.name}>
-																															<img src={image} style={{ height: 300, width: 618 }} alt="" />
-																													</SkyLight>
-																											</td>
-																											<td><i className="ion-ios-location-outline"></i><p>{d.formatted_address}</p></td>
-																											<td><i className="ion-ios-telephone-outline"></i><p>{d.phone}</p></td>
-																											<td><i className="ion-ios-email-outline"></i><p>{d.email}</p></td>
-																											<td><a href=""><i className="ion-share"></i></a></td>
-																									</tr>
+																									<LinkContainer key={key} className="nav-people" to="/companyDetail">
+																											<tr onClick={() => this.handleMoreInfo(d)} className={`${datailInfo && (datailInfo.id === d.id) ? 'selected-item' : ''}`}>
+																													<td><img src={image} className="img-thumbnail" alt="thumbnail image" onClick={() => this.refs[dialoadRef].show()} />
+																															<p className="table-item-name">{d.name}</p>
+																															<SkyLight hideOnOverlayClicked ref={dialoadRef} title={d.name}>
+																																	<img src={image} style={{ height: 300, width: 618 }} alt="" />
+																															</SkyLight>
+																													</td>
+																													<td><i className="ion-ios-location-outline"></i><p>{d.formatted_address}</p></td>
+																													<td><i className="ion-ios-telephone-outline"></i><p>{d.phone}</p></td>
+																													<td><i className="ion-ios-email-outline"></i><p>{d.email}</p></td>
+																													<td><a href=""><i className="ion-share"></i></a></td>
+																											</tr>
+																									</LinkContainer>
 																							)
 																					})}
 																			</tbody>
