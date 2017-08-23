@@ -1,17 +1,22 @@
 import React from 'react'
 import { Button, Modal } from 'react-bootstrap'
-import {Tabs, Tab} from 'material-ui/Tabs'
+import { Tabs, Tab } from 'material-ui/Tabs'
 import axios from 'axios'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import FontIcon from 'material-ui/FontIcon';
 
 const styles = {
-  headline: {
-    fontSize: 24,
-    paddingTop: 16,
-    marginBottom: 12,
-    fontWeight: 400,
-  },
+	headline: {
+		fontSize: 24,
+		paddingTop: 16,
+		marginBottom: 12,
+		fontWeight: 400,
+	},
+	buttonStyle: {
+		background: 'black'
+	}
 };
+
 class TabMenuall extends React.Component {
 	constructor() {
 		super()
@@ -52,16 +57,16 @@ class TabMenuall extends React.Component {
 	}
 
 	handleChange(value) {
-	    this.setState({
-	      value: value,
-	    });
-	  };
+		this.setState({
+			value: value,
+		});
+	};
 
 	render() {
 		let closeModal = () => this.setState({ open: false })
 
 		return (
-			<div>
+			<div className="custom-tab">
 
 					<MuiThemeProvider>
 							<Tabs
@@ -69,9 +74,18 @@ class TabMenuall extends React.Component {
 									onChange={this.handleChange.bind(this)}
 
 							>
-									<Tab label="Business" value="a" style={{color: 'black'}}>
+									<Tab inkBarStyle={{ background: 'blue' }} label="" value="a" className="tab-custome" icon={<FontIcon className="material-icons"><img src="../images/store.svg" />Business</FontIcon>}>
 											<div>
-
+													<div className="selectAll">
+															<label className="pull-left">
+																	<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
+																	<strong>Select All</strong>
+															</label>
+															<label className="pull-left">
+																	<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
+																	<strong>Deselect All</strong>
+															</label>
+													</div>
 													<div className="checkbox">
 															<label>
 																	<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
@@ -93,8 +107,18 @@ class TabMenuall extends React.Component {
 
 											</div>
 									</Tab>
-									<Tab label="Contacts" value="b" style={{color: 'black'}}>
+									<Tab inkBarStyle={{ background: 'blue' }} label="" value="b" className="tab-custome" icon={<FontIcon className="material-icons"><img src="images/contact.svg" />Contacts</FontIcon>}>
 											<div>
+													<div className="selectAll">
+															<label className="pull-left">
+																	<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
+																	<strong>Select All</strong>
+															</label>
+															<label className="pull-left">
+																	<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
+																	<strong>Deselect All</strong>
+															</label>
+													</div>
 													{this.state.dataUser.map((s) => {
 															return (<div key={s.id} className="checkbox">
 																	<label>
@@ -106,8 +130,18 @@ class TabMenuall extends React.Component {
 													})}
 											</div>
 									</Tab>
-									<Tab label="List Template" value="c" style={{color: 'black'}}>
+									<Tab inkBarStyle={{ background: 'blue' }} label="" value="c" className="tab-custome" icon={<FontIcon className="material-icons"><img src="images/seo-template.svg" /> List Template</FontIcon>}>
 											<div>
+													<div className="selectAll" style={{ paddingLeft: 320}}>
+															<label className="pull-left">
+																	<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
+																	<strong>Select All</strong>
+															</label>
+															<label className="pull-left">
+																	<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
+																	<strong>Deselect All</strong>
+															</label>
+													</div>
 													{this.state.dataUser.map((s) => {
 															return (<div key={s.id} className="checkbox">
 																	<label>
@@ -121,9 +155,9 @@ class TabMenuall extends React.Component {
 									</Tab>
 
 							</Tabs>
-					</MuiThemeProvider>
+							</MuiThemeProvider >
 
-			</div>
+							</div >
 		)
 	}
 }

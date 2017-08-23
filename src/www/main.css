@@ -489,7 +489,7 @@ a {
 /***********************modal section***************************************************/
 
 .modal-dialog {
-    width: 72%;
+    width: 80%;
 }
 
 .modal-dialog .modal-content {
@@ -738,4 +738,50 @@ a {
 
 .modal-links div a:hover {
     color: #1562c5;
+}
+
+
+/*button.tab-custome {
+    background: #ffffff none repeat scroll 0 0 !important;
+    color: #5a6872 !important;
+    font-weight: normal !important;
+    text-transform: none !important;
+}*/
+
+.material-icons {
+    font-size: 15px !important;
+    font-weight: normal;
+    text-transform: none;
+    color: #5a687;
+}
+
+.material-icons>img {
+    display: block;
+    width: 23px;
+    margin-right: 10px;
+    float: left !important;
+}
+
+.custom-tab>div>div:first-child {
+    background: #1562C5 !important
+}
+
+.selectAll {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.selectAll label {
+    position: relative;
+    margin-right: 15px;
+}
+
+.selectAll label {
+    padding-left: 18px;
+}
+
+.skylight-dialog {
+	height: 437px;
 }

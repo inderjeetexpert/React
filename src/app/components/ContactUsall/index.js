@@ -15,9 +15,10 @@ import SkyLight from 'react-skylight';
 import AddNewContactForm from './AddNewContactForm';
 import GoogleLogin from 'react-google-login';
 import ImportGoogle from './ImportGoogle';
-
+import ImportCsv from './ImportCsv';
 import Config from '../../config';
-
+import ImportHotmail from './ImportHotmail';
+import ImportContacts from './ImportContacts';
 
 export default class ContactUsall extends React.Component{
 	constructor (props){
@@ -35,34 +36,81 @@ export default class ContactUsall extends React.Component{
 			busy : false,
 			recordcount: 0,
 			data : [],
+      selectedItems: new Set(),
+     checked: false
 
 		};
 
+    this.refreshList = this.refreshList.bind(this)
 
-    axios.defaults.headers.common['Authorization'] = "Token "+localStorage.getItem('key');
-    axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-    axios.get(Config.apiBaseUrl+'api/v1/contacts/').then(res=>{
-      this.setState({data:res.data.results,recordcount:res.data.length, busy:false})
-      //console.log(this.state.data.results)
-    }).catch(err=>{
-      this.setState({busy : false});
-      //console.log(err)
-    })
 
+    this.refreshList()
 
 }
-responseGoogle(response){
-  console.log(response)
+
+refreshList(){
+  console.log('Refetching the list')
+  axios.defaults.headers.common['Authorization'] = "Token "+localStorage.getItem('key');
+  axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+  axios.get(Config.apiBaseUrl+'api/v1/contacts/').then(res=>{
+    this.setState({data:res.data.results,recordcount:res.data.length, busy:false})
+    //console.log(this.state.data.results)
+  }).catch(err=>{
+    this.setState({busy : false});
+    //console.log(err)
+  })
+}
+
+checkboxToggle() {
+  const status=!this.state.checked
+    this.setState({ checked: status }, () => {
+      this.checkAll(status)
+    });
+  }
+  checkAll (state){
+    const newData = this.state.data.map((d)=>{
+      d.isChecked = state;
+      return d;
+    })
+    this.setState({
+      data : newData
+    })
+  }
+
+  handleCheck(id){
+    let newState = this.state.data.map(d=>{
+      if(d.id === id){
+        d.isChecked = !d.isChecked
+      }
+      return d
+    })
+    this.setState({data:newState})
+  }
+
+
+handleAction(event){
+  this.setState({errorMsg : null,busy : true});
+  let ids = this.state.data.filter(d=>{
+    if(d.isChecked){
+      return d.id
+    }
+  }).map(d=>d.id).join(",")
+  axios.defaults.headers.common['Authorization'] = "Token "+localStorage.getItem('key');
+  axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+  axios.post(Config.apiBaseUrl+'api/v1/contacts/?checked_ids='+ids).then(res=>{
+    this.refreshList()
+  }).catch(err=>{
+    this.setState({busy : false});
+    //console.log(err)  col-md-9 col-sm-7
+  })
 }
 
 
 render() {
-
-
   var myBigGreenDialog = {
 
       color: '#ffffff',
-      width: '60%',
+      width: '50%',
       height: '600px',
       marginTop: '-300px',
       marginLeft: '-35%',
@@ -144,17 +192,31 @@ let { age, emails,contact_name,address,phones,company,gender, datailInfo } = thi
                                      <div className="col-md-3">
                                          <div className="select-all">
                                              <div className="custom_checkbox">
-                                                 <input type="checkbox" />
+                                                 <input type="checkbox" onChange={this.checkboxToggle.bind(this)} checked={this.state.checked}  />
                                                  <span></span>
                                              </div>
                                              <b>Select All</b>
                                          </div>
                                      </div>
                                      <div className="col-auto pull-right">
-                                         <a className="btn btn-default btn-lg mr-15" href="#">ACTION</a>
-                                         <a className="btn btn-default btn-lg mr-15" onClick={() => this.refs.simpleDialog.show()}>ADD NEW CONTACT</a>
-                                         {/* <a className="btn btn-default btn-lg mr-15" onClick={()=>this.handleSigninGoogle()}>IMPORT FROM GOOGLE</a> */}
-                                         <ImportGoogle/>
+                                         <div className="col-auto pull-right">
+                                             <a className="btn btn-default" onClick={(event)=>this.handleAction(event)}>Delete</a>
+                                         </div>
+                                         <div className="col-auto pull-right">
+                                             <a className="btn btn-default" onClick={() => this.refs.simpleDialog.show()}>ADD NEW CONTACT</a>
+                                         </div>
+                                         <div className="col-auto pull-right">
+                                             <ImportGoogle/>
+                                         </div>
+                                         <div className="col-auto pull-right">
+                                             <ImportHotmail/>
+                                         </div>
+                                         <div className="col-auto pull-right">
+                                             <ImportCsv refreshList={this.refreshList}/>
+                                         </div>
+                                         <div className="col-auto pull-right">
+                                             <ImportContacts refreshList={this.refreshList}/>
+                                         </div>
                                      </div>
                                  </div>
                              </div>
@@ -162,7 +224,8 @@ let { age, emails,contact_name,address,phones,company,gender, datailInfo } = thi
                              <SkyLight dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref="simpleDialog" title="Add Contact">
                                  <AddNewContactForm/>
                              </SkyLight>
-                             <div className="col-md-9 col-sm-7">
+
+                             <div className="col-md-12">
                                  <div className="body-border">
                                      <table className="business-table">
                                          <thead>
@@ -172,7 +235,7 @@ let { age, emails,contact_name,address,phones,company,gender, datailInfo } = thi
                                                  <th>Company</th>
                                                  <th>Email</th>
                                                  <th>Phone</th>
-                                                 <th>Email</th>
+                                                 <th>Address</th>
 
                                                  <th></th>
                                              </tr>
@@ -180,12 +243,12 @@ let { age, emails,contact_name,address,phones,company,gender, datailInfo } = thi
 
                                          <tbody>
                                              {this.state.data.map((d) => {
-                                                 console.log(d);
                                                  return (
                                                      <tr key={d.id}>
                                                          <td>
                                                              <div className="custom_checkbox">
-                                                                 <input type="checkbox" />
+                                                                 <input type="checkbox" checked={d.isChecked} onChange={() => {this.handleCheck(d.id)}} />
+
                                                                  <span></span>
                                                              </div>
                                                          </td>
@@ -193,7 +256,7 @@ let { age, emails,contact_name,address,phones,company,gender, datailInfo } = thi
                                                          <td>{d.company}</td>
                                                          <td>{d.email}</td>
                                                          <td><a href="">{d.phones}</a></td>
-                                                         <td><a href="">{d.email}</a></td>
+                                                         <td><a href="">{d.address}</a></td>
 
                                                          <td><a href="" className="icons ion-ios-email-outline"></a><a href="" className="icons ion-edit"></a></td>
 
@@ -202,19 +265,19 @@ let { age, emails,contact_name,address,phones,company,gender, datailInfo } = thi
                                              })}
 
                                          </tbody>
-                     </table>
+                                     </table>
+                                 </div>
+                             </div>
+                             {/* <div className="col-md-3 col-sm-5">
+                                 <div className="body-border">
+                                 <div className="tbd">
+                                 <a href=""><b>Selected Business Info TBD</b></a>
+                                 </div>
+                                 </div>
+                             </div> */}
+                         </div>
                      </div>
-                     </div>
-                     <div className="col-md-3 col-sm-5">
-                     <div className="body-border">
-                     <div className="tbd">
-                     <a href=""><b>Selected Business Info TBD</b></a>
-                     </div>
-                     </div>
-                     </div>
-                     </div>
-                     </div>
-                     </section>
+                 </section>
 
              </div>
            );

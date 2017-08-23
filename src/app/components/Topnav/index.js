@@ -63,13 +63,13 @@ class Topnav extends React.Component {
 									<LinkContainer className="nav-company" to="/company">
 											<NavItem className="nav-company" eventKey={10} href="javascript:void(0)"><img src="../images/group.svg" />Companies</NavItem>
 									</LinkContainer>
-											<LinkContainer className="nav-contact" to="/contact">
-													<NavItem eventKey={4} href="javascript:void(0)"><img src="../images/email_marketing.svg" />Contact</NavItem>
-											</LinkContainer>
+									<LinkContainer className="nav-contact" to="/contact">
+											<NavItem eventKey={4} href="javascript:void(0)"><img src="../images/email_marketing.svg" />Contact</NavItem>
+									</LinkContainer>
 
-						{/* <NavItem className="nav-contact" eventKey={4} href="javascript:void(0)">Contact</NavItem> */}
-						<NavItem className="nav-contact" eventKey={4} href="javascript:void(0)"><img src="../images/mail.svg" />Leads-LeadScoring</NavItem>
-						<LinkContainer className="nav-people" to="/emailMarketing">
+									{/* <NavItem className="nav-contact" eventKey={4} href="javascript:void(0)">Contact</NavItem> */}
+									<NavItem className="nav-contact" eventKey={4} href="javascript:void(0)"><img src="../images/mail.svg" />Leads-LeadScoring</NavItem>
+									<LinkContainer className="nav-people" to="/emailMarketing">
 							<NavItem eventKey={3} href="javascript:void(0)"><img src="../images/social_media.svg" />Email Marketing</NavItem>
 						</LinkContainer>
 						<NavItem className="nav-social-media" eventKey={5} href="javascript:void(0)"><img src="../images/money.svg" />Social Media Marketing</NavItem>

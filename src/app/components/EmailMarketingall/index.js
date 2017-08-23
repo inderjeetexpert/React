@@ -18,6 +18,7 @@ import CreateSmtpForm from './CreateSmtpForm'
 import CreateSmtpModel from './CreateSmtpModel'
 import SendMassEmailModal from './SendMassEmailModal'
 import SendCategoryEmailModal from './SendCategoryEmailModal'
+import showPreview from './showPreview'
 import SendPromoEmailModal from './SendPromoEmailModal'
 import SendNewBusinessEmailModal from './SendNewBusinessEmailModal'
 
@@ -258,9 +259,9 @@ export default class EmailMarketingall extends React.Component {
 		if (this.state.ckeChanged) {
 			cke = (
 				<CKEditor
-					activeClass="p10"
-					content={this.state.content}
-					onChange={this.updateContent}
+						activeClass="p10"
+						content={this.state.content}
+						onChange={this.updateContent}
 				/>
 			)
 		}
@@ -343,12 +344,12 @@ export default class EmailMarketingall extends React.Component {
 							<div className="container-fluid">
 									<div className="modal-links">
 											<div>
-													<a onClick={() => { this.setState({ showMassEmailModel: true }) }}>Send Mass Email</a>
+													<a onClick={() => { this.setState({ showMassEmailModel: true }) }}><strong>Send Mass Email</strong></a>
 													<SendMassEmailModal dataUser={this.state.dataUser} showModal={this.state.showMassEmailModel} closeModal={() => { this.setState({ showMassEmailModel: false }) }} />
 											</div>
 
 											<div>
-													<a onClick={() => { this.setState({ showCategoriesEmailModel: true }) }}>Send Email to Selected Categories</a>
+													<a onClick={() => { this.setState({ showCategoriesEmailModel: true }) }}><strong>Send Email to Selected Categories</strong></a>
 													<SendCategoryEmailModal dataUser={this.state.dataUser} showModal={this.state.showCategoriesEmailModel} closeModal={() => { this.setState({ showCategoriesEmailModel: false }) }} />
 											</div>
 
@@ -357,60 +358,68 @@ export default class EmailMarketingall extends React.Component {
 													<SendPromoEmailModal dataUser={this.state.dataUser} showModal={this.state.showPromoEmailModel} closeModal={() => { this.setState({ showPromoEmailModel: false }) }} />
 											</div>*/}
 
-							<div>
-								<a onClick={() => { this.setState({ showNewBuisnessEmailModel: true }) }}>Search New Business and Send Email</a>
-								<SendNewBusinessEmailModal dataUser={this.state.dataUser} showModal={this.state.showNewBuisnessEmailModel} closeModal={() => { this.setState({ showNewBuisnessEmailModel: false }) }} />
-							</div>
-							<div className="from-sender">
+											<div>
+													<a onClick={() => { this.setState({ showNewBuisnessEmailModel: true }) }}><strong>Search New Business and Send Email</strong></a>
+													<SendNewBusinessEmailModal dataUser={this.state.dataUser} showModal={this.state.showNewBuisnessEmailModel} closeModal={() => { this.setState({ showNewBuisnessEmailModel: false }) }} />
+											</div>
+											<div className="from-sender">
 
-							</div>
-						</div>
-					</div>
-				</div>
-				<section className="">
-					<div className="container-fluid">
-						<div className="row">
-							<div className="col-md-9 col-sm-8">
-								<div className="body-border">
-									<div className="p-15">
-										<div className="form-group">
-											<label className="control-label" htmlFor="focusedInput">Subject</label>
-											<input className="form-control" value={this.state.subject} onChange={this.subjectChange} type="text" placeholder="subject" />
-										</div>
-										<div className="editor" style={{ height: 304 }}>
-											{cke}
-
-										</div>
+											</div>
 									</div>
-								</div>
 							</div>
-							<div className="col-md-3 col-sm-5 template-list-right">
-								<p>Build your e-mail marketing campaign with one of the following templates</p>
-								<div className="all-past-button"><button className="active">All</button><button>Past Templates</button></div>
-								<div className="template-box">
-									<ul>
-										{/*<li style={{background: "url('images/tm-1.jpg')"}}><input type="radio" name="temp"/><span></span></li>
-																					<li style={{background: "url('images/tm-2.jpg')"}}><input type="radio" name="temp"/><span></span></li>
-																			<li style={{background: "url('images/tm-2.jpg')"}}><input type="radio" name="temp"/><span></span></li>*/}
-										{this.state.data.map((d) => {
-											return <li key={d.id} onClick={() => this.themeChange(d.html_content)}>
-												<div style={{ background: "url(" + d.thumb_image + ")" }} className="template-bg"></div>
-												<div className="button-holder">
-													<button className="button active">Preview</button>
-													<div className="button"><input type="radio" name="temp" /><span>Select</span></div>
-												</div>
-												<div className="template-name">
-													Template 1
-												</div>
-											</li>
-										})}
-									</ul>
-									{/*<button className="btn btn-primary btn-lg btn-block" href="#">SELECT TEMPLATE</button>*/}
-								</div>
-							</div>
-						</div>
 					</div>
-				</section>
+					<section className="">
+							<div className="container-fluid">
+									<div className="row">
+											<div className="col-md-9 col-sm-8">
+													<div className="body-border">
+															<div className="p-15">
+																	<div className="form-group">
+																			<label className="control-label" htmlFor="focusedInput">Subject</label>
+																			<input className="form-control" value={this.state.subject} onChange={this.subjectChange} type="text" placeholder="subject" />
+																	</div>
+																	<div className="editor" style={{ height: 304 }}>
+																			{cke}
+
+																	</div>
+															</div>
+
+													</div>
+													<button className="btn btn-primary btn-lg" style={{float:'right'}}>Save</button>
+											</div>
+											<div className="col-md-3 col-sm-5 template-list-right">
+													<p>Build your e-mail marketing campaign with one of the following templates</p>
+													<div className="all-past-button"><button className="active">All</button><button>Past Templates</button></div>
+													<div className="template-box">
+															<ul>
+																	{/*<li style={{background: "url('images/tm-1.jpg')"}}><input type="radio" name="temp"/><span></span></li>
+																			<li style={{background: "url('images/tm-2.jpg')"}}><input type="radio" name="temp"/><span></span></li>
+																	<li style={{background: "url('images/tm-2.jpg')"}}><input type="radio" name="temp"/><span></span></li>*/}
+																	{this.state.data.map((d) => {
+																			var dialoadRef = "sd" + d.id
+																			return <li key={d.id} onClick={() => this.themeChange(d.html_content)}>
+																					<div style={{ background: "url(" + d.thumb_image + ")" }} className="template-bg"></div>
+																					<div className="button-holder">
+																							<button onClick={() => this.refs[dialoadRef].show()} className="button active">Preview</button>
+																							{/*<showPreview data={this.state.data} showModal={this.state.showPreviewmodal} closeModal={() => { this.setState({ showPreviewmodal: false }) }} />*/}
+
+																							<div className="button"><input type="radio" name="temp" /><span>Select</span></div>
+																					</div>
+																					<SkyLight hideOnOverlayClicked ref={dialoadRef} title={d.name}>
+																							<img src={d.thumb_image} style={{ height: 300, width: 682 }} alt="" />
+																					</SkyLight>
+																					<div className="template-name">
+																							Template 1
+																					</div>
+																			</li>
+																	})}
+															</ul>
+															{/*<button className="btn btn-primary btn-lg btn-block" href="#">SELECT TEMPLATE</button>*/}
+													</div>
+											</div>
+									</div>
+							</div>
+					</section>
 			</div>
 		);
 	}
