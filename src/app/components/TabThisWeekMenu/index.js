@@ -52,9 +52,16 @@ export default class TabThisWeekMenu extends React.Component {
 		this.setState({ location: event.target.value })
 	}
 	handleMoreInfo(data) {
+		// let values = {
+		// 	revenues :[],
+		// 	social_profiles : []
+		// };
+		//   values.revenues[0]= data.revenues;
+		// 	values.social_profiles[0]= data.social_profiles;
 		this.setState({
 			datailInfo: data
 		})
+		//console.log(data);
 	}
 	handleClearForm(event) {
 		event.preventDefault();
@@ -199,53 +206,62 @@ export default class TabThisWeekMenu extends React.Component {
 															{searchedName && searchedLocation ?
 																	<p>We found<span> {recordcount}</span> results for <span>{searchedName}</span> in <span>{searchedLocation}</span></p>
 															: ''}
-								</h5>
-							</div>
-							{recordcount ?
-								<div><div className={`${datailInfo ? 'col-md-9 col-sm-7' : 'col-md-12'}`}>
-									<div className="body-border">
-										<table className="business-table">
-											<thead>
-												<tr>
-													<th width="25%">NAME</th>
+													</h5>
+											</div>
+											{recordcount ?
+													<div><div className={`${datailInfo ? 'col-md-9 col-sm-7' : 'col-md-12'}`}>
+															<div className="body-border">
+																	<table className="business-table">
+																			<thead>
+																					<tr>
+																							<th width="25%">NAME</th>
 
-													<th width="25%">ADDRESS</th>
-													<th width="25%">PHONE</th>
-													<th width="25%">EMAIL</th>
-													<th width="50"> </th>
-												</tr>
-											</thead>
-											<tbody>
-												{this.state.data.map((d) => {
-													let image = "images/no-image.png"
+																							<th width="25%">ADDRESS</th>
+																							<th width="25%">PHONE</th>
+																							<th width="25%">EMAIL</th>
+																							<th width="50"> </th>
+																					</tr>
+																			</thead>
+																			<tbody>
+																					{this.state.data.map((d) => {
+																							let image = "images/no-image.png"
 
-													if (d.image && d.image != '') {
-														image = d.image
-													}
+																							if (d.image && d.image != '') {
+																									image = d.image
+																							}
+
+																							let email = "---"
+																							if (d.email && d.email != '') {
+																									email = d.email
+																							}
+
+																							let phone = "---"
+																							if (d.phone && d.phone != '') {
+																									phone = d.phone
+																							}
 
 
-
-													var dialoadRef = "sd" + d.id
-													return (
-														<tr key={d.id} onClick={() => this.handleMoreInfo(d)} className={`${datailInfo && (datailInfo.id === d.id) ? 'selected-item' : ''}`}>
-															<td><img src={image} className="img-thumbnail" alt="thumbnail image" onClick={() => this.refs[dialoadRef].show()} />
-																<p className="table-item-name">{d.name}</p>
-																<SkyLight hideOnOverlayClicked ref={dialoadRef} title={d.name}>
-																	<img src={image} style={{ height: 300, width: 618 }} alt="" />
-																</SkyLight>
-															</td>
-															<td><i className="ion-ios-location-outline"></i><p>{d.formatted_address}</p></td>
-															<td><i className="ion-ios-telephone-outline"></i><p>{d.phone}</p></td>
-															<td><i className="ion-ios-email-outline"></i><p>{d.email}</p></td>
-															<td><a href=""><i className="ion-share"></i></a></td>
-														</tr>
-													)
-												})}
-											</tbody>
-										</table>
-									</div>
-									<button className="load-more-btn">Load More</button>
-								</div>
+																							var dialoadRef = "sd" + d.id
+																							return (
+																									<tr key={d.id} onClick={() => this.handleMoreInfo(d)} className={`${datailInfo && (datailInfo.id === d.id) ? 'selected-item' : ''}`}>
+																											<td><img src={image} className="img-thumbnail" alt="thumbnail image" onClick={() => this.refs[dialoadRef].show()} />
+																													<p className="table-item-name">{d.name}</p>
+																													<SkyLight hideOnOverlayClicked ref={dialoadRef} title={d.name}>
+																															<img src={image} style={{ height: 300, width: 618 }} alt="" />
+																													</SkyLight>
+																											</td>
+																											<td><i className="ion-ios-location-outline"></i><p>{d.formatted_address}</p></td>
+																											<td><i className="ion-ios-telephone-outline"></i><p>{phone}</p></td>
+																											<td><i className="ion-ios-email-outline"></i><p>{email}</p></td>
+																											<td><a href=""><i className="ion-share"></i></a></td>
+																									</tr>
+																							)
+																					})}
+																			</tbody>
+																	</table>
+															</div>
+															<button className="load-more-btn">Load More</button>
+													</div>
 									{datailInfo ?
 										<MoreDetailSection datailInfo={datailInfo} />
 

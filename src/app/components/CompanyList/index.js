@@ -91,15 +91,17 @@ export default class CompanyList extends React.Component {
 
 	fetchContact(query){
 		this.setState({loadingContacts:true})
-		let url ="https://carderockllc.com/api/v1/business/saved/"
-		if(query){
-			url += "?query="+query
-		}
+		//let url ="https://carderockllc.com/api/v1/business/saved/"
+		let url ="http://www.carderockllc.com/api/v1/companies/"
+
+		//if(query){
+			//url += "?query="+query
+		//}
 		axios.defaults.headers.common['Authorization'] = "Token " + localStorage.getItem('key');
 		axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 		axios.get(url).then(result => {
 			this.setState({loadingContacts:false})
-			//console.log(result)
+			console.log(result)
 			this.setState({
 				data: result.data.results,
 				recordcount: result.data.length,
