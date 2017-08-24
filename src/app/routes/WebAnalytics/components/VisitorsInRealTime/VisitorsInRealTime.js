@@ -3,88 +3,149 @@ import WidgetTop from '../WidgetTop/WidgetTop'
 import WidgetContent from '../WidgetContent/WidgetContent'
 import Widget from '../Widget/Widget';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+import { liveGetLastVisitsDetails, liveGetCounter } from '../../../../api/webAnalytics';
+
 import './visitorsinrealtime.css'
 class VisitorsInRealTime extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [{
-        date: 1,
-        visit: 'tahir',
-        action: 200
-      }]
+      products: [],
+      errorMessage: null,
+      isLoading: true,
+      visitorData: null,
+      realTimePlay: true
     }
+    this.handleRealTimePause = this.handleRealTimePause.bind(this);
+    this.handleRealTimeStart = this.handleRealTimeStart.bind(this);
+
   }
+  handleRealTimeStart() {
+    this.setState({ realTimePlay: false })
+  }
+  handleRealTimePause() {
+    this.setState({ realTimePlay: true })
+  }
+  componentDidMount() {
+    let info = {
+      idSite: 1
+    }
+    liveGetCounter({ idSite: 1, lastMinutes: 30 })
+      .then((response) => {
+        let data = response[0];
+        data.date = 'Last 30 minutes';
+        let { products } = this.state;
+        products.push(data);
+        this.setState({
+          products
+        })
+      })
+    liveGetCounter({ idSite: 1, lastMinutes: 1440 })
+      .then((response) => {
+        let data = response[0];
+        data.date = 'Last 24 hours';
+        let { products } = this.state;
+        products.push(data);
+        this.setState({
+          products
+        })
+      })
 
+
+    liveGetLastVisitsDetails(info)
+      .then((response) => {
+        this.setState({
+          errorMessage: null,
+          isLoading: false,
+          visitorData: response
+        })
+      })
+      .catch((error) => {
+        this.setState({
+          errorMessage: error.message,
+          isLoading: false
+        })
+      });
+  }
   render() {
-
+    let { handleRealTimeStart, handleRealTimePause } = this;
+    let { visitorData, realTimePlay } = this.state;
     return (
       <div className="live-widget">
         <Widget>
           <WidgetTop WidgetName="Visitors in Real-time" />
-          <WidgetContent>
-            <BootstrapTable data={this.state.products} condensed hover>
-              <TableHeaderColumn width='50%' dataField='date' isKey>Date</TableHeaderColumn>
-              <TableHeaderColumn width='25%' dataField='visit'>Visit</TableHeaderColumn>
-              <TableHeaderColumn width='25%' dataField='action'>Action</TableHeaderColumn>
-            </BootstrapTable>
+          {visitorData ?
+            <WidgetContent>
+              <BootstrapTable data={this.state.products} condensed hover>
+                <TableHeaderColumn width='50%' dataField='date' isKey>Date</TableHeaderColumn>
+                <TableHeaderColumn width='25%' dataField='visits'>Visits</TableHeaderColumn>
+                <TableHeaderColumn width='25%' dataField='actions'>Actions</TableHeaderColumn>
+              </BootstrapTable>
 
 
-            <ul className="visit-live">
-              <li className="visit">
-                <div title="1 Actions" className="datetime">
+              <ul className="visit-live">
+                {visitorData.map((item, index) => (
+                  <li className="visit" key={index}>
+                    <div title={`${item.actionDetails.length} Actions`} className="datetime">
 
-                  <span className="realTimeWidget_datetime">Sunday, August 20,   - 13:21:01 </span>
-                  &nbsp;
+                      <span className="realTimeWidget_datetime">{item.serverDatePretty}, - {item.serverTimePretty} {item.visitDurationPretty != '0s' && (item.visitDurationPretty)} </span>
+                      &nbsp;
                   <a className="visits-live-launch-visitor-profile rightLink" title="View visitor profile">
-                    <img src="../images/piwik/live/visitorProfileLaunch.png" />
-                  </a>
-                  <br />
+                        <img src="../images/piwik/live/visitorProfileLaunch.png" />
+                      </a>
+                      <br />
+                      <img height="16px" src={`../images/piwik/${item.countryFlag}`} title={`${item.location}, Provider `} />
+                      &nbsp;
 
-                  <img height="16px" src="../images/piwik/dist/flags/pk.png" title="Islamabad, Islamabad, Pakistan, Provider " />
-                  &nbsp;
-                  <img width="16px" height="16px" src="../images/piwik/dist/browsers/CH.png" title="Chrome 60.0, Plugins: pdf" />
-                  &nbsp;
-                  <img width="16px" height="16px" src="../images/piwik/dist/os/WIN.png" title="Windows 8.1, 1366x768" />
-                  &nbsp;
-                  <img src="../images/piwik/live/returningVisitor.png" title="Returning Visitor" />
-                  &nbsp;
-                  <span title="Visitor ID: e605be1c03ba7ab8">IP: 39.40.0.0</span>
-
-                  <span className="referrer">
-                    from
-                    &nbsp;
-                    <a target="_blank" href="https://piwik.carderockllc.com/index.php?module=CoreHome&amp;action=index&amp;idSite=1&amp;period=day&amp;date=yesterday">
-                      piwik.carderockllc.com
-                     </a>
-                  </span>
-                </div>
-                <div className="settings">
-                  <span className="pagesTitle" title="1 Actions">Actions:</span>
+                    <img width="16px" height="16px" src={`../images/piwik/${item.browserIcon}`} title={`${item.browser} Plugins: ${item.plugins}`} />
+                      &nbsp;
+                  <img width="16px" height="16px" src={`../images/piwik/${item.operatingSystemIcon}`} title={`${item.operatingSystem}, ${item.resolution}`} />
+                      &nbsp;
+                  {item.visitorTypeIcon && <img src={`../images/piwik/${item.visitorTypeIcon}`} title={`${item.visitorType} visitor`} />}
+                      &nbsp;
+                  <span title={`Visitor ID: ${item.visitorId}`}>IP: {item.visitIp}</span>
 
 
-                  <a href="http://carderockllc.com/accounts/login/?next=/business/search/" target="_blank">
-                    <img src="../images/piwik/live/file1.png" title="Aug 20, 2017 13:21:01" />
+                      {item.referrerName ?
+                        <span className="referrer"> from
+                          &nbsp;
+                        <a target="_blank" href={item.referrerUrl}>
+                            {item.referrerName}
+                          </a>
+                        </span>
+                        : <span className="referrer">{item.referrerTypeName} </span>}
 
-                  </a>
+                    </div>
+                    <div className="settings">
+                      <span className="pagesTitle" title={`${item.actionDetails.length} Actions`}>Actions:</span>
+                      {item.actionDetails.map((actionItem, index) => (
+                        <a href={actionItem.url} target="_blank" key={index}>
+                          <img src={`../images/piwik/live/file${(index + 1) % 10}.png`} title={actionItem.serverTimePretty} />
+                        </a>
+                      ))}
 
-                </div>
-              </li>
 
-            </ul>
+                    </div>
+                  </li>
+                ))
+                }
 
-            <div className="visitsLiveFooter">
-              <a title="Visitors in Real-time is started. Click to pause.">
-                <img src="../images/piwik/live/pause.png" style={{ display: 'inline' }} />
-              </a>
-              <a title="Visitors in Real-time is stopped. Click to start.">
-                <img style={{ display: "none" }} src="../images/piwik/live/play.png" />
-              </a>
-              &nbsp;
+
+              </ul>
+
+              <div className="visitsLiveFooter">
+                {realTimePlay ?
+                  <a onClick={handleRealTimeStart} title="Visitors in Real-time is started. Click to pause.">
+                    <img src="../images/piwik/live/pause.png" />
+                  </a> :
+                  <a onClick={handleRealTimePause} title="Visitors in Real-time is stopped. Click to start.">
+                    <img src="../images/piwik/live/play.png" />
+                  </a>}
+                &nbsp;
              <a className="rightLink" >View detailed visitor log</a></div>
-          </WidgetContent>
-        </Widget >
-
+            </WidgetContent> :
+            <div className="loading">please wait</div>}
+        </Widget>
       </div >
     )
   }
