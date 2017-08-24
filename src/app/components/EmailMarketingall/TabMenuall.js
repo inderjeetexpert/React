@@ -27,8 +27,8 @@ class TabMenuall extends React.Component {
 			dataUser: [],
 			busy: true,
 			value: 'a',
-			recordcount: null
-
+			recordcount: null,
+			checked: false
 		}
 
 		axios.defaults.headers.common['Authorization'] = "Token " + localStorage.getItem('key');
@@ -62,102 +62,148 @@ class TabMenuall extends React.Component {
 		});
 	};
 
+
+	checkboxDeselect() {
+		const status = this.state.checked
+		this.setState({ checked: false }, () => {
+			this.checkAll(false)
+		});
+	}
+
+	checkboxToggle() {
+		const status = !this.state.checked
+		this.setState({ checked: true }, () => {
+			this.checkAll(true)
+		});
+	}
+	checkAll(state) {
+		const newData = this.state.data.map((m) => {
+			m.isChecked = state;
+			return m;
+		})
+		this.setState({
+			data: newData
+		})
+	}
+	checkDeselect(state) {
+		const newData = this.state.data.map((m) => {
+			m.isChecked != state;
+			return m;
+		})
+		this.setState({
+			data: newData
+		})
+	}
+	handleCheck(id) {
+		let newState = this.state.data.map(d => {
+			if (m.id === id) {
+				m.isChecked = !m.isChecked
+			}
+			return m
+		})
+		this.setState({ data: newState })
+	}
+
+
 	render() {
 		let closeModal = () => this.setState({ open: false })
 
 		return (
 			<div className="custom-tab">
 
-					<MuiThemeProvider>
-							<Tabs
-									value={this.state.value}
-									onChange={this.handleChange.bind(this)}
+				<MuiThemeProvider>
+					<Tabs
+						value={this.state.value}
+						onChange={this.handleChange.bind(this)}
 
-							>
-									<Tab inkBarStyle={{ background: 'blue' }} label="" value="a" className="tab-custome" icon={<FontIcon className="material-icons"><img src="../images/store.svg" />Business</FontIcon>}>
-											<div>
-													<div className="selectAll">
-															<label className="pull-left">
-																	<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
-																	<strong>Select All</strong>
-															</label>
-															<label className="pull-left">
-																	<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
-																	<strong>Deselect All</strong>
-															</label>
-													</div>
-													<div className="checkbox">
-															<label>
-																	<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
-																	Manually Added
-															</label>
-													</div>
-													{this.state.data.map((m) => {
-															//console.log(m);
-															return (<div key={m.id} className="checkbox">
-																	<label>
-																			<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
-																			{m.search.what} | {m.search.where}
-																	</label>
-															</div>
+					>
+						<Tab label="" value="a" className="tab-custome" icon={<FontIcon className="material-icons"><img src="../images/store.svg" />Business</FontIcon>}>
+							<div>
+								<div className="selectAll">
 
-															)
-													})}
+									<label className="pull-right">
+										<div className="custome-check"><input type="checkbox" onChange={this.checkboxDeselect.bind(this)} checked={!this.state.checked} /><span></span></div>
+										<strong>Deselect All</strong>
+									</label>
+									<label className="pull-right">
+										<div className="custome-check"><input type="checkbox" onChange={this.checkboxToggle.bind(this)} checked={this.state.checked} /><span></span></div>
+										<strong>Select All</strong>
+									</label>
+								</div>
+								<div className="checkbox">
+									<label>
+										<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
+										Manually Added
+															</label>
+								</div>
+								{this.state.data.map((m) => {
+									//console.log(m);
+									return (<div key={m.id} className="checkbox">
+										<label>
+											<div className="custome-check"><input type="checkbox" checked={m.isChecked} onChange={() => { this.handleCheck(m.id) }} /><span></span></div>
+											<div className="check-image"><img src="https://s3-media2.fl.yelpcdn.com/bphoto/xlt-uwpqzEiNYWZRuMmwjg/o.jpg" /></div> {m.search.what} | {m.search.where}
+										</label>
+									</div>
+
+									)
+								})}
 
 
-											</div>
-									</Tab>
-									<Tab inkBarStyle={{ background: 'blue' }} label="" value="b" className="tab-custome" icon={<FontIcon className="material-icons"><img src="images/contact.svg" />Contacts</FontIcon>}>
-											<div>
-													<div className="selectAll">
-															<label className="pull-left">
-																	<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
-																	<strong>Select All</strong>
-															</label>
-															<label className="pull-left">
-																	<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
-																	<strong>Deselect All</strong>
-															</label>
-													</div>
-													{this.state.dataUser.map((s) => {
-															return (<div key={s.id} className="checkbox">
-																	<label>
-																			<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
-																			{s.contact_name}
-																	</label>
-															</div>
-															)
-													})}
-											</div>
-									</Tab>
-									<Tab inkBarStyle={{ background: 'blue' }} label="" value="c" className="tab-custome" icon={<FontIcon className="material-icons"><img src="images/seo-template.svg" /> List Template</FontIcon>}>
-											<div>
-													<div className="selectAll" style={{ paddingLeft: 320}}>
-															<label className="pull-left">
-																	<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
-																	<strong>Select All</strong>
-															</label>
-															<label className="pull-left">
-																	<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
-																	<strong>Deselect All</strong>
-															</label>
-													</div>
-													{this.state.dataUser.map((s) => {
-															return (<div key={s.id} className="checkbox">
-																	<label>
-																			<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
-																			{s.contact_name}
-																	</label>
-															</div>
-															)
-													})}
-											</div>
-									</Tab>
+							</div>
+						</Tab>
+						<Tab label="" value="b" className="tab-custome" icon={<FontIcon className="material-icons"><img src="images/contact.svg" />Contacts</FontIcon>}>
+							<div>
+								<div className="selectAll">
 
-							</Tabs>
-							</MuiThemeProvider >
+									<label className="pull-right">
+										<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
+										<strong>Deselect All</strong>
+									</label>
+									<label className="pull-right">
+										<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
+										<strong>Select All</strong>
+									</label>
+								</div>
+								{this.state.dataUser.map((s) => {
+									return (<div key={s.id} className="checkbox">
+										<label>
+											<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
+											{s.contact_name}
+										</label>
+									</div>
+									)
+								})}
+							</div>
+						</Tab>
+						<Tab label="" value="c" className="tab-custome" icon={<FontIcon className="material-icons"><img src="images/seo-template.svg" /> List Template</FontIcon>}>
+							<div>
+								<div className="selectAll" style={{ paddingLeft: 320 }}>
 
-							</div >
+									<label className="pull-right">
+										<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
+										<strong>Deselect All</strong>
+									</label>
+									<label className="pull-right">
+										<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
+										<strong>Select All</strong>
+									</label>
+								</div>
+								{this.state.dataUser.map((s) => {
+									return (<div key={s.id} className="checkbox">
+										<label>
+											<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
+											{s.contact_name}
+										</label>
+									</div>
+									)
+								})}
+							</div>
+						</Tab>
+
+					</Tabs>
+				</MuiThemeProvider >
+
+			</div >
 		)
 	}
 }

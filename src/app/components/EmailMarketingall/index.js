@@ -362,6 +362,10 @@ export default class EmailMarketingall extends React.Component {
 													<a onClick={() => { this.setState({ showNewBuisnessEmailModel: true }) }}><strong>Search New Business and Send Email</strong></a>
 													<SendNewBusinessEmailModal dataUser={this.state.dataUser} showModal={this.state.showNewBuisnessEmailModel} closeModal={() => { this.setState({ showNewBuisnessEmailModel: false }) }} />
 											</div>
+											<div>
+													<a ><strong>Email Marketing Report</strong></a>
+
+											</div>
 											<div className="from-sender">
 
 											</div>

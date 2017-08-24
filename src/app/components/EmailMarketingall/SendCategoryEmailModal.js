@@ -189,25 +189,25 @@ class SendCategoryEmailModal extends React.Component {
 													</div>
 													<div className="radio">
 															<label>
-																	<div className="custome-radio"><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked /><span></span></div>
+																	<div className="custome-radio"><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" /><span></span></div>
 																	Monthly
 															</label>
 													</div>
 													<div className="radio">
 															<label>
-																	<div className="custome-radio"><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked /><span></span></div>
+																	<div className="custome-radio"><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"  /><span></span></div>
 																	Weekly
 															</label>
 													</div>
 													<div className="radio">
 															<label>
-																	<div className="custome-radio"><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked /><span></span></div>
+																	<div className="custome-radio"><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" /><span></span></div>
 																	Daily
 															</label>
 													</div>
 													<div className="radio">
 															<label>
-																	<div className="custome-radio"><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked /><span></span></div>
+																	<div className="custome-radio"><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" /><span></span></div>
 																	Hourly
 															</label>
 													</div>
