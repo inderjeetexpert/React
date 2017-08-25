@@ -20,6 +20,7 @@ import CompanyDetailTask from './CompanyDetail/task'
 import CompanyDetailSchedule from './CompanyDetail/schedule'
 import CompanyDetailAttachment from './CompanyDetail/attachment'
 import WebAnalytics from './WebAnalytics'
+import Social from './Social'
 import configureStore from '../store/configureStore'
 const store = configureStore()
 
@@ -40,25 +41,26 @@ class MainRoute extends Component {
 
 		return (
 			<Provider store={store}>
-				<HashRouter history={history}>
-					<Switch>
-						<Route exact path="/" component={Login} />
-						<Route exact path="/business" component={Main} />
-						<Route exact path="/people" component={People} />
-						<Route exact path="/contact" component={Contact} />
-						<Route exact path="/company" component={Company} />
-						<Route exact path="/emailMarketing" component={EmailMarketing} />
-						<Route exact path="/companyDetail/notes" component={CompanyDetail} />
-						<Route exact path="/companyDetail/email" component={CompanyDetailEmail} />
-						<Route exact path="/companyDetail/activity" component={CompanyDetailActivity} />
-						<Route exact path="/companyDetail/task" component={CompanyDetailTask} />
-						<Route exact path="/companyDetail/schedule" component={CompanyDetailSchedule} />
-						<Route exact path="/companyDetail/attachment" component={CompanyDetailAttachment} />
-						<Route exact path="/webAnalytics" component={WebAnalytics} />
-						<Route exact path="/login" component={Login} />
-						<Route component={Login} />
-					</Switch>
-				</HashRouter>
+					<HashRouter history={history}>
+							<Switch>
+									<Route exact path="/" component={Login} />
+									<Route exact path="/business" component={Main} />
+									<Route exact path="/people" component={People} />
+									<Route exact path="/contact" component={Contact} />
+									<Route exact path="/company" component={Company} />
+									<Route exact path="/emailMarketing" component={EmailMarketing} />
+									<Route exact path="/companyDetail/notes/:id" component={CompanyDetail} />
+									<Route exact path="/companyDetail/email/:id" component={CompanyDetailEmail} />
+									<Route exact path="/companyDetail/activity" component={CompanyDetailActivity} />
+									<Route exact path="/companyDetail/task" component={CompanyDetailTask} />
+									<Route exact path="/companyDetail/schedule" component={CompanyDetailSchedule} />
+									<Route exact path="/social" component={Social} />
+									<Route exact path="/companyDetail/attachment" component={CompanyDetailAttachment} />
+									<Route exact path="/webAnalytics" component={WebAnalytics} />
+									<Route exact path="/login" component={Login} />
+									<Route component={Login} />
+							</Switch>
+					</HashRouter>
 			</Provider>
 		);
 	}

@@ -30,7 +30,7 @@ export default class CompanyList extends React.Component {
 			searchedName: null,
 			place: '',
 			searched: null,
-			loadingContacts: false
+			loadingContacts : false
 
 		};
 
@@ -74,7 +74,7 @@ export default class CompanyList extends React.Component {
 	handleSearch(event) {
 		event.preventDefault();
 
-		const query = this.state.item;
+		const query= this.state.item ;
 
 
 		this.setState({ busy: true, errorItem: null });
@@ -90,40 +90,39 @@ export default class CompanyList extends React.Component {
 	}
 
 	fetchContact(query) {
-		this.setState({ loadingContacts: true })
-		//let url ="https://carderockllc.com/api/v1/business/saved/"
-		let url = "http://www.carderockllc.com/api/v1/companies/"
+  this.setState({ loadingContacts: true })
+  let url ="http://www.carderockllc.com/api/v1/company/companies/"
+  //let url = "http://www.carderockllc.com/api/v1/companies/"
 
-		//if(query){
-		//url += "?query="+query
-		//}
-		axios.defaults.headers.common['Authorization'] = "Token " + localStorage.getItem('key');
-		axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-		axios.get(url).then(result => {
-			this.setState({ loadingContacts: false })
-			console.log(result)
-			this.setState({
-				data: result.data.results,
-				recordcount: result.data.length,
-				busy: false,
-				searchedName: this.state.item,
-				searchedLocation: this.state.location
-			})
-			console.log(result.data)
-		}).catch(err => {
-			this.setState({ loadingContacts: false })
-			this.setState({ busy: false });
-			//console.log(err)
-		})
-	}
-
+  if(query){
+  url += "?query="+query
+  }
+  axios.defaults.headers.common['Authorization'] = "Token " + localStorage.getItem('key');
+  axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+  axios.get(url).then(result => {
+   this.setState({ loadingContacts: false })
+   console.log(result)
+   this.setState({
+    data: result.data.results,
+    recordcount: result.data.length,
+    busy: false,
+    searchedName: this.state.item,
+    searchedLocation: this.state.location
+   })
+   console.log(result.data)
+  }).catch(err => {
+   this.setState({ loadingContacts: false })
+   this.setState({ busy: false });
+   //console.log(err)
+  })
+ }
 
 	render() {
 		let loadingContacts = null;
-		if (this.state.loadingContacts) {
+		if(this.state.loadingContacts){
 			loadingContacts = (
-				<p style={{ textAlign: 'center' }}>
-					<i className="ion-arrow-shrink"></i>
+				<p style={{textAlign:'center'}}>
+						<i className="ion-arrow-shrink"></i>
 				</p>
 			)
 		}
@@ -149,93 +148,103 @@ export default class CompanyList extends React.Component {
 
 		return (
 			<div>
-				{loadingContacts}
-				<div className="container-fluid">
-					<div className="search-header">
-						<div className="row">
-							<form onSubmit={(event) => this.handleSearch(event)}>
-								{errorMsg}
-								<div className="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-									<div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
-										<div className="form-group">
-											{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
-											<span className="input-group-addon"><i className="ion-android-search"></i></span>
-											<input className="form-control" type="text" value={item} placeholder="Search for Business" onChange={(event) => this.handItemChange(event)} />
-											{errorItem}
-
-
-										</div>
-									</div>
-
-								</div>
-								<div className="col-auto pull-right">
-									<button onClick={(event) => this.handleClearForm(event)} className="clear-button">Clear</button>
-									{searchButton}
-
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-				<section className="">
+					{loadingContacts}
 					<div className="container-fluid">
-						<div className="row">
-							<div className="col-md-12">
+							<div className="search-header">
+									<div className="row">
+											<form onSubmit={(event) => this.handleSearch(event)}>
+													{errorMsg}
+													<div className="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+															<div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+																	<div className="form-group">
+																			{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
+																			<span className="input-group-addon"><i className="ion-android-search"></i></span>
+																			<input className="form-control" type="text" value={item} placeholder="Search for Business" onChange={(event) => this.handItemChange(event)} />
+																			{errorItem}
 
-								{/*<h5 className="record-count">
+
+																	</div>
+															</div>
+
+													</div>
+													<div className="col-auto pull-right">
+															<button onClick={(event) => this.handleClearForm(event)} className="clear-button">Clear</button>
+															{searchButton}
+
+													</div>
+											</form>
+									</div>
+							</div>
+					</div>
+					<section className="">
+							<div className="container-fluid">
+									<div className="row">
+											<div className="col-md-12">
+
+													{/*<h5 className="record-count">
 															{searchedName && searchedLocation ?
 															<p>We found<span> {recordcount}</span> results for <span>{searchedName}</span> in <span>{searchedLocation}</span></p>
 															: 'Please provide item and location to search!'}
 													</h5>*/}
-							</div>
-							<div>
-								<div className=''>
-									<div className="body-border">
-										<table className="business-table">
-											<thead>
-												<tr>
-													<th width="25%">NAME</th>
+											</div>
+											<div>
+													<div className=''>
+															<div className="body-border">
+																	<table className="business-table">
+																			<thead>
+																					<tr>
+																							<th width="25%">NAME</th>
 
-													<th width="25%">ADDRESS</th>
-													<th width="25%">PHONE</th>
-													<th width="25%">EMAIL</th>
-													<th width="50"> </th>
-												</tr>
-											</thead>
-											<tbody>
-												{this.state.data.map((d, key) => {
-													console.log(d.image);
-													let image = "images/no-image.png"
-													if (d.image && d.image != '') {
-														image = d.image
-													}
-													var dialoadRef = "sd" + d.id
-													return (
-														<LinkContainer key={key} className="nav-people" to="/companyDetail/notes">
-															<tr onClick={() => this.handleMoreInfo(d)} className={`${datailInfo && (datailInfo.id === d.id) ? 'selected-item' : ''}`}>
-																<td><img src={image} className="img-thumbnail" alt="thumbnail image" onClick={() => this.refs[dialoadRef].show()} />
-																	<p className="table-item-name">{d.name}</p>
-																	<SkyLight hideOnOverlayClicked ref={dialoadRef} title={d.name}>
-																		<img src={image} style={{ height: 300, width: 618 }} alt="" />
-																	</SkyLight>
-																</td>
-																<td><i className="ion-ios-location-outline"></i><p>{d.formatted_address}</p></td>
-																<td><i className="ion-ios-telephone-outline"></i><p>{d.phone}</p></td>
-																<td><i className="ion-ios-email-outline"></i><p>{d.email}</p></td>
-																<td><a href=""><i className="ion-share"></i></a></td>
-															</tr>
-														</LinkContainer>
-													)
-												})}
-											</tbody>
-										</table>
+																							<th width="25%">ADDRESS</th>
+																							<th width="25%">PHONE</th>
+																							<th width="25%">EMAIL</th>
+																							<th width="50"> </th>
+																					</tr>
+																			</thead>
+																			<tbody>
+																					{this.state.data.map((d,key) => {
+																							console.log(d.image);
+																							let image = "images/no-image.png"
+																							if (d.image && d.image != '') {
+																									image = d.image
+																							}
+
+																							let email = "---"
+																							if (d.email && d.email != '') {
+																									email = d.email
+																							}
+																							let phone = "---"
+																							if (d.phone && d.phone != '') {
+																									phone = d.phone
+																							}
+
+																							var dialoadRef = "sd" + d.id
+																							return (
+																									<LinkContainer key={key} className="nav-people" to={"/companyDetail/notes/"+d.id}>
+																											<tr onClick={() => this.handleMoreInfo(d)} className={`${datailInfo && (datailInfo.id === d.id) ? 'selected-item' : ''}`}>
+																													<td><img src={image} className="img-thumbnail" alt="thumbnail image" onClick={() => this.refs[dialoadRef].show()} />
+																															<p className="table-item-name">{d.name}</p>
+																															<SkyLight hideOnOverlayClicked ref={dialoadRef} title={d.name}>
+																																	<img src={image} style={{ height: 300, width: 618 }} alt="" />
+																															</SkyLight>
+																													</td>
+																													<td><i className="ion-ios-location-outline"></i><p>{d.formatted_address}</p></td>
+																													<td><i className="ion-ios-telephone-outline"></i><p>{phone}</p></td>
+																													<td><i className="ion-ios-email-outline"></i><p>{email}</p></td>
+																													<td><a href=""><i className="ion-share"></i></a></td>
+																											</tr>
+																									</LinkContainer>
+																							)
+																					})}
+																			</tbody>
+																	</table>
+															</div>
+
+													</div>
+											</div>
 									</div>
-
-								</div>
 							</div>
-						</div>
-					</div>
-				</section>
+					</section>
 			</div>
 		);
 	}

@@ -4,8 +4,14 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 class CompanyDetailsTab extends React.Component {
 	constructor(props) {
-		super(props)
-	}
+  super(props)
+  console.log(window.location.hash)
+  let url = window.location.hash.split('/')
+  const id=url[url.length-1]
+  this.state={
+   id
+  }
+ }
 
 	render() {
 
@@ -14,12 +20,12 @@ class CompanyDetailsTab extends React.Component {
 			<div>
 					<ul className="activity-box-head">
 							<li className="active">
-									<LinkContainer to="/companyDetail/notes">
+									<LinkContainer to={"/companyDetail/notes"+this.state.id}>
 											<a><img src="images/note.svg" />Notes</a>
 									</LinkContainer>
 							</li>
 							<li>
-									<LinkContainer to="/companyDetail/email">
+									<LinkContainer to={"/companyDetail/email/"+this.state.id}>
 											<a href="javascript:void(0)"><img src="images/send-mail.svg" />Email</a>
 									</LinkContainer>
 
