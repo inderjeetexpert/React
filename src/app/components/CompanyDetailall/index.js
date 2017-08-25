@@ -16,7 +16,7 @@ import AddNotesForm from './AddNotesForm';
 export default class CompanyDetailall extends React.Component {
 
 	constructor(props,context) {
-		super(props);
+    super(props);
 		this.state = {
 			data: [],
 

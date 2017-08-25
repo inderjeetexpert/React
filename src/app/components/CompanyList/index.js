@@ -18,7 +18,6 @@ export default class CompanyList extends React.Component {
 		super(props);
 		this.state = {
 			item: '',
-
 			errorMsg: null,
 			busy: false,
 			recordcount: 0,
@@ -30,18 +29,13 @@ export default class CompanyList extends React.Component {
 			searchedName: null,
 			place: '',
 			searched: null,
-			loadingContacts : false
-
+			loadingContacts : false,
+			next : 'http://www.carderockllc.com/api/v1/company/companies/'
 		};
-
-
-
 		this.fetchContact = this.fetchContact.bind(this)
 		this.handleSearch = this.handleSearch.bind(this)
-		this.handleMoreInfo = this.handleMoreInfo.bind(this);
 		this.handleClearForm = this.handleClearForm.bind(this);
-		this.fetchContact(null)
-
+		this.fetchContact()
 	}
 
 
@@ -53,11 +47,7 @@ export default class CompanyList extends React.Component {
 	}
 
 
-	handleMoreInfo(data) {
-		this.setState({
-			datailInfo: data
-		})
-	}
+
 	handleClearForm(event) {
 		event.preventDefault();
 		this.setState({
@@ -73,46 +63,53 @@ export default class CompanyList extends React.Component {
 
 	handleSearch(event) {
 		event.preventDefault();
-
 		const query= this.state.item ;
-
-
-		this.setState({ busy: true, errorItem: null });
-
-
-
 		if (!query) {
-			//this.setState({errorMsg : 'Please provide item and location to search!!',busy : false});
 			this.setState({ errorItem: 'Please provide business name!!', busy: false })
 			return;
 		}
-		this.fetchContact(query)
+		this.setState({
+			data:[],
+			next:'http://www.carderockllc.com/api/v1/company/companies/?query='+query,
+			busy: true,
+			errorItem: null
+		})
+		let self=this
+		setTimeout(function () {
+			self.fetchContact()
+		}, 500);
+
 	}
 
-	fetchContact(query) {
-  this.setState({ loadingContacts: true })
-  let url ="http://www.carderockllc.com/api/v1/company/companies/"
-  //let url = "http://www.carderockllc.com/api/v1/companies/"
+	fetchContact() {
+		let url = this.state.next
+		if(!url){
+			return;
+		}
+	  this.setState({ loadingContacts: true })
+	  axios.defaults.headers.common['Authorization'] = "Token " + localStorage.getItem('key');
+	  axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+	  axios.get(url).then(result => {
+	   this.setState({ loadingContacts: false })
+		 let data = this.state.data
+		 result.data.results.map(d=>{
+			 data.push(d)
+		 })
+	   console.log(data)
 
-  if(query){
-  url += "?query="+query
-  }
-  axios.defaults.headers.common['Authorization'] = "Token " + localStorage.getItem('key');
-  axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-  axios.get(url).then(result => {
-   this.setState({ loadingContacts: false })
-   console.log(result)
-   this.setState({
-    data: result.data.results,
-    recordcount: result.data.length,
-    busy: false,
-    searchedName: this.state.item,
-    searchedLocation: this.state.location
-   })
-   console.log(result.data)
-  }).catch(err => {
-   this.setState({ loadingContacts: false })
-   this.setState({ busy: false });
+
+	   this.setState({
+			 next : result.data.next,
+	    data: data,
+	    recordcount: result.data.length,
+	    busy: false,
+	    searchedName: this.state.item,
+	    searchedLocation: this.state.location
+	   })
+	   console.log(result.data)
+	  }).catch(err => {
+	   this.setState({ loadingContacts: false })
+	   this.setState({ busy: false });
    //console.log(err)
   })
  }
@@ -203,7 +200,6 @@ export default class CompanyList extends React.Component {
 																			</thead>
 																			<tbody>
 																					{this.state.data.map((d,key) => {
-																							console.log(d.image);
 																							let image = "images/no-image.png"
 																							if (d.image && d.image != '') {
 																									image = d.image
@@ -221,7 +217,7 @@ export default class CompanyList extends React.Component {
 																							var dialoadRef = "sd" + d.id
 																							return (
 																									<LinkContainer key={key} className="nav-people" to={"/companyDetail/notes/"+d.id}>
-																											<tr onClick={() => this.handleMoreInfo(d)} className={`${datailInfo && (datailInfo.id === d.id) ? 'selected-item' : ''}`}>
+																											<tr >
 																													<td><img src={image} className="img-thumbnail" alt="thumbnail image" onClick={() => this.refs[dialoadRef].show()} />
 																															<p className="table-item-name">{d.name}</p>
 																															<SkyLight hideOnOverlayClicked ref={dialoadRef} title={d.name}>
@@ -238,6 +234,7 @@ export default class CompanyList extends React.Component {
 																					})}
 																			</tbody>
 																	</table>
+																	<button className="btn btn-primary" style={{textAlign:'center',margin:'10px auto',display:'block'}} onClick={() => this.fetchContact()}>Load More</button>
 															</div>
 
 													</div>

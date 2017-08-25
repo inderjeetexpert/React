@@ -5,7 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 class CompanyDetailsTab extends React.Component {
 	constructor(props) {
   super(props)
-  console.log(window.location.hash)
+  //console.log(window.location.hash)
   let url = window.location.hash.split('/')
   const id=url[url.length-1]
   this.state={
@@ -20,7 +20,7 @@ class CompanyDetailsTab extends React.Component {
 			<div>
 					<ul className="activity-box-head">
 							<li className="active">
-									<LinkContainer to={"/companyDetail/notes"+this.state.id}>
+									<LinkContainer to={"/companyDetail/notes/"+this.state.id}>
 											<a><img src="images/note.svg" />Notes</a>
 									</LinkContainer>
 							</li>
@@ -31,22 +31,22 @@ class CompanyDetailsTab extends React.Component {
 
 							</li>
 							<li>
-									<LinkContainer to="/companyDetail/activity">
+									<LinkContainer to={"/companyDetail/activity/"+this.state.id}>
 											<a><img src="images/stop-watch.svg" />Activity Log</a>
 									</LinkContainer>
 							</li>
 							<li>
-									<LinkContainer to="/companyDetail/task">
+									<LinkContainer to={"/companyDetail/task/"+this.state.id}>
 											<a><img src="images/task.svg" />Task List</a>
 									</LinkContainer>
 							</li>
 							<li>
-									<LinkContainer to="/companyDetail/schedule">
+									<LinkContainer to={"/companyDetail/schedule/"+this.state.id}>
 											<a><img src="images/calendar.svg" />Schedule</a>
 									</LinkContainer>
 							</li>
 							<li>
-									<LinkContainer to="/companyDetail/attachment">
+									<LinkContainer to={"/companyDetail/attachment/"+this.state.id}>
 											<a><img src="images/attachment.svg" />Attachment</a>
 									</LinkContainer>
 							</li>

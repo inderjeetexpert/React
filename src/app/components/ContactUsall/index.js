@@ -17,7 +17,6 @@ import GoogleLogin from 'react-google-login';
 import ImportGoogle from './ImportGoogle';
 import ImportCsv from './ImportCsv';
 import Config from '../../config';
-import ImportHotmail from './ImportHotmail';
 import ImportContacts from './ImportContacts';
 
 export default class ContactUsall extends React.Component{
@@ -101,7 +100,6 @@ handleAction(event){
     this.refreshList()
   }).catch(err=>{
     this.setState({busy : false});
-    //console.log(err)  col-md-9 col-sm-7
   })
 }
 
@@ -206,17 +204,14 @@ let { age, emails,contact_name,address,phones,company,gender, datailInfo } = thi
                                              <a className="btn btn-default" onClick={() => this.refs.simpleDialog.show()}>ADD NEW CONTACT</a>
                                          </div>
                                          <div className="col-auto pull-right">
-                                             <ImportGoogle/>
-                                         </div>
-                                         <div className="col-auto pull-right">
-                                             <ImportHotmail/>
+                                             <ImportGoogle refreshList={this.refreshList}/>
                                          </div>
                                          <div className="col-auto pull-right">
                                              <ImportCsv refreshList={this.refreshList}/>
                                          </div>
-                                         <div className="col-auto pull-right">
+                                         {/* <div className="col-auto pull-right">
                                              <ImportContacts refreshList={this.refreshList}/>
-                                         </div>
+                                         </div> */}
                                      </div>
                                  </div>
                              </div>

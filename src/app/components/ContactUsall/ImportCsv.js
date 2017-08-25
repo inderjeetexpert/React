@@ -62,7 +62,7 @@ class ImportCsv extends React.Component{
   render(){
   return(
     <ReactFileReader handleFiles={this.handleFiles}>
-        <button className='btn btn-default'>CSV</button>
+        <button className='btn btn-default'>  Import contacts from CSV</button>
     </ReactFileReader>
   )
   }

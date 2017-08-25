@@ -111,50 +111,50 @@ class TabMenuall extends React.Component {
 		return (
 			<div className="custom-tab">
 
-				<MuiThemeProvider>
-					<Tabs
-						value={this.state.value}
-						onChange={this.handleChange.bind(this)}
+					<MuiThemeProvider>
+							<Tabs
+									value={this.state.value}
+									onChange={this.handleChange.bind(this)}
 
-					>
-						<Tab label="" value="a" className="tab-custome" icon={<FontIcon className="material-icons"><img src="../images/store.svg" />Business</FontIcon>}>
-							<div>
-								<div className="selectAll">
-
-									<label className="pull-right">
-										<div className="custome-check"><input type="checkbox" onChange={this.checkboxDeselect.bind(this)} checked={!this.state.checked} /><span></span></div>
-										<strong>Deselect All</strong>
-									</label>
-									<label className="pull-right">
-										<div className="custome-check"><input type="checkbox" onChange={this.checkboxToggle.bind(this)} checked={this.state.checked} /><span></span></div>
-										<strong>Select All</strong>
-									</label>
-								</div>
-								<div className="checkbox">
-									<label>
-										<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
-										Manually Added
+							>
+									<Tab label="" value="a" className="tab-custome" icon={<FontIcon className="material-icons"><img src="../images/store.svg" />Business</FontIcon>}>
+											<div>
+													<div className="selectAll">
+															<div className="form-group search-check-box"><input className="form-control search-check-box" placeholder="Search Business" type="text" className="form-control" /></div>
+															<label className="pull-right">
+																	<div className="custome-check"><input type="checkbox" onChange={this.checkboxDeselect.bind(this)} checked={!this.state.checked} /><span></span></div>
+																	<strong>Deselect All</strong>
 															</label>
-								</div>
-								{this.state.data.map((m) => {
-									//console.log(m);
-									return (<div key={m.id} className="checkbox">
-										<label>
-											<div className="custome-check"><input type="checkbox" checked={m.isChecked} onChange={() => { this.handleCheck(m.id) }} /><span></span></div>
-											<div className="check-image"><img src="https://s3-media2.fl.yelpcdn.com/bphoto/xlt-uwpqzEiNYWZRuMmwjg/o.jpg" /></div> {m.search.what} | {m.search.where}
-										</label>
-									</div>
+															<label className="pull-right">
+																	<div className="custome-check"><input type="checkbox" onChange={this.checkboxToggle.bind(this)} checked={this.state.checked} /><span></span></div>
+																	<strong>Select All</strong>
+															</label>
+													</div>
+													<div className="checkbox">
+															<label>
+																	<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
+																	Manually Added
+															</label>
+													</div>
+													{this.state.data.map((m) => {
+															//console.log(m);
+															return (<div key={m.id} className="checkbox">
+																	<label>
+																			<div className="custome-check"><input type="checkbox" checked={m.isChecked} onChange={() => { this.handleCheck(m.id) }} /><span></span></div>
+																			<div className="check-image"><img src={m.image} /></div> {m.search.what} | {m.search.where}
+																	</label>
+															</div>
 
-									)
-								})}
+															)
+													})}
 
 
-							</div>
-						</Tab>
-						<Tab label="" value="b" className="tab-custome" icon={<FontIcon className="material-icons"><img src="images/contact.svg" />Contacts</FontIcon>}>
-							<div>
-								<div className="selectAll">
-									<div className="form-group search-check-box"><input class="form-control search-check-box" placeholder="Search Business" type="text" className="form-control" /></div>
+											</div>
+									</Tab>
+									<Tab label="" value="b" className="tab-custome" icon={<FontIcon className="material-icons"><img src="images/contact.svg" />Contacts</FontIcon>}>
+											<div>
+													<div className="selectAll">
+
 									<label className="pull-right">
 										<div className="custome-check"><input type="checkbox" value="" /><span></span></div>
 										<strong>Deselect All</strong>

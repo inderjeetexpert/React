@@ -21,6 +21,7 @@ import CompanyDetailSchedule from './CompanyDetail/schedule'
 import CompanyDetailAttachment from './CompanyDetail/attachment'
 import WebAnalytics from './WebAnalytics'
 import Social from './Social'
+import SocialFbAddCampaign from './SocialFbAddCampaign'
 import configureStore from '../store/configureStore'
 const store = configureStore()
 
@@ -51,11 +52,14 @@ class MainRoute extends Component {
 									<Route exact path="/emailMarketing" component={EmailMarketing} />
 									<Route exact path="/companyDetail/notes/:id" component={CompanyDetail} />
 									<Route exact path="/companyDetail/email/:id" component={CompanyDetailEmail} />
-									<Route exact path="/companyDetail/activity" component={CompanyDetailActivity} />
-									<Route exact path="/companyDetail/task" component={CompanyDetailTask} />
-									<Route exact path="/companyDetail/schedule" component={CompanyDetailSchedule} />
+									<Route exact path="/companyDetail/activity/:id" component={CompanyDetailActivity} />
+									<Route exact path="/companyDetail/task/:id" component={CompanyDetailTask} />
+									<Route exact path="/companyDetail/schedule/:id" component={CompanyDetailSchedule} />
+
+									<Route exact path="/companyDetail/attachment/:id" component={CompanyDetailAttachment} />
 									<Route exact path="/social" component={Social} />
-									<Route exact path="/companyDetail/attachment" component={CompanyDetailAttachment} />
+									<Route exact path="/fbaddcampaign" component={SocialFbAddCampaign} />
+
 									<Route exact path="/webAnalytics" component={WebAnalytics} />
 									<Route exact path="/login" component={Login} />
 									<Route component={Login} />
