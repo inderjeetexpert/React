@@ -777,6 +777,7 @@ a {
 .selectAll label {
     position: relative;
     margin-right: 15px;
+    margin-top: 12px;
 }
 
 .selectAll label {
@@ -880,4 +881,81 @@ a {
     width: 100%;
     height: 48px;
     font-size: 20px;
+}
+
+.search-check-box {
+    width: 55%;
+    border: 0;
+    box-shadow: none;
+    float: left;
+}
+
+.text-inline label {
+    color: #4285f4;
+    display: inline-block;
+    float: left;
+    line-height: 55px;
+    margin-right: 15px;
+}
+
+.text-inline .form-control {
+    font-size: 13px;
+}
+
+.text-inline .input-group-addon img {
+    width: 22px;
+    filter: grayscale(100%);
+}
+
+.text-inline .input-group vr {
+    background: #ebf0f7 none repeat scroll 0 0;
+    display: block;
+    height: 48px;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    width: 1px;
+}
+
+.text-inline select {
+    border: 0 none;
+    box-shadow: none;
+    font-size: 13px;
+    margin-top: 18px;
+    padding-right: 15px;
+}
+
+.activity-box-footer button.btn-ancient {
+    background: #41d6c3;
+    border-color: #41d6c3;
+    color: #fff;
+}
+
+.notes-list span img {
+    width: 18px;
+    filter: grayscale(100%);
+    margin-right: 5px;
+}
+
+.notes-list .name.calender {
+    background: #ffffff url("../images/fill-calender.png") no-repeat scroll center center / 31px auto;
+    font-size: 11px;
+    line-height: 43px;
+}
+
+.attending {
+    margin-top: 15px;
+}
+
+.attending strong {
+    color: #fff;
+    font-weight: normal;
+    font-size: 12px;
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    border-radius: 100%;
+    margin-left: 15px;
+    text-align: center;
+    line-height: 38px;
 }
