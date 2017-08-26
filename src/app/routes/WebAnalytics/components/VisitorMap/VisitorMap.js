@@ -87,23 +87,10 @@ class VisitorMap extends React.Component {
     }
     getUserCountry(info)
       .then((response) => {
-
-        // // let data = _.values(response);
-        // let modifiedData = _(response).mapValues((value, id) => _.merge({}, value, { id })).values().value()
-        // // toArray
-        // let xAxisCategories = modifiedData.map((item) => ((new Date(item.id))).toDateString());
         let data = response.map((item) => ([item.code, item.nb_visits]));
-        // let totalVisitor = response.
-        // console.log(modifiedData, xAxisCategories, visits);
-        // chart.xAxis[0].update({
-        //   categories: xAxisCategories
-        // })
-        console.log(response, data)
         chart.series[0].update({
           data: data
         });
-
-
       })
   }
 
