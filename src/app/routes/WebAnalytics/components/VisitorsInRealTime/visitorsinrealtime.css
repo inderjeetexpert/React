@@ -6,15 +6,7 @@
     cursor: pointer;
 }
 
-.live-widget .table-bordered>thead>tr>th {
-    border: none;
-}
-
-.live-widget .table-bordered {
-    border: none;
-}
-
-.live-widget .table-bordered>tbody>tr>td {
+.live-widget .table>thead>tr>th {
     border: none;
 }
 

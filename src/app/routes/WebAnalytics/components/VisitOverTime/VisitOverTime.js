@@ -6,17 +6,28 @@ import FooterWidget from '../FooterWidget/FooterWidget';
 import './visitovertime.css';
 import Highcharts from 'highcharts';
 import addFunnel from 'highcharts/modules/funnel';
+import { getApi } from '../../../../api/webAnalytics';
+
 
 class VisitOverTime extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      apiData: null,
+      date: null,
+      lastMonthDate: null
+    }
 
   }
 
 
 
+
   componentDidMount() {
-    Highcharts.chart('VisitorOverTimeMap', {
+    var chart = Highcharts.chart('VisitorOverTimeMap', {
+      chart: {
+        height: 200
+      },
       title: {
         text: ''
       },
@@ -25,26 +36,59 @@ class VisitOverTime extends React.Component {
       // },
       yAxis: {
         title: {
-          text: 'Number of Employees'
+          text: ''
         }
+      },
+      xAxis: {
+        categories: [],
+        labels: {
+          step: 15 // this will show every second label
+        }
+        // showEmpty: false
       },
       legend: {
         // layout: 'horizontal',
         align: 'center',
         // verticalAlign: 'bottom'
       },
-      plotOptions: {
-        series: {
-          pointStart: 2010
-        }
-      },
+      // plotOptions: {
+      //   series: {
+      //     pointInterval: 10
+      //   }
+      // },
       series: [{
-        name: 'Installation',
-        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+        name: 'Visits',
+        data: []
       }]
 
     });
     addFunnel(Highcharts);
+
+    let info = {
+      idSite: 1,
+      date: 'last31'
+    }
+    getApi(info)
+      .then((response) => {
+        // let data = _.values(response);
+        let modifiedData = _(response).mapValues((value, id) => _.merge({}, value, { id })).values().value()
+        // toArray
+        let xAxisCategories = modifiedData.map((item) => ((new Date(item.id))).toDateString());
+        let visits = modifiedData.map((item) => ([(new Date(item.id)).toDateString(), item.nb_visits ? item.nb_visits : 0]))
+        // console.log(modifiedData, xAxisCategories, visits);
+        chart.xAxis[0].update({
+          categories: xAxisCategories
+        })
+        chart.series[0].update({
+          data: visits
+        });
+
+
+      })
+
+
+
+
   }
   componentWillUnmount() {
 
@@ -55,6 +99,7 @@ class VisitOverTime extends React.Component {
       <div className="visit-over-time">
         <Widget>
           <WidgetTop WidgetName="Visit Over Time" />
+
           <WidgetContent>
             <div className="chart-wrapper">
               <script src="https://code.highcharts.com/modules/exporting.js"></script>

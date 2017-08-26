@@ -4,7 +4,9 @@ import {
   GET_USER_DETAIL,
   GET_TOKEN_AUTH,
   LIVE_GET_LAST_VISITS_DETAILS,
-  VISITS_SUMMARY_GET
+  API_GET,
+  REFERRERS_GET_REFERRER_TYPE,
+  USER_COUNTRY_GET_COUNTRY
 
 } from './urls';
 
@@ -35,7 +37,17 @@ export function liveGetLastVisitsDetails(info) {
 }
 
 
-export function visitsSummaryGet(info) {
-  return axios.get(VISITS_SUMMARY_GET(info)).then(
+export function getApi(info) {
+  return axios.get(API_GET(info)).then(
     ({ data }) => data);
 }
+
+
+export function getReferrerType(info) {
+  return axios.get(REFERRERS_GET_REFERRER_TYPE(info)).then(({ data }) => data)
+}
+
+export function getUserCountry(info) {
+  return axios.get(USER_COUNTRY_GET_COUNTRY(info)).then(({ data }) => data)
+}
+

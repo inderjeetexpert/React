@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'piwik';
-    src: url('fonts/piwik.ttf?55gvzl') format('truetype'), url('fonts/piwik.woff?55gvzl') format('woff'), url('fonts/piwik.svg?55gvzl#piwik') format('svg');
+    src: url('../fonts/piwik.ttf?55gvzl') format('truetype'), url('../fonts/piwik.woff?55gvzl') format('woff'), url('../fonts/piwik.svg?55gvzl#piwik') format('svg');
     font-weight: normal;
     font-style: normal;
 }

@@ -45,12 +45,12 @@ class WebAnalytics extends Component {
 					{!isLoading && !errorMessage && <TopContols />}
 					<div className="page clearfix">
 						<SubNavigation />
-						<div className="pageWrap clearfix">
-							{isLoading ? <div className="loading">Please wait</div> :
-								errorMessage ? <div className="errorMessage">{errorMessage}</div> :
+						{isLoading ? <div className="loading">Please wait</div> :
+							errorMessage ? <div className="errorMessage">{errorMessage}</div> :
+								<div className="pageWrap clearfix">
 									<Dashboard />
-							}
-						</div>
+								</div>
+						}
 					</div>
 				</div>
 			</div>

@@ -10,9 +10,7 @@ class Dashboard extends React.Component {
 	constructor(props) {
 		super(props)
 	}
-
 	render() {
-
 		return (
 			<div className="innerbody">
 				<div className="col-md-4 col-sm-12 ui-sortable">
