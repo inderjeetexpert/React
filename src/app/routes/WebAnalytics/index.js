@@ -2,16 +2,27 @@ import React, { Component } from 'react';
 import Topnav from '../../components/Topnav';
 import SubNavigation from './components/SubNavigation/SubNavigation';
 import TopContols from './components/TopControls/TopControls';
-import Dashboard from './components/Dashboard/Dashboard';
+import Dashboard from './Views/Dashboard/Dashboard';
+import Visitors from './Views/Visitors/Visitors';
 import { getUserDetailPiwik, getTokenAuthPiwik } from '../../api/webAnalytics';
 import './webanalytics.css'
 class WebAnalytics extends Component {
-	constructor(props, context) {
-		super(props, context);
+	constructor(props) {
+		super(props);
 		this.state = {
 			errorMessage: null,
-			isLoading: true
+			isLoading: true,
+			pageName: props.match.params.pageName,
+			subPageName: props.match.params.subPageName
 		}
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		let { pageName, subPageName } = this.props.match.params;
+		if (prevProps.match.params.pageName != pageName || prevProps.match.params.subPageName != subPageName) {
+			this.setState({ pageName, subPageName })
+		}
+
 	}
 	componentDidMount() {
 
@@ -37,7 +48,7 @@ class WebAnalytics extends Component {
 			});
 	}
 	render() {
-		let { isLoading, errorMessage } = this.state;
+		let { isLoading, errorMessage, pageName, subPageName } = this.state;
 		return (
 			<div className="web-analytics">
 				<Topnav />
@@ -48,7 +59,9 @@ class WebAnalytics extends Component {
 						{isLoading ? <div className="loading">Please wait</div> :
 							errorMessage ? <div className="errorMessage">{errorMessage}</div> :
 								<div className="pageWrap clearfix">
-									<Dashboard />
+									{pageName == 'Dashboard' && <Dashboard />}
+									{pageName == 'Visitors' && <Visitors subPageName={subPageName} />}
+
 								</div>
 						}
 					</div>

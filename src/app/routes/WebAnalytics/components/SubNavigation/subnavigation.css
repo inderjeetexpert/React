@@ -55,6 +55,10 @@
     font-weight: normal;
 }
 
+.subNavbar>li li .item.active {
+    font-weight: bold;
+}
+
 .subNavbar>li>ul li.active>.item {
     color: #0d0d0d;
     background-color: #edecec;

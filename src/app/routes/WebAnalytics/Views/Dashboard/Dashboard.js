@@ -1,10 +1,10 @@
 import React from 'react';
-import RealTimeVisitorCount from '../RealTimeVisitorCount/RealTimeVisitorCount'
-import VisitorsInRealTime from '../VisitorsInRealTime/VisitorsInRealTime'
-import VisitOverTime from '../VisitOverTime/VisitOverTime'
-import VisitsOverview from '../VisitsOverview/VisitsOverview'
-import ReferrerTypes from '../ReferrerTypes/ReferrerTypes'
-import VisitorMap from '../VisitorMap/VisitorMap'
+import RealTimeVisitorCount from '../../components/RealTimeVisitorCount/RealTimeVisitorCount'
+import VisitorsInRealTime from '../../components/VisitorsInRealTime/VisitorsInRealTime'
+import VisitOverTime from '../../components/VisitOverTime/VisitOverTime'
+import VisitsOverview from '../../components/VisitsOverview/VisitsOverview'
+import ReferrerTypes from '../../components/ReferrerTypes/ReferrerTypes'
+import VisitorMap from '../../components/VisitorMap/VisitorMap'
 
 class Dashboard extends React.Component {
 	constructor(props) {

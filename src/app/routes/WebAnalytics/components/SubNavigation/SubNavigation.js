@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom'
 import './subnavigation.css';
 const menu = [
 	{
@@ -6,7 +7,10 @@ const menu = [
 		active: true,
 		id: 0,
 		submenu: [
-			{ item: 'Dashboard' }
+			{
+				item: 'Dashboard',
+				link: 'dashboard'
+			}
 		]
 	},
 	{
@@ -14,16 +18,46 @@ const menu = [
 		active: false,
 		id: 1,
 		submenu: [
-			{ item: 'Overview' },
-			{ item: 'Visitor Log' },
-			{ item: 'Users' },
-			{ item: 'Custom Variables' },
-			{ item: 'Devices' },
-			{ item: 'Software' },
-			{ item: 'Locations' },
-			{ item: 'Engagement' },
-			{ item: 'Times' },
-			{ item: 'Real-time Map' }]
+			{
+				item: 'Overview',
+				link: 'overview'
+			},
+			{
+				item: 'Visitor Log',
+				link: 'visitorLog'
+			},
+			{
+				item: 'Users',
+				link: 'users'
+			},
+			{
+				item: 'Custom Variables',
+				link: 'customVariables'
+			},
+			{
+				item: 'Devices',
+				link: 'devices'
+			},
+			{
+				item: 'Software',
+				link: 'software'
+			},
+			{
+				item: 'Locations',
+				link: 'locations'
+			},
+			{
+				item: 'Engagement',
+				link: 'engagement'
+			},
+			{
+				item: 'Times',
+				link: 'times'
+			},
+			{
+				item: 'Real-time Map',
+				link: 'realTimeMap'
+			}]
 	}
 ]
 class SubNavigation extends React.Component {
@@ -56,11 +90,10 @@ class SubNavigation extends React.Component {
 								{item.item}
 							</a>
 							<ul className={`${item.active ? 'Active' : ''}`}>
-								{item.submenu.map((item, index) => (
+								{item.submenu.map((subItem, index) => (
 									<li className="menuTab" key={index}>
-										<a className="item">
-											{item.item}
-										</a>
+										<NavLink to={`/webAnalytics/${item.item}/${subItem.link}`} activeClassName="active" className="item">{subItem.item}</NavLink >
+
 									</li>
 								))}
 							</ul>

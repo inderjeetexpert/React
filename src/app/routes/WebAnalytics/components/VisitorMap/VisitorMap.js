@@ -31,7 +31,8 @@ class VisitorMap extends React.Component {
     // Create the chart
     var chart = Highcharts.mapChart('VisitorMap', {
       chart: {
-        map: myMap
+        map: myMap,
+        height: 200
       },
 
       title: {

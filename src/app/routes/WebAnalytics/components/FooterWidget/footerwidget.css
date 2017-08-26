@@ -60,6 +60,7 @@
 
 .dataTableFooterNavigation .limitSelection {
     visibility: hidden;
+    text-align: right;
 }
 
 .limitSelection>div {

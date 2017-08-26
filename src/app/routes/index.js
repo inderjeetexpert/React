@@ -40,7 +40,8 @@ class MainRoute extends Component {
 						<Route exact path="/people" component={People} />
 						<Route exact path="/contact" component={Contact} />
 						<Route exact path="/emailMarketing" component={EmailMarketing} />
-						<Route exact path="/webAnalytics" component={WebAnalytics} />
+						<Route path="/webAnalytics/:pageName/:subPageName" component={WebAnalytics} />
+						{/* <Route exact path="/webAnalytics/Visitors" component={WebAnalytics} /> */}
 						<Route exact path="/login" component={Login} />
 						<Route component={Login} />
 					</Switch>

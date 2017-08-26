@@ -102,7 +102,6 @@ class VisitOverTime extends React.Component {
 
           <WidgetContent>
             <div className="chart-wrapper">
-              <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
               <div id="VisitorOverTimeMap"></div>
 
