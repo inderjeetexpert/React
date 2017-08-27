@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Overview from './Overview/Overview'
-import VisitorLog from './VisitorLog/VisitorLog'
+import VisitorLog from '../../components/VisitorLog/VisitorLog'
+import Users from '../../components/Users/Users'
+
 
 class Visitors extends Component {
   constructor(props) {
@@ -23,6 +25,7 @@ class Visitors extends Component {
         <div className="col-md-12">
           {subPageName == 'overview' && <Overview />}
           {subPageName == 'visitorLog' && <VisitorLog />}
+          {subPageName == 'users' && <Users />}
         </div>
 
       </div>

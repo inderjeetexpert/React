@@ -27,7 +27,12 @@ class VisitsOverview extends React.Component {
     }
     getApi(info)
       .then((response) => {
-        this.setState({ visitsData: response, date: yesterdayDate, lastMonthDate, piwikKey: localStorage.getItem('piwik-key') });
+        this.setState({
+          visitsData: response,
+          date: yesterdayDate,
+          lastMonthDate,
+          piwikKey: localStorage.getItem('piwik-key')
+        });
       })
   }
   render() {
@@ -38,6 +43,7 @@ class VisitsOverview extends React.Component {
       seconds = visitsData.avg_time_on_site - minutes * 60;
     }
     return (
+
       <div className="visits-overview">
         <Widget>
           <WidgetTop WidgetName="Visits Overview" />

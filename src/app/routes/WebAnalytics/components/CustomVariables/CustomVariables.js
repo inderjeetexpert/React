@@ -3,7 +3,7 @@ import WidgetTop from '../WidgetTop/WidgetTop'
 import WidgetContent from '../WidgetContent/WidgetContent'
 import Widget from '../Widget/Widget';
 import FooterWidget from '../FooterWidget/FooterWidget';
-import './users.css';
+import './customvariables.css';
 
 
 class Users extends Component {

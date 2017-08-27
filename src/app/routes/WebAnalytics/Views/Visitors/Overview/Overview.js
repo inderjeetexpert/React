@@ -10,11 +10,9 @@ class Overview extends Component {
 		return (
 			<div className="innerbody">
 
-				<div className="col-md-12">
 
-					<VisitOverTime />
-					<VisitsOverview />
-				</div>
+				<VisitOverTime />
+				<VisitsOverview />
 
 			</div>
 		)
