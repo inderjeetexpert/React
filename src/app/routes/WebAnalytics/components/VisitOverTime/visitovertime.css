@@ -3,5 +3,5 @@
 }
 
 .chart-wrapper {
-    overflow: auto;
+    overflow: hidden;
 }

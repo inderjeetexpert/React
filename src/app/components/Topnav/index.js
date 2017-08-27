@@ -71,6 +71,9 @@ class Topnav extends React.Component {
 							<NavItem eventKey={3} href="javascript:void(0)"><img src="../images/social_media.svg" />Email Marketing</NavItem>
 						</LinkContainer>
 						<NavItem className="nav-social-media" eventKey={5} href="javascript:void(0)"><img src="../images/money.svg" />Social Media Marketing</NavItem>
+						<LinkContainer className="nav-people" to="/webAnalytics/Dashboard/dashboard">
+							<NavItem eventKey={3} href="javascript:void(0)"><img src="../images/social_media.svg" />Web Analytics</NavItem>
+						</LinkContainer>
 					</Nav>
 					<Nav pullRight>
 						<NavItem className="nav-logout" eventKey={9} href="javascript:void(0)" onClick={this.handleLogout}><span className="user-image">AA</span> Logout</NavItem>
