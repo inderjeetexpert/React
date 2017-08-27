@@ -1,0 +1,53 @@
+.add-campaign-box {
+    border: 1px solid #d5d6dd;
+    padding: 30px;
+    margin-top: 30px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.generation {
+    border: 1px solid #d5d6dd;
+    padding: 15px;
+    margin-top: 30px;
+    background: #fff;
+}
+
+.campaign-header-box i {
+    background: #3c5a99 none repeat scroll 0 0;
+    border-radius: 5px;
+    color: #ffffff;
+    display: block;
+    font-size: 38px;
+    height: 50px;
+    line-height: 47px;
+    text-align: center;
+    width: 50px;
+}
+
+.campaign-header-box .btn {
+    background: #4285f4;
+    border: 1px solid #4285f4;
+    border-radius: 50px;
+    box-shadow: none;
+    color: #fff;
+    font-size: 16px;
+    margin-left: 15px;
+    padding: 8px 40px;
+    text-transform: none;
+}
+
+.campaign-header-box .btn.btn-secondary {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: 1px solid #4285f4;
+    border-radius: 50px;
+    box-shadow: none;
+    color: #8c9ba5;
+    font-size: 16px;
+    margin-left: 15px;
+    text-transform: none;
+}
+
+.campaign-header-box .btn.btn-secondary.rounded {
+    padding: 8px 19px;
+}

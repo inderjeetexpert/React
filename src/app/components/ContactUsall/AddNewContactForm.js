@@ -92,17 +92,19 @@ class AddNewContactForm extends React.Component{
               <div className="form-group">
                   <Control.select model="con.gender" className="form-control" placeholder="Gender" >
                       <option>Select</option>
-                      <option value="male">male</option>
-                      <option value="female">female</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
 
                   </Control.select>
               </div>
           </div>
-          <div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+          <div className="col-md-12">
               <div className="form-group">
+                  
                   <button type="submit" className="btn btn-primary btn-lg mr-15" >Submit</button>
+
                   <button className="btn btn-default btn-lg mr-15" >Cancel</button>
-                  <ImportGoogle/>
+
               </div>
           </div>
       </LocalForm>

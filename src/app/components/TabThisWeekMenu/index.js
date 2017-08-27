@@ -52,9 +52,16 @@ export default class TabThisWeekMenu extends React.Component {
 		this.setState({ location: event.target.value })
 	}
 	handleMoreInfo(data) {
+		// let values = {
+		// 	revenues :[],
+		// 	social_profiles : []
+		// };
+		//   values.revenues[0]= data.revenues;
+		// 	values.social_profiles[0]= data.social_profiles;
 		this.setState({
 			datailInfo: data
 		})
+		//console.log(data);
 	}
 	handleClearForm(event) {
 		event.preventDefault();
@@ -136,73 +143,73 @@ export default class TabThisWeekMenu extends React.Component {
 		if (!this.state.errorItem) {
 			errorItem = null;
 		} else {
-			errorItem = <div className="input-group-addon"><i className="ion-alert-circled" style={{ fontSize: 20, color: '#ff0000', float: 'right', marginRight: -18, marginTop: -24 }}></i></div>
+			errorItem = <div className="form-control-feedback"><i className="ion-alert-circled"></i></div>
 		}
 
 		if (!this.state.errorLoc) {
 			errorLoc = null;
 		} else {
-			errorLoc = <div className="input-group-addon"><i className="ion-alert-circled" style={{ fontSize: 20, color: '#ff0000', float: 'right', marginRight: -18, marginTop: -24 }}></i></div>
+			errorLoc = <div className="form-control-feedback"><i className="ion-alert-circled"></i></div>
 		}
 		return (
 			<div>
-					<div className="container-fluid">
-							<div className="search-header">
-									<div className="row">
-											<form onSubmit={(event) => this.handleSearch(event)}>
-													{errorMsg}
-													<div className="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-															<div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
-																	<div className="form-group">
-																			{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
-																			<span className="input-group-addon"><i className="ion-android-search"></i></span>
-																			<input className="form-control" type="text" value={item} placeholder="Search for Business" onChange={(event) => this.handItemChange(event)} />
-																			{errorItem}
+				<div className="container-fluid">
+					<div className="search-header">
+						<div className="row">
+							<form onSubmit={(event) => this.handleSearch(event)}>
+								{errorMsg}
+								<div className="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+									<div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+										<div className="form-group has-warning has-feedback">
+											{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
+											<span className="input-group-addon"><i className="ion-android-search"></i></span>
+											<input className="form-control" type="text" value={item} placeholder="Search for Business" onChange={(event) => this.handItemChange(event)} />
+											{errorItem}
 
 
-																	</div>
-															</div>
-															<div className="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-																	<div className="form-group borderless">
-																			<span className="input-group-addon"><i className="ion-ios-location-outline"></i></span>
-																			{/* <label className="control-label" htmlFor="focusedInput">Search Location</label> */}
-
-																			{/*<input className="form-control" type="text" value={location} placeholder="Enter a location" onChange={(event) => this.handleLocChange(event)} />*/}
-																			<Autocomplete
-																					style={{width: '90%', border: 'none',outline:'none'}}
-																					onPlaceSelected={(place) => {
-																							//console.log(place.formatted_address);
-																							this.setState({ place: place.formatted_address });
-																					}}
-
-																			/>
-																			{errorLoc}
-
-																	</div>
-															</div>
-													</div>
-													<div className="col-auto pull-right">
-															<button onClick={(event) => this.handleClearForm(event)} className="clear-button">Clear</button>
-															{searchButton}
-
-													</div>
-											</form>
+										</div>
 									</div>
-							</div>
-					</div>
-					<section className="">
-							<div className="container-fluid">
-									<div className="row">
-											<div className="col-md-12">
+									<div className="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+										<div className="form-group borderless has-warning has-feedback">
+											<span className="input-group-addon"><i className="ion-ios-location-outline"></i></span>
+											{/* <label className="control-label" htmlFor="focusedInput">Search Location</label> */}
 
-													<h5 className="record-count">
-															{searchedName && searchedLocation ?
-																	<p>We found<span> {recordcount}</span> results for <span>{searchedName}</span> in <span>{searchedLocation}</span></p>
-															: 'Please provide item and location to search!'}
-													</h5>
-											</div>
-											{recordcount ?
-													<div><div className={`${datailInfo ? 'col-md-9 col-sm-7' : 'col-md-12'}`}>
+											{/*<input className="form-control" type="text" value={location} placeholder="Enter a location" onChange={(event) => this.handleLocChange(event)} />*/}
+											<Autocomplete
+												className="form-control"
+												onPlaceSelected={(place) => {
+													//console.log(place.formatted_address);
+													this.setState({ place: place.formatted_address });
+												}}
+
+											/>
+											{errorLoc}
+
+										</div>
+									</div>
+								</div>
+								<div className="col-auto pull-right">
+									<button onClick={(event) => this.handleClearForm(event)} className="clear-button">Clear</button>
+									{searchButton}
+
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<section className="">
+					<div className="container-fluid">
+						<div className="row">
+							<div className="col-md-12">
+
+								<h5 className="record-count">
+									{searchedName && searchedLocation ?
+										<p>We found<span> {recordcount}</span> results for <span>{searchedName}</span> in <span>{searchedLocation}</span></p>
+										: ''}
+								</h5>
+							</div>
+							{recordcount ?
+								<div><div className={`${datailInfo ? 'col-md-9 col-sm-7' : 'col-md-12'}`}>
 									<div className="body-border">
 										<table className="business-table">
 											<thead>
@@ -223,6 +230,15 @@ export default class TabThisWeekMenu extends React.Component {
 														image = d.image
 													}
 
+													let email = "---"
+													if (d.email && d.email != '') {
+														email = d.email
+													}
+
+													let phone = "---"
+													if (d.phone && d.phone != '') {
+														phone = d.phone
+													}
 
 
 													var dialoadRef = "sd" + d.id
@@ -235,8 +251,8 @@ export default class TabThisWeekMenu extends React.Component {
 																</SkyLight>
 															</td>
 															<td><i className="ion-ios-location-outline"></i><p>{d.formatted_address}</p></td>
-															<td><i className="ion-ios-telephone-outline"></i><p>{d.phone}</p></td>
-															<td><i className="ion-ios-email-outline"></i><p>{d.email}</p></td>
+															<td><i className="ion-ios-telephone-outline"></i><p>{phone}</p></td>
+															<td><i className="ion-ios-email-outline"></i><p>{email}</p></td>
 															<td><a href=""><i className="ion-share"></i></a></td>
 														</tr>
 													)
@@ -250,7 +266,7 @@ export default class TabThisWeekMenu extends React.Component {
 										<MoreDetailSection datailInfo={datailInfo} />
 
 										: ''}
-								</div> : ''}
+								</div> : <div className="no-data-center"><img src="images/store.png" /><p>Looking for a business? Let’s get started...</p></div>}
 						</div>
 					</div>
 				</section>
