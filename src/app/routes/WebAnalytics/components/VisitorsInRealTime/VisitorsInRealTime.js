@@ -91,7 +91,7 @@ class VisitorsInRealTime extends React.Component {
                       <span className="realTimeWidget_datetime">{item.serverDatePretty}, - {item.serverTimePretty} {item.visitDurationPretty != '0s' && (item.visitDurationPretty)} </span>
                       &nbsp;
                   <a className="visits-live-launch-visitor-profile rightLink" title="View visitor profile">
-                        <img src="../images/piwik/plugins/live/images/visitorProfileLaunch.png" />
+                        <img src="../images/piwik/plugins/Live/images/visitorProfileLaunch.png" />
                       </a>
                       <br />
                       <img height="16px" src={`../images/piwik/${item.countryFlag}`} title={`${item.location}, Provider `} />
@@ -120,7 +120,7 @@ class VisitorsInRealTime extends React.Component {
                       <span className="pagesTitle" title={`${item.actionDetails.length} Actions`}>Actions:</span>
                       {item.actionDetails.map((actionItem, index) => (
                         <a href={actionItem.url} target="_blank" key={index}>
-                          <img src={`../images/piwik/plugins/live/images/file${(index + 1) % 10}.png`} title={actionItem.serverTimePretty} />
+                          <img src={`../images/piwik/plugins/Live/images/file${(index + 1) % 10}.png`} title={actionItem.serverTimePretty} />
                         </a>
                       ))}
 
@@ -136,10 +136,10 @@ class VisitorsInRealTime extends React.Component {
               <div className="visitsLiveFooter">
                 {realTimePlay ?
                   <a onClick={handleRealTimeStart} title="Visitors in Real-time is started. Click to pause.">
-                    <img src="../images/piwik/plugins/live/images/pause.png" />
+                    <img src="../images/piwik/plugins/Live/images/pause.png" />
                   </a> :
                   <a onClick={handleRealTimePause} title="Visitors in Real-time is stopped. Click to start.">
-                    <img src="../images/piwik/plugins/live/images/play.png" />
+                    <img src="../images/piwik/plugins/Live/images/play.png" />
                   </a>}
                 &nbsp;
              <a className="rightLink" >View detailed visitor log</a></div>
