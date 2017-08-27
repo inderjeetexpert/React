@@ -1,5 +1,5 @@
 // export const PIWIK_TOKEN_AUTH = localStorage.getItem('piwik-key');
-export const TOKEN_AUTH = localStorage.getItem('key')
+// export const TOKEN_AUTH = localStorage.getItem('key')
 
 // 'a4c652c9056734d8b9dcf385f1d3aca9';
 export const SITE_URL = "https://piwik.carderockllc.com/";

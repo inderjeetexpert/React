@@ -1,5 +1,4 @@
 import {
-  TOKEN_AUTH,
   LIVE_GET_COUNTER,
   GET_USER_DETAIL,
   GET_TOKEN_AUTH,
@@ -20,7 +19,7 @@ export function liveGetCounter(info) {
 
 export function getUserDetailPiwik() {
 
-  axios.defaults.headers.common['Authorization'] = "Token " + TOKEN_AUTH;
+  axios.defaults.headers.common['Authorization'] = "Token " + localStorage.getItem('key');
   // axios.defaults.headers.common['Content-Type'] = 'application/json';
   return axios.get(GET_USER_DETAIL).then(({ data }) => data)
 }

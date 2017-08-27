@@ -11,7 +11,8 @@ class VisitsOverview extends React.Component {
     this.state = {
       date: null,
       visitsData: null,
-      lastMonthDate: null
+      lastMonthDate: null,
+      piwikKey: null
     }
   }
   componentDidMount() {
@@ -26,11 +27,11 @@ class VisitsOverview extends React.Component {
     }
     getApi(info)
       .then((response) => {
-        this.setState({ visitsData: response, date: yesterdayDate, lastMonthDate });
+        this.setState({ visitsData: response, date: yesterdayDate, lastMonthDate, piwikKey: localStorage.getItem('piwik-key') });
       })
   }
   render() {
-    let { visitsData, date, lastMonthDate } = this.state;
+    let { visitsData, date, lastMonthDate, piwikKey } = this.state;
     var minutes, seconds;
     if (visitsData) {
       minutes = Math.floor(visitsData.avg_time_on_site / 60);
@@ -44,7 +45,7 @@ class VisitsOverview extends React.Component {
             <WidgetContent>
               <div className="sparkline">
                 <img alt="image" width="100" height="25"
-                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=nb_visits%2Cnb_uniq_visitors`} />
+                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=nb_visits%2Cnb_uniq_visitors&token_auth=${piwikKey}`} />
 
                 <span title="If a visitor comes to your website for the first time or if they visit a page more than 30 minutes after their last page view, this will be recorded as a new visit.">
                   <strong>{visitsData.nb_visits}</strong> visits,
@@ -56,7 +57,7 @@ class VisitsOverview extends React.Component {
 
               <div className="sparkline">
                 <img alt="image" width="100" height="25"
-                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=avg_time_on_site`} />
+                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=avg_time_on_site&token_auth=${piwikKey}`} />
 
                 <span title="The average duration of a visit.">
                   <strong>{minutes} min {seconds}s</strong>  average visit duration
@@ -66,7 +67,7 @@ class VisitsOverview extends React.Component {
 
               <div className="sparkline">
                 <img alt="image" width="100" height="25"
-                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=bounce_rate`} />
+                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=bounce_rate&token_auth=${piwikKey}`} />
                 <span title="The percentage of visits that only had a single pageview. This means, that the visitor left the website directly from the entrance page.">
                   <strong>{visitsData.bounce_rate}</strong> visits have bounced (left the website after one page)
                 </span>
@@ -74,7 +75,7 @@ class VisitsOverview extends React.Component {
 
               <div className="sparkline">
                 <img alt="image" width="100" height="25"
-                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=nb_actions_per_visit`} />
+                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=nb_actions_per_visit&token_auth=${piwikKey}`} />
 
                 <span title="The average number of actions (page views, site searches, downloads or outlinks) that were performed during the visits.">
                   <strong>{visitsData.nb_actions_per_visit}</strong> actions (page views, downloads, outlinks and internal site searches) per visit
@@ -84,7 +85,7 @@ class VisitsOverview extends React.Component {
 
               <div className="sparkline">
                 <img alt="image" width="100" height="25"
-                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=avg_time_generation`} />
+                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=avg_time_generation&token_auth=${piwikKey}`} />
 
                 <span title="The average time it took to generate the page. This metric includes the time it took the server to generate the web page, plus the time it took for the visitor to download the response from the server. A lower 'Avg. generation time' means a faster website for your visitors!">
                   <strong>{visitsData.avg_time_generation}</strong> average generation time
@@ -93,7 +94,7 @@ class VisitsOverview extends React.Component {
 
               <div className="sparkline">
                 <img alt="image" width="100" height="25"
-                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=nb_pageviews%2Cnb_uniq_pageviews`} />
+                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=nb_pageviews%2Cnb_uniq_pageviews&token_auth=${piwikKey}`} />
 
                 <span title="The number of times this page was visited.">
                   <strong>{visitsData.nb_pageviews}</strong>  pageviews,
@@ -105,7 +106,7 @@ class VisitsOverview extends React.Component {
 
               <div className="sparkline">
                 <img alt="image" width="100" height="25"
-                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=nb_searches%2Cnb_keywords`} />
+                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=nb_searches%2Cnb_keywords&token_auth=${piwikKey}`} />
 
                 <span title="The number of visits that searched for this keyword on your website's search engine.">
                   <strong>{visitsData.nb_searches}</strong>  total searches on your website,
@@ -118,7 +119,7 @@ class VisitsOverview extends React.Component {
 
               <div className="sparkline">
                 <img alt="image" width="100" height="25"
-                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=nb_downloads%2Cnb_uniq_downloads`} />
+                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=nb_downloads%2Cnb_uniq_downloads&token_auth=${piwikKey}`} />
 
                 <span title="The number of times this link was clicked.">
                   <strong>{visitsData.nb_downloads}</strong> downloads,
@@ -130,7 +131,7 @@ class VisitsOverview extends React.Component {
 
               <div className="sparkline">
                 <img alt="image" width="100" height="25"
-                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=nb_outlinks%2Cnb_uniq_outlinks`} />
+                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=nb_outlinks%2Cnb_uniq_outlinks&token_auth=${piwikKey}`} />
 
                 <span title="The number of times this link was clicked.">
                   <strong>{visitsData.nb_outlinks}</strong> outlinks,
@@ -142,7 +143,7 @@ class VisitsOverview extends React.Component {
 
               <div className="sparkline">
                 <img alt="image" width="100" height="25"
-                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=max_actions`} />
+                  src={`${SITE_URL}index.php?date=${lastMonthDate},${date}&forceView=1&viewDataTable=sparkline&module=API&action=get&widget=1&idSite=1&period=day&columns=max_actions&token_auth=${piwikKey}`} />
                 <span>
                   <strong>{visitsData.max_actions}</strong> max actions in one visit
               </span>
