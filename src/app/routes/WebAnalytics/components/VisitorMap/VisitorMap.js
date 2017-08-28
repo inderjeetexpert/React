@@ -5,7 +5,7 @@ import FooterWidget from '../FooterWidget/FooterWidget'
 import Widget from '../Widget/Widget';
 import Highcharts from 'highcharts/highmaps';
 import addFunnel from 'highcharts/modules/funnel';
-import myMap from '../HighCharts/world';
+import myMap from '../Highcharts/world';
 import { getUserCountry } from '../../../../api/webAnalytics';
 
 import './visitormap.css'

@@ -6,5 +6,5 @@ static
 coverage
 __nogit
 .idea
+/package-lock.json
 build
-
