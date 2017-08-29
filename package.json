@@ -50,6 +50,7 @@
     "react-bootstrap-table": "^4.0.1",
     "react-ckeditor-component": "^1.0.3",
     "react-credit-cards": "^0.4.1",
+    "react-datepicker": "^0.53.0",
     "react-dom": "^15.4.2",
     "react-file-reader": "^1.1.1",
     "react-fusioncharts": "^1.0.4",

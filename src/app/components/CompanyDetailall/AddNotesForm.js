@@ -123,7 +123,6 @@ class AddNotesForm extends React.Component {
 									<div className="pull-left">
 											<p style={{color: 'red'}}>**you can upload .png,.jpg and .doc file only</p>
 											<a style={{position:'relative'}}><Control.file model="notes.notefile" accept=".jpg,.png,.doc,.xlsx" style={{display: 'block',position: 'absolute',width: '100%',zIndex: '999',opacity: '0'}} required="required"/><img src="images/attachment.svg" /></a>
-
 											<a><img src="images/link-1.svg" /></a>
 									</div>
 									<div className="pull-right">
