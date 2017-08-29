@@ -23,8 +23,6 @@ export default class CampaignList extends React.Component {
 	  axios.defaults.headers.common['Authorization'] = "Token " + localStorage.getItem('key');
 	  axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 	  axios.get('http://www.carderockllc.com/api/v1/google/campaigns/?token={2}').then(result => {
-	   console.log(data)
-
 	   console.log(result.data)
 	  }).catch(err => {
    console.log(err)
