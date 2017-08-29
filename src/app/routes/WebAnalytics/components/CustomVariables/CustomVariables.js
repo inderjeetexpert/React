@@ -6,7 +6,7 @@ import FooterWidget from '../FooterWidget/FooterWidget';
 import './customvariables.css';
 
 
-class Users extends Component {
+class CustomVariables extends Component {
   constructor(props) {
     super(props);
   }
@@ -17,27 +17,25 @@ class Users extends Component {
   render() {
 
     return (
-      <div className="visit-over-time">
+      <div className="custom-variables">
         <Widget>
-          <WidgetTop WidgetName="Users" />
+          <WidgetTop WidgetName="Custom Variables" />
 
           <WidgetContent>
 
-            <div className="users-view">
-              <div className="dataTableWrapper">
-                <div className="pk-emptyDataTable">
-                  There is no data for this report.
+            <div className="dataTableWrapper">
+              <div className="pk-emptyDataTable">
+                There is no data for this report.
                 </div>
 
-              </div>
             </div>
             <FooterWidget limitSelection={true} />
           </WidgetContent>
-        </Widget >
+        </Widget>
 
-      </div >
+      </div>
     )
   }
 }
 
-export default Users;
+export default CustomVariables;

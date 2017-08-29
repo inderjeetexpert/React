@@ -12,24 +12,22 @@ class Users extends Component {
   }
 
   componentDidMount() {
+
   }
 
   render() {
 
     return (
-      <div className="visit-over-time">
+      <div className="users-view">
         <Widget>
           <WidgetTop WidgetName="Users" />
 
           <WidgetContent>
-
-            <div className="users-view">
-              <div className="dataTableWrapper">
-                <div className="pk-emptyDataTable">
-                  There is no data for this report.
+            <div className="dataTableWrapper">
+              <div className="pk-emptyDataTable">
+                There is no data for this report.
                 </div>
 
-              </div>
             </div>
             <FooterWidget limitSelection={true} />
           </WidgetContent>

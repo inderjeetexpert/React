@@ -76,7 +76,7 @@ class VisitorsInRealTime extends React.Component {
           <WidgetTop WidgetName="Visitors in Real-time" />
           {visitorData ?
             <WidgetContent>
-              <BootstrapTable data={this.state.products} condensed hover bordered={false}>
+              <BootstrapTable data={this.state.products} hover bordered={false}>
                 <TableHeaderColumn width='50%' dataField='date' isKey>Date</TableHeaderColumn>
                 <TableHeaderColumn width='25%' dataField='visits'>Visits</TableHeaderColumn>
                 <TableHeaderColumn width='25%' dataField='actions'>Actions</TableHeaderColumn>
@@ -90,7 +90,7 @@ class VisitorsInRealTime extends React.Component {
 
                       <span className="realTimeWidget_datetime">{item.serverDatePretty}, - {item.serverTimePretty} {item.visitDurationPretty != '0s' && (item.visitDurationPretty)} </span>
                       &nbsp;
-                  <a className="visits-live-launch-visitor-profile rightLink" title="View visitor profile">
+                      <a className="visits-live-launch-visitor-profile rightLink" title="View visitor profile">
                         <img src="../images/piwik/plugins/Live/images/visitorProfileLaunch.png" />
                       </a>
                       <br />

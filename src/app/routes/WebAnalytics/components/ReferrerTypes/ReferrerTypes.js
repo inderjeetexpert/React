@@ -46,7 +46,7 @@ class ReferrerTypes extends React.Component {
         <Widget>
           <WidgetTop WidgetName="Referrer Types" />
           <WidgetContent>
-            <BootstrapTable data={this.state.products} condensed hover bordered={false}>
+            <BootstrapTable data={this.state.products} hover bordered={false}>
               <TableHeaderColumn width='150px' dataField='label' isKey>Referrer Type</TableHeaderColumn>
               <TableHeaderColumn width='70px' dataField='nb_visits'>Visits</TableHeaderColumn>
               <TableHeaderColumn width='120px' dataField='nb_uniq_visitors'>Unique visitors</TableHeaderColumn>

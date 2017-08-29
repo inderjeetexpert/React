@@ -1,0 +1,12 @@
+.browsers-view .table {
+    margin-bottom: 0;
+}
+
+.browsers-view .table>thead>tr>th {
+    border: none;
+}
+
+.browsers-view td img {
+    margin-top: -3px;
+    max-height: 16px;
+}

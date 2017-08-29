@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Overview from './Overview/Overview'
 import VisitorLog from '../../components/VisitorLog/VisitorLog'
 import Users from '../../components/Users/Users'
-
+import CustomVariables from '../../components/CustomVariables/CustomVariables'
+import Devices from './Devices/Devices'
+import Software from './Software/Software'
 
 class Visitors extends Component {
   constructor(props) {
@@ -20,12 +22,16 @@ class Visitors extends Component {
   }
   render() {
     let { subPageName } = this.state;
+    console.log('subpage name', subPageName)
     return (
       <div className="innerbody">
         <div className="col-md-12">
           {subPageName == 'overview' && <Overview />}
           {subPageName == 'visitorLog' && <VisitorLog />}
           {subPageName == 'users' && <Users />}
+          {subPageName == 'customVariables' && <CustomVariables />}
+          {subPageName == 'devices' && <Devices />}
+          {subPageName == 'software' && <Software />}
         </div>
 
       </div>
