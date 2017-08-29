@@ -4,7 +4,7 @@ import './subnavigation.css';
 const menu = [
 	{
 		item: 'Dashboard',
-		active: true,
+		active: false,
 		id: 0,
 		submenu: [
 			{
@@ -78,7 +78,7 @@ class SubNavigation extends React.Component {
 	}
 
 	render() {
-
+		let { pageName } = this.props;
 		return (
 			<div className="subMenu">
 				<ul className="subNavbar">
@@ -89,7 +89,7 @@ class SubNavigation extends React.Component {
 								<span className={`menu-icon piwik-icon-reporting-${item.item.toLowerCase()}`}></span>
 								{item.item}
 							</a>
-							<ul className={`${item.active ? 'Active' : ''}`}>
+							<ul className={`${item.active || pageName == item.item ? 'Active' : ''}`}>
 								{item.submenu.map((subItem, index) => (
 									<li className="menuTab" key={index}>
 										<NavLink to={`/webAnalytics/${item.item}/${subItem.link}`} activeClassName="active" className="item">{subItem.item}</NavLink >

@@ -3,6 +3,8 @@ import WidgetTop from '../WidgetTop/WidgetTop'
 import WidgetContent from '../WidgetContent/WidgetContent'
 import Widget from '../Widget/Widget';
 import FooterWidget from '../FooterWidget/FooterWidget';
+import Highcharts from 'highcharts';
+import addFunnel from 'highcharts/modules/funnel';
 import './browserengines.css';
 
 

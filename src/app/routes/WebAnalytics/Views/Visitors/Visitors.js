@@ -5,6 +5,7 @@ import Users from '../../components/Users/Users'
 import CustomVariables from '../../components/CustomVariables/CustomVariables'
 import Devices from './Devices/Devices'
 import Software from './Software/Software'
+import Locations from './Locations/Locations'
 
 class Visitors extends Component {
   constructor(props) {
@@ -32,6 +33,7 @@ class Visitors extends Component {
           {subPageName == 'customVariables' && <CustomVariables />}
           {subPageName == 'devices' && <Devices />}
           {subPageName == 'software' && <Software />}
+          {subPageName == 'locations' && <Locations />}
         </div>
 
       </div>

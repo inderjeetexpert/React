@@ -6,6 +6,7 @@ import FooterWidget from '../FooterWidget/FooterWidget';
 import './visitovertime.css';
 import Highcharts from 'highcharts';
 import addFunnel from 'highcharts/modules/funnel';
+import _ from 'lodash'
 import { getApi } from '../../../../api/webAnalytics';
 
 
