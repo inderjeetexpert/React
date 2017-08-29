@@ -95,11 +95,11 @@ class VisitOverTime extends React.Component {
 
   }
   render() {
-
+    let { widgetName } = this.props;
     return (
       <div className="visit-over-time">
         <Widget>
-          <WidgetTop WidgetName="Visit Over Time" />
+          <WidgetTop WidgetName={`${widgetName ? widgetName : "Visit Over Time"}`} />
 
           <WidgetContent>
             <div className="chart-wrapper">

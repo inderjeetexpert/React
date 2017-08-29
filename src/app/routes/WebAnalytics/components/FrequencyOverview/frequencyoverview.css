@@ -1,0 +1,8 @@
+.sparkline.linked {
+    border-bottom: 1px solid transparent;
+}
+
+.sparkline.linked:hover {
+    cursor: pointer;
+    border-bottom: 1px dashed #c3c3c3;
+}
