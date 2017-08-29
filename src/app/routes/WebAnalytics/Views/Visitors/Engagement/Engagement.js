@@ -3,6 +3,7 @@ import VisitOverTime from '../../../components/VisitOverTime/VisitOverTime'
 import FrequencyOverview from '../../../components/FrequencyOverview/FrequencyOverview'
 import TableWithTwoCol from '../../../components/TableWithTwoCol/TableWithTwoCol';
 import TableWithThreeCol from '../../../components/TableWithThreeCol/TableWithThreeCol';
+import TagCloud from '../../../components/TagCloud/TagCloud';
 
 class Engagement extends Component {
 	constructor(props) {
@@ -38,10 +39,13 @@ class Engagement extends Component {
 				<FrequencyOverview />
 				<div className="row">
 					<div className="col-md-6">
+						<TagCloud widgetName="Visits per visit duration" />
 						<TableWithThreeCol table={visitNumberData} />
 
 					</div>
 					<div className="col-md-6">
+						<TagCloud widgetName="Visits per number of pages" />
+
 						<TableWithTwoCol table={lastVisitData} />
 					</div>
 				</div>

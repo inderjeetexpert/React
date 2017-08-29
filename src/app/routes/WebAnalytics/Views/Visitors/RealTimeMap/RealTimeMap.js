@@ -1,14 +1,14 @@
-import React from 'react';
-import WidgetTop from '../WidgetTop/WidgetTop'
-import WidgetContent from '../WidgetContent/WidgetContent'
-import FooterWidget from '../FooterWidget/FooterWidget'
-import Widget from '../Widget/Widget';
+import React, { Component } from 'react';
+import WidgetTop from '../../../components/WidgetTop/WidgetTop'
+import WidgetContent from '../../../components/WidgetContent/WidgetContent'
+import FooterWidget from '../../../components/FooterWidget/FooterWidget'
+import Widget from '../../../components/Widget/Widget';
 import Highcharts from 'highcharts/highmaps';
 import addFunnel from 'highcharts/modules/funnel';
-import myMap from '../Highcharts/world';
-import { getUserCountry } from '../../../../api/webAnalytics';
+import myMap from '../../../components/Highcharts/world';
+import { getUserCountry } from '../../../../../api/webAnalytics';
 
-import './visitormap.css'
+import './realtimemap.css'
 
 // Prepare demo data
 // Data is joined to map using value of 'hc-key' property by default.
@@ -20,7 +20,7 @@ import './visitormap.css'
 // ];
 
 
-class VisitorMap extends React.Component {
+class RealTimeMap extends Component {
   constructor(props) {
     super(props);
 
@@ -29,10 +29,10 @@ class VisitorMap extends React.Component {
 
 
     // Create the chart
-    var chart = Highcharts.mapChart('VisitorMap', {
+    var chart = Highcharts.mapChart('RealTimeMap', {
       chart: {
         map: myMap,
-        height: 200
+        // height: 200
       },
 
       title: {
@@ -49,15 +49,24 @@ class VisitorMap extends React.Component {
           verticalAlign: 'bottom'
         }
       },
-
-      colorAxis: {
-        min: 0
+      legend: {
+        enabled: false
       },
-      // keys: ['code', 'nb_visits', 'average'],
-      series: [{
-        data: [],
-        name: 'Visits',
 
+      // colorAxis: {
+      //   min: 0
+      // },
+      series: [{
+        name: 'Countries',
+        color: '#E0E0E0',
+        enableMouseTracking: false
+      }, {
+        data: [],
+        type: 'mapbubble',
+        name: 'Visits',
+        minSize: 4,
+        maxSize: '10%',
+        joinBy: ['iso-a2', 'code'],
         states: {
           hover: {
             color: '#BADA55'
@@ -67,13 +76,15 @@ class VisitorMap extends React.Component {
         // enabled: true,
         // format: '{point.name}'
         // }
-      }],
+      },
+
+      ],
       tooltip: {
         //shared: true,
         useHTML: true,
         headerFormat: '<small>{point.key}</small><table>',
         pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
-        '<td style="text-align: right"><b>{point.value} {point.percentage}</b></td></tr>',
+        '<td style="text-align: right"><b>{point.z} </b></td></tr>',
         footerFormat: '</table>',
 
       }
@@ -88,8 +99,9 @@ class VisitorMap extends React.Component {
     }
     getUserCountry(info)
       .then((response) => {
-        let data = response.map((item) => ([item.code, item.nb_visits]));
-        chart.series[0].update({
+        let data = response.map((item) => ({ code: item.code.toUpperCase(), z: item.nb_visits }));
+        console.log(data);
+        chart.series[1].update({
           data: data
         });
       })
@@ -100,10 +112,8 @@ class VisitorMap extends React.Component {
     return (
       <div className="visitor-map">
         <Widget>
-          <WidgetTop WidgetName="Visitor Map" />
           <WidgetContent>
-            <div id="VisitorMap"></div>
-            <FooterWidget />
+            <div id="RealTimeMap"></div>
           </WidgetContent>
         </Widget >
 
@@ -113,4 +123,4 @@ class VisitorMap extends React.Component {
 }
 
 
-export default VisitorMap;
+export default RealTimeMap;

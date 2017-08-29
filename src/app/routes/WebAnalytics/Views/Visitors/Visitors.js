@@ -7,6 +7,8 @@ import Devices from './Devices/Devices'
 import Software from './Software/Software'
 import Locations from './Locations/Locations'
 import Engagement from './Engagement/Engagement'
+import Times from './Times/Times'
+import RealTimeMap from './RealTimeMap/RealTimeMap'
 
 class Visitors extends Component {
   constructor(props) {
@@ -36,6 +38,8 @@ class Visitors extends Component {
           {subPageName == 'software' && <Software />}
           {subPageName == 'locations' && <Locations />}
           {subPageName == 'engagement' && <Engagement />}
+          {subPageName == 'times' && <Times />}
+          {subPageName == 'realTimeMap' && <RealTimeMap />}
         </div>
 
       </div>
