@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios';
 import {
 	Table,
 	TableBody,
@@ -17,12 +18,23 @@ export default class CompanyDetailall extends React.Component {
 
 	constructor(props,context) {
     super(props);
-		this.state = {
-			data: [],
-
+		this.state= {
+			data: []
 		}
-		console.log(props)
 
+		//console.log(props)
+		this.fetchnotes= this.fetchnotes.bind(this)
+
+	}
+	fetchnotes(id){
+		axios.defaults.headers.common['Authorization'] = "Token " + localStorage.getItem('key');
+		axios.defaults.headers.common['Content-Type'] = 'application/json'
+		axios.get('http://www.carderockllc.com/api/v1/company/notes/?company_id='+id).then(res => {
+			//console.log(res.data.results);
+			this.setState({ data: res.data.results })
+		}).catch(err => {
+			console.error(err);
+		});
 	}
 
 	render() {
@@ -35,9 +47,9 @@ export default class CompanyDetailall extends React.Component {
 									<div className="col-md-9 col-sm-5">
 											<div className="activity-box">
 													<CompanyDetailsTab />
-													<AddNotesForm/>
+													<AddNotesForm  fetchnotes={this.fetchnotes} />
 											</div>
-											<CompanyTabChangeDetails />
+											<CompanyTabChangeDetails fetchnotes={this.fetchnotes} data={this.state.data}/>
 									</div>
 							</div>
 					</div>

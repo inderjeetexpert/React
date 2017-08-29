@@ -14,7 +14,32 @@ class AddNotesFormActivity extends React.Component {
 
 			<div>
 					<div className="activity-box-body">
-							<textarea placeholder="Start typing to leave a activity"></textarea>
+						<div className="row text-inline">
+								<div className="col-md-4">
+										<label>Due Date</label>
+										<div className="input-group">
+												<span className="input-group-addon" id="basic-addon1"><img src="images/calendar.svg" /></span>
+												<input type="text" className="form-control" placeholder="Aug 07 2017" />
+										</div>
+								</div>
+								<div className="col-md-4">
+										<div className="input-group">
+												<span className="input-group-addon" id="basic-addon1"><img src="images/clock.svg" /></span>
+												<input type="text" className="form-control" placeholder="9:00 am" />
+												<span className="input-group-addon" id="basic-addon1"><img src="images/clock.svg" /></span>
+												<input type="text" className="form-control" placeholder="5:00 pm" />
+												<vr></vr>
+										</div>
+								</div>
+								<div className="col-md-4">
+										<label>Set Reminder</label>
+										<select>
+												<option>None</option>
+										</select>
+								</div>
+						</div>
+						<input className="form-control subject" placeholder="What are you meeting about?" type="text" />
+						<textarea placeholder="Start typing to leave a activity"></textarea>
 					</div>
 					<div className="activity-box-footer">
 							<div className="pull-left">

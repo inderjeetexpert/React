@@ -15,7 +15,7 @@ class CompanyTabChangeDetailsAttach extends React.Component {
 					<div className="note-box">
 							<ul>
 									<li>
-											<img src="images/edit.svg" />
+											<img src="images/folder-attachment.svg" />
 									</li>
 									<li>
 											<h5>My Attachments <a href="" className="pull-right"><img src="images/filter.svg" /></a></h5>

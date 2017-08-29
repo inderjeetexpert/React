@@ -15,7 +15,7 @@ class CompanyTabChangeDetailsActivity extends React.Component {
 					<div className="note-box">
 							<ul>
 									<li>
-											<img src="images/edit.svg" />
+											<img src="images/stop-watch.svg" />
 									</li>
 									<li>
 											<h5>My Activity <a href="" className="pull-right"><img src="images/filter.svg" /></a></h5>

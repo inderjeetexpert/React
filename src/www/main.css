@@ -51,6 +51,9 @@ body {
     padding-right: 15px;
     position: relative;
 }
+.nOWarp-td{
+    white-space: nowrap;
+}
 
 .mr-15 {
     margin-right: 15px
@@ -660,12 +663,23 @@ a {
     .btn-lg {
         padding: 0 10px
     }
-    .col-auto {
+    /*.col-auto {
         margin: 0 auto;
         float: none !important
-    }
+    }*/
     .body-border {
         overflow-x: scroll;
+    }
+    .search-header .btn{
+      padding: 0 6px;
+      font-size: 12px;
+    }
+    .clear-button{
+      padding: 0 4px;
+      font-size: 12px;
+    }
+    .search-header{
+      margin: 15px 0;
     }
 }
 

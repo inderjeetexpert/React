@@ -14,17 +14,7 @@ class AddNotesFormAttach extends React.Component {
 
 			<div>
 					<div className="activity-box-body">
-							<textarea placeholder="Start typing to leave a attachment"></textarea>
-					</div>
-					<div className="activity-box-footer">
-							<div className="pull-left">
-									<a><img src="images/attachment.svg" /></a>
-									<a><img src="images/link-1.svg" /></a>
-							</div>
-							<div className="pull-right">
-									<button className="btn btn-primary">Save Note</button>
-									<button className="btn btn-secondary">Discard</button>
-							</div>
+							<div className="dragDropArea">Drag here or <span> browse </span>  to upload</div>
 					</div>
 			</div>
 

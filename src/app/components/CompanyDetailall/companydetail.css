@@ -135,6 +135,20 @@
     height: 150px;
 }
 
+.activity-box-body .dragDropArea{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8e9ba4;
+  font-size: 24px;
+  height: 150px;
+}
+
+.activity-box-body .dragDropArea span{
+  color: #4584f5;
+  margin: 0 5px;
+}
+
 .activity-box-footer {
     width: 100%;
     height: auto;

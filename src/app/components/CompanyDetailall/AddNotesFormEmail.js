@@ -13,27 +13,27 @@ class AddNotesFormEmail extends React.Component {
 		return (
 
 			<div>
-				<div className="activity-box-body">
-					<div className="input-group">
-						<span className="input-group-addon">To</span>
-						<input type="text" class="form-control" aria-label="" placeholder="Choose a recipient" />
-						<span className="input-group-addon"><a>Cc</a> <a>Bcc</a></span>
-					</div>
-					<div className="input-group">
-						<span className="input-group-addon">Form</span>
-						<input type="text" class="form-control" aria-label="" />
-					</div>
+					<div className="activity-box-body">
+							<div className="input-group">
+									<span className="input-group-addon">To</span>
+									<input type="text" className="form-control" aria-label="" placeholder="Choose a recipient" />
+									<span className="input-group-addon"><a>Cc</a> <a>Bcc</a></span>
+							</div>
+							<div className="input-group">
+									<span className="input-group-addon">Form</span>
+									<input type="text" className="form-control" aria-label="" />
+							</div>
 
-					<input type="text" className="form-control subject" placeholder="Subject" />
-					<textarea placeholder="Start typing to leave a note"></textarea>
-				</div>
-				<div className="activity-box-footer">
-					<div className="pull-left">
-						<a><img src="images/attachment.svg" /></a>
-						<a><img src="images/link-1.svg" /></a>
+							<input type="text" className="form-control subject" placeholder="Subject" />
+							<textarea placeholder="Start typing to leave a note"></textarea>
 					</div>
-					<div className="pull-right">
-						<button className="btn btn-primary">Save Note</button>
+					<div className="activity-box-footer">
+							<div className="pull-left">
+									<a><img src="images/attachment.svg" /></a>
+									<a><img src="images/link-1.svg" /></a>
+							</div>
+							<div className="pull-right">
+									<button className="btn btn-primary">Save</button>
 						<button className="btn btn-secondary">Discard</button>
 					</div>
 				</div>
