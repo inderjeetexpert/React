@@ -49,7 +49,7 @@ class MainRoute extends Component {
 						<Route exact path="/" component={Login} />
 						<Route exact path="/business" component={Main} />
 						<Route exact path="/people" component={People} />
-						<Route exact path="/campaign/create" component={Campaigns} />
+						<Route exact path="/campaign/new" component={Campaigns} />
 						<Route exact path="/campaigns" component={CampaignList} />
 						<Route exact path="/contact" component={Contact} />
 						<Route exact path="/company" component={Company} />
