@@ -38,7 +38,6 @@ class CreateCampaign extends React.Component {
 
 
 	render() {
-
 		return (
 			<div className="container" style={{ marginTop: 100, marginBottom: 150 }}>
 				<div className="col-md-4 col-md-offset-4">

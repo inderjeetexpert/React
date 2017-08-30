@@ -24,6 +24,7 @@ import WebAnalytics from './WebAnalytics'
 import Social from './Social'
 import SocialFbAddCampaign from './SocialFbAddCampaign'
 import configureStore from '../store/configureStore'
+import CampaignList from './GoogleAdward/components/campaignList'
 const store = configureStore()
 
 
@@ -49,6 +50,7 @@ class MainRoute extends Component {
 						<Route exact path="/business" component={Main} />
 						<Route exact path="/people" component={People} />
 						<Route exact path="/campaign/create" component={Campaigns} />
+						<Route exact path="/campaigns" component={CampaignList} />
 						<Route exact path="/contact" component={Contact} />
 						<Route exact path="/company" component={Company} />
 						<Route exact path="/emailMarketing" component={EmailMarketing} />
