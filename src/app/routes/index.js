@@ -25,6 +25,7 @@ import Social from './Social'
 import SocialFbAddCampaign from './SocialFbAddCampaign'
 import configureStore from '../store/configureStore'
 import CampaignList from './GoogleAdward/components/campaignList'
+import CreateAdGroup from './GoogleAdward/components/adGroup'
 const store = configureStore()
 
 
@@ -67,6 +68,7 @@ class MainRoute extends Component {
 
 						<Route path="/webAnalytics/:pageName/:subPageName" component={WebAnalytics} />
 						<Route exact path="/login" component={Login} />
+						<Route exact path="/campaigns/adGroup" component={CreateAdGroup} />
 						<Route component={Login} />
 					</Switch>
 				</HashRouter>
