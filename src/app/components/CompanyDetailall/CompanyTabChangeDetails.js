@@ -34,7 +34,7 @@ class CompanyTabChangeDetails extends React.Component {
 											<h6>AUG 2017</h6>
 
 											{this.props.data.map((m) => {
-
+													
 													let dateC= moment(m.created_at);
 													//console.log(m.user);
 

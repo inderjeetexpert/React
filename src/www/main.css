@@ -1078,6 +1078,24 @@ a {
     background: #007bb6
 }
 
+.relativeBtnWarp{
+  position: relative;
+  display: inline-block;
+}
+.relativeBtnWarp .timeDropdown{
+  top: auto;
+  bottom: 0;
+  right: -220px;
+  left: auto;
+  width: 200px;
+}
+.relativeBtnWarp .timeDropdown .imgArrow{
+  bottom: 17px;
+  transform: rotate(270deg);
+  left: -12px;
+  top: auto;
+}
+
 
 /**************************************************/
 

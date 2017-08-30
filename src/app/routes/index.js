@@ -23,6 +23,9 @@ import WebAnalytics from './WebAnalytics'
 import Social from './Social'
 import SocialFbAddCampaign from './SocialFbAddCampaign'
 import configureStore from '../store/configureStore'
+import FbAdMarketingRouteCampaign from './FbAdMarketingRoute/Campaign'
+import FbAdMarketingRouteAdAccount from './FbAdMarketingRoute/AdAccount'
+import FbAdMarketingRouteAdSet from './FbAdMarketingRoute/AdSet'
 const store = configureStore()
 
 
@@ -42,25 +45,28 @@ class MainRoute extends Component {
 
 		return (
 			<Provider store={store}>
-				<HashRouter history={history}>
-					<Switch>
-						<Route exact path="/" component={Login} />
-						<Route exact path="/business" component={Main} />
-						<Route exact path="/people" component={People} />
-						<Route exact path="/contact" component={Contact} />
-						<Route exact path="/company" component={Company} />
-						<Route exact path="/emailMarketing" component={EmailMarketing} />
-						<Route exact path="/companyDetail/notes/:id" component={CompanyDetail} />
-						<Route exact path="/companyDetail/email/:id" component={CompanyDetailEmail} />
-						<Route exact path="/companyDetail/activity/:id" component={CompanyDetailActivity} />
-						<Route exact path="/companyDetail/task/:id" component={CompanyDetailTask} />
-						<Route exact path="/companyDetail/schedule/:id" component={CompanyDetailSchedule} />
+					<HashRouter history={history}>
+							<Switch>
+									<Route exact path="/" component={Login} />
+									<Route exact path="/business" component={Main} />
+									<Route exact path="/people" component={People} />
+									<Route exact path="/contact" component={Contact} />
+									<Route exact path="/company" component={Company} />
+									<Route exact path="/emailMarketing" component={EmailMarketing} />
+									<Route exact path="/companyDetail/notes/:id" component={CompanyDetail} />
+									<Route exact path="/companyDetail/email/:id" component={CompanyDetailEmail} />
+									<Route exact path="/companyDetail/activity/:id" component={CompanyDetailActivity} />
+									<Route exact path="/companyDetail/task/:id" component={CompanyDetailTask} />
+									<Route exact path="/companyDetail/schedule/:id" component={CompanyDetailSchedule} />
 
-						<Route exact path="/companyDetail/attachment/:id" component={CompanyDetailAttachment} />
-						<Route exact path="/social" component={Social} />
-						<Route exact path="/fbaddcampaign" component={SocialFbAddCampaign} />
+									<Route exact path="/companyDetail/attachment/:id" component={CompanyDetailAttachment} />
+									<Route exact path="/social" component={Social} />
+									<Route exact path="/fbaddcampaign" component={SocialFbAddCampaign} />
+									<Route exact path="/social/fbaddcampaign" component={FbAdMarketingRouteCampaign} />
+									<Route exact path="/social/fbadaccount" component={FbAdMarketingRouteAdAccount} />
+									<Route exact path="/social/fbadset" component={FbAdMarketingRouteAdSet} />
 
-						<Route path="/webAnalytics/:pageName/:subPageName" component={WebAnalytics} />
+									<Route path="/webAnalytics/:pageName/:subPageName" component={WebAnalytics} />
 						<Route exact path="/login" component={Login} />
 						<Route component={Login} />
 					</Switch>

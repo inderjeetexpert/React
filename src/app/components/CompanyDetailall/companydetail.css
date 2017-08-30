@@ -152,8 +152,14 @@
 .activity-box-footer {
     width: 100%;
     height: auto;
-    overflow: hidden;
     padding: 20px 15px;
+    display: block;
+
+}
+.activity-box-footer:after{
+  clear: both;
+  content: '';
+  display: block;
 }
 
 .activity-box-footer a {
