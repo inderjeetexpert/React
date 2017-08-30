@@ -9,6 +9,7 @@ import history from '../history'
 //import Topnav from './components/topnav/topnav'
 import Main from './Main'
 import People from './People'
+import Campaigns from './GoogleAdward'
 import Login from './Login'
 import Contact from './Contact'
 import Company from './Company'
@@ -47,6 +48,7 @@ class MainRoute extends Component {
 						<Route exact path="/" component={Login} />
 						<Route exact path="/business" component={Main} />
 						<Route exact path="/people" component={People} />
+						<Route exact path="/campaign/create" component={Campaigns} />
 						<Route exact path="/contact" component={Contact} />
 						<Route exact path="/company" component={Company} />
 						<Route exact path="/emailMarketing" component={EmailMarketing} />
