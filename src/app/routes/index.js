@@ -29,6 +29,7 @@ import CreateAdGroup from './GoogleAdward/components/adGroup'
 import FbAdMarketingRouteCampaign from './FbAdMarketingRoute/Campaign'
 import FbAdMarketingRouteAdAccount from './FbAdMarketingRoute/AdAccount'
 import FbAdMarketingRouteAdSet from './FbAdMarketingRoute/AdSet'
+import GoogleAccounts from './GoogleAdward/components/connectAccounts'
 const store = configureStore()
 
 
@@ -74,6 +75,7 @@ class MainRoute extends Component {
 						<Route path="/webAnalytics/:pageName/:subPageName" component={WebAnalytics} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/campaigns/adGroup" component={CreateAdGroup} />
+						<Route exact path="/social/google/connectedAccounts" component={GoogleAccounts} />
 						<Route component={Login} />
 					</Switch>
 				</HashRouter>

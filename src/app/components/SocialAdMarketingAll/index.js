@@ -2,6 +2,7 @@ import React from 'react';
 import './social-add.css';
 import Config from '../../config';
 import SocialAdMarketingFbBtn from './SocialAdMarketingFbBtn';
+import GoogleConnectedAccount from './GoogleConnectedAccount';
 
 
 export default class SocialAdMarketingFbAll extends React.Component {
@@ -43,9 +44,7 @@ export default class SocialAdMarketingFbAll extends React.Component {
                       </a>
                     </li>
                     <li>
-                      <a href="#">
-                        <i className="ion-social-googleplus"></i>
-                      </a>
+                      <GoogleConnectedAccount />
                     </li>
                     <li>
                       <a href="#">
