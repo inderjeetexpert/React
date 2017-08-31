@@ -1,10 +1,23 @@
 import React from 'react';
 import './companydetail.css';
-
-
+import axios from 'axios';
+import moment from 'moment';
 class CompanyTabChangeDetailsActivity extends React.Component {
 	constructor(props) {
 		super(props)
+		let url = window.location.hash.split('/')
+		const id=url[url.length-1]
+		//console.log(company_id);
+		this.state={
+			id,
+		 data : [],
+		 results:''
+		}
+
+
+		this.props.fetchactivity(id);
+
+
 	}
 
 	render() {
@@ -15,28 +28,46 @@ class CompanyTabChangeDetailsActivity extends React.Component {
 					<div className="note-box">
 							<ul>
 									<li>
-											<img src="images/edit.svg" />
+											<img src="images/stop-watch.svg" />
 									</li>
 									<li>
 											<h5>My Activity <a href="" className="pull-right"><img src="images/filter.svg" /></a></h5>
 											<h6>AUG 2017</h6>
-											<div className="notes-list">
-													<a href="" className="pull-right"><img src="images/overflow-horizontal.svg" /></a>
-													<div className="name">
-															SR
-													</div>
-													<span>Aug 07 2017, 2:15pm</span>
-													<b>Untitled</b>
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna ... aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-											</div>
-											<div className="notes-list">
-													<div className="name">
-															AA
-													</div>
-													<span>Aug 07 2017, 2:15pm</span>
-													<b>Untitled</b>
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna ... aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-											</div>
+											{this.props.data.map((d,key) => {
+													let describ = "N/A"
+
+													if (d.description && d.description != '') {
+															describ = d.description
+													}
+
+													let subject = "Untitled"
+
+													if (d.subject && d.subject != '') {
+															subject = d.subject
+													}
+
+													let dateC= moment(d.created_at);
+
+
+													let name= d.user.split(' ').map(u=>{
+															u= u.toUpperCase();
+															return u[0];
+													}).join('')
+
+													return (
+															<div className="notes-list"  key={d.id}>
+																	<a href="" className="pull-right"><img src="images/overflow-horizontal.svg" /></a>
+																	<div className="name">
+																			{name}
+																	</div>
+																	<span>{dateC.format('MMMM Do YYYY, h:mm:ss a')}</span>
+																	<b>{d.subject}</b>
+																	<p>{describ}</p>
+																	<p><a href={d.activity_file} download ><img src="images/file-zip.svg" style={{width: '19px'}}/></a></p>
+															</div>
+													)
+											})}
+
 									</li>
 							</ul>
 					</div>

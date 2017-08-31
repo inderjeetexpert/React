@@ -1,0 +1,225 @@
+import React from 'react';
+import '../social-add.css';
+
+class FbAdMarketingAdSet extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      "token": "",
+      "campaign_id": "",
+      "parent_id": "",
+      "name": "",
+      "billing_event": "IMPRESSIONS",
+      "bid_amount": "",
+      "lifetime_budget": "",
+      "start_time": "",
+      "end_time": "",
+      "targeting": {
+        "age_max": "",
+        "age_min": "",
+        "geo_locations": {
+          "countries": ["PK"]
+        }
+      }
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handleSubmit(event){
+    if(!this.state.isGoing){
+      console.log(this.state);
+    }
+    event.preventDefault();
+  }
+
+  render(){
+
+    return(
+      <div>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-9">
+              <div className="add-campaign-box">
+                <form onSubmit={this.handleSubmit}>
+                  <div className="campaign-header-box">
+                    <div className="clearfix head-part">
+                      <div className="RHS">
+                        <div>
+                          <button className="btn btn-secondary rounded"><span className="ion-chevron-left"></span></button>
+                          <button className="btn btn-primary campaign-responsive-btn">Next</button>
+                          <button className="btn btn-secondary campaign-responsive-btn">Discard</button>
+                        </div>
+                      </div>
+                      <div className="LHS">
+                        <h3 className="PT0">Ad Setup</h3>
+                      </div>
+                    </div>
+                    <div className="social-small-form">
+                      <p className="belowHeader">Ad Set Name</p>
+                      <div className="form-group">
+                        <input type="text" className="form-control" placeholder="Ad Set Name"/>
+                      </div>
+                      <p className="belowHeader">Select e-mail server</p>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing eli</p>
+                      <div>
+                        <div class="checkbox">
+                          <label><input type="radio" name="Lorem"/>Lorem ipsum dolor si</label>
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="radio" name="Lorem" />Lorem ipsum dolor sir</label>
+                        </div>
+                      </div>
+                      <div className="toggleSwitch">
+                        <p className="belowHeader">
+                          <span className="text">Setup e-mail marketing campaign</span>
+                          <label className="switch">
+                            <input type="checkbox" checked/>
+                            <span className="slider round"></span>
+                          </label>
+                        </p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing eli</p>
+                      </div>
+                      <div>
+                        <div class="checkbox">
+                          <label>
+                            <input type="radio" name="Lorem"/>
+                            <div className="radioWithText">
+                              <div><strong>Lorem ipsum dolor si</strong></div>
+                              <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</span>
+                            </div>
+                          </label>
+                        </div>
+                        <div class="checkbox">
+                          <label>
+                            <input type="radio" name="Lorem"/>
+                            <div className="radioWithText">
+                              <div><strong>Lorem ipsum dolor si</strong></div>
+                              <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</span>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+
+                      <div>
+                        <p className="belowHeader">Select e-mail server</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing eli</p>
+                      </div>
+                      <div>
+                        <p>Locations</p>
+                        <div className="row">
+                          <div className="col-md-9">
+                            <div className="locSrchBox">
+                              <div className="dropdown">
+                                <button className="btn btn-secondary campaign-responsive-btn">Action <span className="caret"></span></button>
+                              </div>
+                              <div className="serchBox">
+                                <span className="ion-ios-location-outline"></span>
+                                <input type="text" />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-md-3">
+                            <button className="btn btn-primary campaign-responsive-btn">Brouse by</button>
+                          </div>
+                        </div>
+                        <ul className="locList">
+                          <li>United States
+                            <a href="#" ClassName="close "> <span className="ion-ios-close-outline"></span></a>
+                          </li>
+                          <li>United States
+                            <a href="#" ClassName="close "> <span className="ion-ios-close-outline"></span></a>
+                          </li>
+                          <li>United States
+                            <a href="#" ClassName="close "> <span className="ion-ios-close-outline"></span></a>
+                          </li>
+                        </ul>
+                        <p>Gender</p>
+                        <div>
+                          <div className="redioButton">
+                            <label>
+                              <input type="radio" name="Lorem"/>
+                              <div className="text">ALL</div>
+                            </label>
+                          </div>
+                          <div className="redioButton">
+                            <label>
+                              <input type="radio" name="Lorem"/>
+                              <div className="text">MAN</div>
+                            </label>
+                          </div>
+                          <div className="redioButton">
+                            <label>
+                              <input type="radio" name="Lorem"/>
+                              <div className="text">WOMAN</div>
+                            </label>
+                          </div>
+                        </div>
+                        <p>Language</p>
+                        <div className="form-group">
+                          <input type="text" className="form-control" placeholder="Campaign Name"/>
+                        </div>
+                      </div>
+                      <div>
+                        <p className="belowHeader">Budget & Scheudle</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                        <p>Budget <span className="ion-ios-information-outline ML8"></span></p>
+                        <div className="row">
+                          <div className="col-xs-6">
+                            <div className="form-group">
+                              <select className="form-control">
+                                <option>Daily Budget</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div className="col-xs-6">
+                            <div className="form-group">
+                              <input type="text" className="form-control" placeholder="Campaign Name"/>
+                            </div>
+                          </div>
+                        </div>
+                        <p>Schedule <span className="ion-ios-information-outline ML8"></span></p>
+                        <div className="checkbox">
+                          <label><input type="radio" name="Lorem"/>Lorem ipsum dolor si</label>
+                        </div>
+                        <div className="checkbox">
+                          <label><input type="radio" name="Lorem" />Lorem ipsum dolor sir</label>
+                        </div>
+                        <p className="infop">You will spend no more than $140 per week</p>
+                      </div>
+                      <div className="campaign-footer-box">
+                        <button className="btn btn-primary">Next</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div className="col-md-3">
+              <div className="generation2">
+                <h4>Lead Generation</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+export default FbAdMarketingAdSet;

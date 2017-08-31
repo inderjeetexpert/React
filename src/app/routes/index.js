@@ -26,6 +26,9 @@ import SocialFbAddCampaign from './SocialFbAddCampaign'
 import configureStore from '../store/configureStore'
 import CampaignList from './GoogleAdward/components/campaignList'
 import CreateAdGroup from './GoogleAdward/components/adGroup'
+import FbAdMarketingRouteCampaign from './FbAdMarketingRoute/Campaign'
+import FbAdMarketingRouteAdAccount from './FbAdMarketingRoute/AdAccount'
+import FbAdMarketingRouteAdSet from './FbAdMarketingRoute/AdSet'
 const store = configureStore()
 
 
@@ -61,10 +64,12 @@ class MainRoute extends Component {
 						<Route exact path="/companyDetail/activity/:id" component={CompanyDetailActivity} />
 						<Route exact path="/companyDetail/task/:id" component={CompanyDetailTask} />
 						<Route exact path="/companyDetail/schedule/:id" component={CompanyDetailSchedule} />
-
 						<Route exact path="/companyDetail/attachment/:id" component={CompanyDetailAttachment} />
 						<Route exact path="/social" component={Social} />
 						<Route exact path="/fbaddcampaign" component={SocialFbAddCampaign} />
+						<Route exact path="/social/fbaddcampaign" component={FbAdMarketingRouteCampaign} />
+						<Route exact path="/social/fbadaccount" component={FbAdMarketingRouteAdAccount} />
+						<Route exact path="/social/fbadset" component={FbAdMarketingRouteAdSet} />
 
 						<Route path="/webAnalytics/:pageName/:subPageName" component={WebAnalytics} />
 						<Route exact path="/login" component={Login} />

@@ -20,7 +20,7 @@ class CompanyShortDec extends React.Component {
 	axios.defaults.headers.common['Authorization'] = "Token "+localStorage.getItem('key');
 	axios.defaults.headers.common['Content-Type'] = 'application/json';
 	axios.get('http://www.carderockllc.com/api/v1/company/companies/'+id+'/').then(res=>{
-		console.log(res.data);
+		//console.log(res.data);
 		this.setState({
 			data: res.data,
 			images : res.data.images[0],

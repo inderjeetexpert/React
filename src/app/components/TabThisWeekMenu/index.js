@@ -153,17 +153,17 @@ export default class TabThisWeekMenu extends React.Component {
 		}
 		return (
 			<div>
-				<div className="container-fluid">
-					<div className="search-header">
-						<div className="row">
-							<form onSubmit={(event) => this.handleSearch(event)}>
-								{errorMsg}
-								<div className="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-									<div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
-										<div className="form-group has-warning has-feedback">
-											{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
-											<span className="input-group-addon"><i className="ion-android-search"></i></span>
-											<input className="form-control" type="text" value={item} placeholder="Search for Business" onChange={(event) => this.handItemChange(event)} />
+					<div className="container-fluid">
+							<div className="search-header">
+									<div className="row">
+											<form onSubmit={(event) => this.handleSearch(event)}>
+													{errorMsg}
+													<div className="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+															<div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+																	<div className="form-group has-warning has-feedback">
+																			{/* <label className="control-label" htmlFor="focusedInput">Search Item</label> */}
+																			<span className="input-group-addon"><i className="ion-android-search"></i></span>
+																			<input className="form-control" type="text" value={item} placeholder="Search for Business" onChange={(event) => this.handItemChange(event)} />
 											{errorItem}
 
 

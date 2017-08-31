@@ -135,11 +135,31 @@
     height: 150px;
 }
 
+.activity-box-body .dragDropArea{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8e9ba4;
+  font-size: 24px;
+  height: 150px;
+}
+
+.activity-box-body .dragDropArea span{
+  color: #4584f5;
+  margin: 0 5px;
+}
+
 .activity-box-footer {
     width: 100%;
     height: auto;
-    overflow: hidden;
     padding: 20px 15px;
+    display: block;
+
+}
+.activity-box-footer:after{
+  clear: both;
+  content: '';
+  display: block;
 }
 
 .activity-box-footer a {
@@ -257,4 +277,60 @@
 
 .info-list {
     margin-top: 30px;
+}
+.relativeDiv{
+  position: relative;
+}
+.timeDropdown{
+  position: absolute;
+  top: 60px;
+  left:50px;
+  width: 100px;
+  border: 1px solid #e6eaed;
+  background: #fff;
+  z-index: 99;
+}
+.timeDropdown ul{
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+	height: 300px;
+  overflow-y: scroll;
+}
+.timeDropdown li a{
+  border-bottom: 1px solid #ddd;
+  display: block;
+  color: #899496;
+  text-decoration: none;
+  padding: 10px;
+  font-size: 16px;
+}
+.timeDropdown .innr{
+  position: relative;
+}
+.timeDropdown .imgArrow{
+  position: absolute;
+  top: -11px;
+  left: 40px;
+}
+
+
+.timeDropdown li:last-child a{
+  border: none;
+}
+.timeDropdown li a:hover{
+  color: #fff;
+  background: #1661c6;
+}
+
+
+@media (max-width: 767px) {
+  .activity-box .activity-box-head{
+    display: block;
+    list-style-type: none;
+  }
+  .activity-box .activity-box-head li{
+    display: block;
+    margin-bottom: 10px;
+  }
 }
